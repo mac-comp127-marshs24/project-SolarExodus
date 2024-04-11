@@ -9,6 +9,8 @@ public class GameNane {
     public GameNane(){
         canvas = new CanvasWindow("GameName", WIDTH, HEIGHT);
         canvas.setBackground(Color.BLACK);
+        Spaceship space = new Spaceship();
+        space.addToCanvas(canvas);
     }
 
 
