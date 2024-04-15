@@ -9,11 +9,24 @@ public class Spaceship {
     private Image spaceship;
 
     public Spaceship() {
-        spaceship = new Image(400, 400);
-        spaceship.setImagePath("res/spaceship1.png");
+        spaceship = new Image(375, 700);
+        spaceship.setImagePath("spaceship1.png");
         spaceship.setMaxWidth(WIDTH);
         spaceship.setMaxHeight(HEIGHT);
     }
+        
+    public void moveShip(CanvasWindow canvas){
+        canvas.onMouseMove(event -> {
+            double mouseX = event.getPosition().getX();
+            double spaceshipX = mouseX - WIDTH /2;
+            if (spaceshipX<0){
+                spaceshipX = 0;
+            } else if (spaceshipX + WIDTH > canvas.getWidth()){
+                spaceshipX = canvas.getWidth() - WIDTH;
+            }
+            spaceship.setPosition(spaceshipX, spaceship.getY());
+        });
+            }
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(spaceship);
