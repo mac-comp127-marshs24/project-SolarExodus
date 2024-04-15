@@ -12,7 +12,7 @@ public class Spaceship {
 
     public Spaceship(){
         spaceship = new Image(400,400);
-        spaceship.setImagePath("src/Images/shippp.png");
+        spaceship.setImagePath("res/shippp.png");
         spaceship.setMaxWidth(WIDTH);
         spaceship.setMaxHeight(HEIGHT);
 
