@@ -1,6 +1,6 @@
+import edu.macalester.graphics.*;
 import java.awt.Color;
 
-import edu.macalester.graphics.*;
 
 public class Planet {
     private double posX;
@@ -19,7 +19,6 @@ public class Planet {
         this.angle = 0;
         this.radius = radius;
     }
-
 
     public void move(CanvasWindow canvas) {
         double angleRad = Math.toRadians(angle);

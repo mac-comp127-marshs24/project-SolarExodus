@@ -1,10 +1,7 @@
 
 
-
 public class Main {
- 
-    
-    public Main(){
 
+    public Main() {
     }
 }

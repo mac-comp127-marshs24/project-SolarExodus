@@ -6,20 +6,14 @@ public class GameNane {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 800;
 
-    public GameNane(){
+    public GameNane() {
         canvas = new CanvasWindow("GameName", WIDTH, HEIGHT);
-        canvas.setBackground(Color.BLACK);
+        canvas.setBackground(new Color(10, 0, 20));
         Spaceship space = new Spaceship();
         space.addToCanvas(canvas);
     }
-
-
-
-
 
     public static void main(String[] args) {
         new GameNane();
     }
 }
-
-
