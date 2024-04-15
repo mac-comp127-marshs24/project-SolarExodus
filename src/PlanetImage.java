@@ -1,25 +1,21 @@
-import java.awt.Color;
+import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Image;
 
-import edu.macalester.graphics.*;
-
-public class Planet {
+public class PlanetImage {
     private double posX;
     private double posY;
-    private double radius;
-    private Ellipse planet;
-    private double speed;
-    private double angle;
+    private double angle, speed, radius;
+    private Image planet;
 
-    public Planet(double size, Color color, double radius, double speed) {
-        planet = new Ellipse(0, 0, size, size);
-        planet.setFillColor(color);
-        planet.setStrokeColor(Color.BLACK);
+    public PlanetImage(double size, double radius, double speed, String imgPath) {
+        planet = new Image(imgPath);
+        planet.setMaxHeight(size);
+        planet.setMaxWidth(size);
 
-        this.speed = speed;
         this.angle = 0;
         this.radius = radius;
+        this.speed = speed;
     }
-
 
     public void move(CanvasWindow canvas) {
         double angleRad = Math.toRadians(angle);
