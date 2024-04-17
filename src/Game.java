@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Game {
     private CanvasWindow canvas;
-    private static final int HEIGHT = 800;
-    private static final int WIDTH = 600;
+    private static final int HEIGHT = 900;
+    private static final int WIDTH = 800;
     private Spaceship spaceship;
     private ArrayList<Laser> lasers;
 
@@ -16,8 +16,9 @@ public class Game {
         canvas = new CanvasWindow("GameName", WIDTH, HEIGHT);
         // canvas.setBackground(new Color(10, 0, 20));
 
-        Image spaceBG = new Image("spaceBG.jpeg");
+        Image spaceBG = new Image("planets/spaceBG2.jpg");
         spaceBG.setMaxWidth(WIDTH);
+        // spaceBG.setScale(2);
         spaceBG.setMaxHeight(HEIGHT);
         canvas.add(spaceBG);
 
