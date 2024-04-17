@@ -21,8 +21,8 @@ public class PlanetImage {
         double angleRad = Math.toRadians(angle);
         double xCoor = radius * Math.cos(angleRad);
         double yCoor = radius * Math.sin(angleRad);
-        posX = canvas.getWidth() / 2 + xCoor;
-        posY = canvas.getHeight() / 2 + yCoor;
+        posX = canvas.getWidth() * 0.5 + xCoor;
+        posY = canvas.getHeight() * 0.25 + yCoor;
         planet.setCenter(posX, posY);
         angle = angle % 360 + speed;
     }
