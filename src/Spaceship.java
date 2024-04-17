@@ -31,4 +31,12 @@ public class Spaceship {
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(spaceship);
     }
+
+    public double getX(){
+        return spaceship.getX();
+    }
+    public double getY(){
+        return spaceship.getY();
+    }
+
 }
