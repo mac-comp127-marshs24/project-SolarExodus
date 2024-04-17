@@ -53,6 +53,24 @@ public class Game {
             //         lasers.remove(lasershot);
             //     }
             // }
+        });
+        canvas.onClick(event-> {
+            double x1 = spaceship.getX()+23;
+            double x2 = spaceship.getX()+25;
+            double y1 = spaceship.getY()-40;
+            double y2 = spaceship.getY()-5;
+            Laser lasershot = new Laser(x1,y1,x2,y2);
+            lasershot.setStrokeColor(Color.PINK);
+
+            canvas.add(lasershot);
+            lasers.add(lasershot);
+
+            // if (lasers != null){
+            //     if(lasershot=maxCanvasHeight||lasershot=maxCanvasWidth){
+            //         canvas.remove(lasershot);
+            //         lasers.remove(lasershot);
+            //     }
+            // }
     });}
 
     
