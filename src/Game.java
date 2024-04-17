@@ -29,6 +29,8 @@ public class Game {
         lasers = new ArrayList <> ();
         createLaser();
         animateGame();
+
+        PlanetImage.SolarSystem(canvas);
 }
 
 
