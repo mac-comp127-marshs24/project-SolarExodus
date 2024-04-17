@@ -14,28 +14,29 @@ public class Spaceship {
         spaceship.setMaxWidth(WIDTH);
         spaceship.setMaxHeight(HEIGHT);
     }
-        
-    public void moveShip(CanvasWindow canvas){
+
+    public void moveShip(CanvasWindow canvas) {
         canvas.onMouseMove(event -> {
             double mouseX = event.getPosition().getX();
-            double spaceshipX = mouseX - WIDTH /2;
-            if (spaceshipX<0){
+            double spaceshipX = mouseX - WIDTH / 2;
+            if (spaceshipX < 0) {
                 spaceshipX = 0;
-            } else if (spaceshipX + WIDTH > canvas.getWidth()){
+            } else if (spaceshipX + WIDTH > canvas.getWidth()) {
                 spaceshipX = canvas.getWidth() - WIDTH;
             }
             spaceship.setPosition(spaceshipX, spaceship.getY());
         });
-            }
+    }
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(spaceship);
     }
 
-    public double getX(){
+    public double getX() {
         return spaceship.getX();
     }
-    public double getY(){
+
+    public double getY() {
         return spaceship.getY();
     }
 
