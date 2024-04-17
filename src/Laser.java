@@ -8,8 +8,8 @@ public class Laser extends Line {
     public Laser(double x1, double y1, double x2, double y2) {
         super(x1, y2, x2, y2);
         this.setStrokeWidth(3);
-        velocityX = -0.1;
-        velocityY = -0.2;
+        velocityX = -1.5;
+        velocityY = -2.5;
 
     }
     public void changeDirection(){
