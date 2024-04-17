@@ -42,7 +42,7 @@ public class PlanetImage {
 
     public static void SolarSystem(CanvasWindow canvas) {
         double earthSize = 20;
-        double earthRadius = 300;
+        double earthRadius = 150;
         double earthSpeed = 2;
 
 
