@@ -30,6 +30,8 @@ public class Game {
         lasers = new ArrayList <> ();
         createLaser();
         animateGame();
+
+        PlanetImage.SolarSystem(canvas);
 }
 
 
@@ -57,7 +59,7 @@ public class Game {
     public void animateGame(){
         canvas.animate(()->{
             for(Laser laser: lasers){
-                laser.moveBy(-0.1, -0.2);
+                laser.updatePosition();
             }
         });
     }
