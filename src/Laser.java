@@ -10,9 +10,5 @@ public class Laser extends Line {
         super(x1, y2, x2, y2);
         this.setStrokeWidth(3);
     }
-    // public void updateLaserPosition(double dt){
-
-
-    // }
 
 }

@@ -27,7 +27,9 @@ public class Game {
         spaceship.moveShip(canvas);
         lasers = new ArrayList <> ();
         createLaser();
-    }
+        animateGame();
+}
+
 
     public void createLaser(){
         canvas.onCharacterTyped(event-> {
@@ -41,26 +43,24 @@ public class Game {
             canvas.add(lasershot);
             lasers.add(lasershot);
 
-            // if(lasers!= null){
-            //     lasershot.moveBy(0.1,0.2);
-            // }
-
             // if (lasers != null){
             //     if(lasershot=maxCanvasHeight||lasershot=maxCanvasWidth){
             //         canvas.remove(lasershot);
             //         lasers.remove(lasershot);
             //     }
             // }
-    });
-}
-    // public void animateLaser(){
-    //     canvas.animate(()->{
-    //         Laser.update
-    //     });
-    // }
+    });}
+    public void animateGame(){
+        canvas.animate(()->{
+            for(Laser laser: lasers){
+                laser.moveBy(-0.1, -0.2);
+            }
+        });
+    }
     
     public static void main(String[] args) {
         new Game();
+
     }
     
 }
