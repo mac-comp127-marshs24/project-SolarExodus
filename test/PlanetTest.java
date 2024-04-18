@@ -6,6 +6,6 @@ public class PlanetTest {
         CanvasWindow canvas = new CanvasWindow("PlanetTest", 1200, 1600);
         canvas.setBackground(new Color(10, 0, 20));
 
-        PlanetImage.SolarSystem(canvas);
+        new SolarSystem(canvas);
     }
 }

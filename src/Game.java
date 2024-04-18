@@ -15,7 +15,8 @@ public class Game {
     private static final int WIDTH = 900;
     private Spaceship spaceship;
     private ArrayList<Laser> lasers;
-    private ArrayList<PlanetImage> planets;
+    private SolarSystem solarSystem;
+    private int lives;
 
 
     public Game() {
@@ -25,67 +26,82 @@ public class Game {
         spaceBG.setMaxWidth(WIDTH);
         spaceBG.setScale(2);
         spaceBG.setMaxHeight(HEIGHT);
-        spaceBG.setPosition(0,0);
+        spaceBG.setPosition(0, 0);
         canvas.add(spaceBG);
 
 
         spaceship = new Spaceship();
         spaceship.addToCanvas(canvas);
         spaceship.moveShip(canvas);
-        lasers = new ArrayList <> ();
-        planets = new ArrayList<>();
+        lasers = new ArrayList<>();
         createLaser();
         animateGame();
 
-        PlanetImage.SolarSystem(canvas);
+        solarSystem = new SolarSystem(canvas);
+        lives = 3;
         // startScreen();
     }
 
 
-    public void createLaser(){
-        canvas.onCharacterTyped(event-> {
-            double x1 = spaceship.getX()+23;
-            double x2 = spaceship.getX()+25;
-            double y1 = spaceship.getY()-40;
-            double y2 = spaceship.getY()-5;
-            Laser lasershot = new Laser(x1,y1,x2,y2);
+    public void createLaser() {
+        canvas.onCharacterTyped(event -> {
+            double x1 = spaceship.getX() + 23;
+            double x2 = spaceship.getX() + 25;
+            double y1 = spaceship.getY() - 40;
+            double y2 = spaceship.getY() - 5;
+            Laser lasershot = new Laser(x1, y1, x2, y2);
             lasershot.setStrokeColor(Color.PINK);
 
             canvas.add(lasershot);
             lasers.add(lasershot);
         });
 
-        canvas.onClick(event-> {
-            double x1 = spaceship.getX()+23;
-            double x2 = spaceship.getX()+25;
-            double y1 = spaceship.getY()-40;
-            double y2 = spaceship.getY()-5;
-            Laser lasershot = new Laser(x1,y1,x2,y2);
+        canvas.onClick(event -> {
+            double x1 = spaceship.getX() + 23;
+            double x2 = spaceship.getX() + 25;
+            double y1 = spaceship.getY() - 40;
+            double y2 = spaceship.getY() - 5;
+            Laser lasershot = new Laser(x1, y1, x2, y2);
             lasershot.setStrokeColor(Color.PINK);
 
             canvas.add(lasershot);
             lasers.add(lasershot);
-    });}
+        });
+    }
     // public static ArrayList<PlanetImage> getPlanets(){
-    //     return planets;
+    // return planets;
     // }
 
-    public void animateGame(){
-        canvas.animate(()->{
-            for(Laser laser: lasers){
+    public void animateGame() {
+        canvas.animate(() -> {
+            for (Laser laser : lasers) {
                 laser.updatePosition();
-            
-                for(PlanetImage planet: planets){
-                    if(planet.checkLaser(laser)){
-                        planet.reflect(laser);
+
+                for (Planet planet : solarSystem.getSolarSystem()) {
+                    if (planet.checkLaser(laser)) {
+                        if (planet.getType().equals("Planet")) {
+                            planet.reflect(laser);
+                        } else if (planet.getType().equals("Earth")) {
+                            planet.hit(this);
+                            System.out.println(getLives());
+                        }
                     }
                 }
-            
-        }});
+
+            }
+        });
     }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void decLives() {
+        lives--;
+    }
+
     public static void main(String[] args) {
         new Game();
-
     }
-    
+
 }
