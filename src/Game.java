@@ -14,7 +14,6 @@ public class Game {
 
     public Game() {
         canvas = new CanvasWindow("GameName", WIDTH, HEIGHT);
-        // canvas.setBackground(new Color(10, 0, 20));
 
         Image spaceBG = new Image("planets/spaceBG2.png");
         spaceBG.setMaxWidth(WIDTH);
@@ -46,14 +45,8 @@ public class Game {
 
             canvas.add(lasershot);
             lasers.add(lasershot);
-
-            // if (lasers != null){
-            //     if(lasershot=maxCanvasHeight||lasershot=maxCanvasWidth){
-            //         canvas.remove(lasershot);
-            //         lasers.remove(lasershot);
-            //     }
-            // }
         });
+
         canvas.onClick(event-> {
             double x1 = spaceship.getX()+23;
             double x2 = spaceship.getX()+25;
@@ -64,16 +57,8 @@ public class Game {
 
             canvas.add(lasershot);
             lasers.add(lasershot);
-
-            // if (lasers != null){
-            //     if(lasershot=maxCanvasHeight||lasershot=maxCanvasWidth){
-            //         canvas.remove(lasershot);
-            //         lasers.remove(lasershot);
-            //     }
-            // }
     });}
 
-    
     public void animateGame(){
         canvas.animate(()->{
             for(Laser laser: lasers){

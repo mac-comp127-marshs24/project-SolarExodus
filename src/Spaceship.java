@@ -2,8 +2,6 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Image;
 
 public class Spaceship {
-    private double positionx;
-    private double positiony;
     private static final int WIDTH = 50;
     private static final int HEIGHT = 50;
     private Image spaceship;
