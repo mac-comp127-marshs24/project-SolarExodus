@@ -16,7 +16,7 @@ import java.awt.Graphics;
 
 public class Start {
     private CanvasWindow canvas;
-    private static final int HEIGHT = 800;
+    private static final int HEIGHT = 750;
     private static final int WIDTH = 900;
 
     public Start(){

@@ -35,6 +35,9 @@ public class PlanetImage {
     public void reflect(Laser laser) {
         laser.changeDirection();
     }
+    public static ArrayList<PlanetImage> getPlanets(){
+        return getPlanets();
+    }
 
     public boolean checkLaser(Laser laser){
         double laserX1 = laser.getX1();
