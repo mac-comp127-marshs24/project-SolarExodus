@@ -13,7 +13,7 @@ public class Game {
 
 
     public Game() {
-        canvas = new CanvasWindow("GameName", WIDTH, HEIGHT);
+        canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
 
         Image spaceBG = new Image("planets/spaceBG2.png");
         spaceBG.setMaxWidth(WIDTH);
