@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Image;
+import edu.macalester.graphics.Rectangle;
 
 public class PlanetImage {
     private double posX;
@@ -35,10 +36,27 @@ public class PlanetImage {
         laser.changeDirection();
     }
 
+    public boolean checkLaser(Laser laser){
+        double laserX1 = laser.getX1();
+        double laserY1 = laser.getY1();
+        double laserX2 = laser.getX2();
+        double laserY2 = laser.getY2();
+
+        double planetXCord = planet.getCenter().getX();
+        double planetYCord = planet.getCenter().getY();
+        // double planetRadius = planet.getWidth()*0.5;
+
+        double distanceX1Y1 = Math.sqrt(Math.pow(planetXCord-laserX1,2)+Math.pow(planetYCord-laserY1,2));
+        double distanceX2Y2 = Math.sqrt(Math.pow(planetXCord-laserX2,2)+Math.pow(planetYCord-laserY2,2));
+        if (distanceX1Y1 <= radius || distanceX1Y1 <= distanceX2Y2){
+            return true;
+        }
+        return false;
+        }
+
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(planet);
     }
-
 
     public static void SolarSystem(CanvasWindow canvas) {
         double earthSize = 20;

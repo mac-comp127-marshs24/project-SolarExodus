@@ -8,6 +8,7 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.events.MouseButtonEvent;
+import edu.macalester.graphics.ui.Button;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,9 +30,12 @@ public class Start {
         spaceBG.setPosition(0,0);
         canvas.add(spaceBG);
 
-        Rectangle startButton = new Rectangle((WIDTH/2)-50,(HEIGHT/2)-30,100,50);
-        startButton.setFillColor(Color.BLACK);
-        startButton.setStrokeColor(Color.PINK);
+        Button startButton = new Button("Start Game");
+        startButton.setPosition(400,400);
+        canvas.add(startButton);
+        startButton.onClick(()->new Game());
+        // startButton.setFillColor(Color.BLACK);
+        // startButton.setStrokeColor(Color.PINK);
         // startButton.onMousePressed(event->{startGame(event)});
         // canvas.onClick(event->{
         //     double x = event.getPosition().getX();
@@ -42,21 +46,6 @@ public class Start {
         //     }
         // });
         
-        canvas.add(startButton);
-
-        GraphicsText startText = new GraphicsText("START");
-        startText.setPosition((WIDTH/2)-35,(HEIGHT/2));
-        startText.setFillColor(Color.PINK);
-        startText.setFontSize(20);
-        startText.setFontStyle(FontStyle.BOLD);
-        canvas.add(startText);
-  
-
-        // Rectangle scriptBox = new Rectangle(70, 500, 750, 50);
-        // scriptBox.setFillColor(Color.BLACK);
-        // scriptBox.setStrokeColor(Color.PINK);
-        // canvas.add(scriptBox);
-
         GraphicsText scriptText = new GraphicsText("Oh no! There are two suns threatening to overheat the Earth! Shoot down one of these suns to save Earth!");
         scriptText.setPosition(80,310);
         scriptText.setFontStyle(FontStyle.ITALIC);
@@ -118,13 +107,9 @@ public class Start {
         
     }
 
-    // private void startGame(){
-    //     canvas.removeAll();
-    //     new Game(canvas);
-    //     // MainGame mainGame = new MainGame(canvas);
-
-
-    // }
+   void startGame(){
+        canvas.removeAll();
+    }
 
     public static void main(String[]args){
         new Start();

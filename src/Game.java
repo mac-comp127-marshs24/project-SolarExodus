@@ -1,7 +1,12 @@
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
+import edu.macalester.graphics.ui.Button;
 
 import java.awt.Color;
+import java.awt.List;
 import java.util.ArrayList;
 
 public class Game {
@@ -31,7 +36,8 @@ public class Game {
         animateGame();
 
         PlanetImage.SolarSystem(canvas);
-}
+        // startScreen();
+    }
 
 
     public void createLaser(){
@@ -64,9 +70,14 @@ public class Game {
             for(Laser laser: lasers){
                 laser.updatePosition();
             }
+                // for(PlanetImage planet: planets){
+                //     if(planet.checkLaser(laser)){
+                //         planet.reflect(laser);
+                //     }
+                // }
+            
         });
     }
-    
     public static void main(String[] args) {
         new Game();
 
