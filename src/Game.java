@@ -63,7 +63,7 @@ public class Game {
         canvas.onCharacterTyped(event -> {
             double x1 = spaceship.getX() + 23;
             double x2 = spaceship.getX() + 25;
-            double y1 = spaceship.getY() - 40;
+            double y1 = spaceship.getY() - 15;
             double y2 = spaceship.getY() - 5;
             Laser lasershot = new Laser(x1, y1, x2, y2);
             lasershot.setStrokeColor(Color.PINK);
@@ -75,7 +75,7 @@ public class Game {
         canvas.onClick(event -> {
             double x1 = spaceship.getX() + 23;
             double x2 = spaceship.getX() + 25;
-            double y1 = spaceship.getY() - 40;
+            double y1 = spaceship.getY() - 15;
             double y2 = spaceship.getY() - 5;
             Laser lasershot = new Laser(x1, y1, x2, y2);
             lasershot.setStrokeColor(Color.PINK);
@@ -89,6 +89,11 @@ public class Game {
         canvas.animate(() -> {
             for (Laser laser : lasers) {
                 laser.updatePosition();
+                if (laser.collisionSS(spaceship)){
+                    canvas.remove(laser);
+                    lasers.remove(laser);
+                    System.out.println("laser hit");
+                }
 
                 for (Planet planet : solarSystem.getSolarSystem()) {
                     if (planet.checkLaser(laser)) {
