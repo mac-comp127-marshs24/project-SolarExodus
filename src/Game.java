@@ -1,11 +1,13 @@
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.ui.Button;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.List;
 import java.util.ArrayList;
 
@@ -18,6 +20,8 @@ public class Game {
     private SolarSystem solarSystem;
     private int lives;
     private Button startButton;
+    private GraphicsText livesText;
+    Boolean running = true;
 
 
     public Game() {
@@ -42,6 +46,10 @@ public class Game {
         spaceship = new Spaceship();
         lasers = new ArrayList <> ();
         lives = 3;
+
+        livesText = new GraphicsText("Lives Left: " + getLives()); 
+        // canvas.add(livesText);
+
     }
 
     public void call(){
@@ -54,6 +62,7 @@ public class Game {
         createLaser();
         animateGame();
         solarSystem = new SolarSystem(canvas);
+        livesTxt();
 
         // new SolarSystem(canvas);
     }
@@ -87,7 +96,8 @@ public class Game {
 
     public void animateGame() {
         canvas.animate(() -> {
-            for (Laser laser : lasers) {
+            if(running){
+                for (Laser laser : lasers) {
                 laser.updatePosition();
 
                 for (Planet planet : solarSystem.getSolarSystem()) {
@@ -97,11 +107,15 @@ public class Game {
                         } else if (planet.getType().equals("Earth")) {
                             planet.hit(this);
                             System.out.println(getLives());
+                            livesTxt();
                         }
                     }
                 }
 
             }
+            // canvas.removeAll(); 
+            gameOver();
+        }
         });
     }
 
@@ -164,11 +178,36 @@ public class Game {
     }
 
     public void decLives() {
-        lives--;
+        if(lives >0){
+            lives--;
+        }
     }
 
+    public void gameOver(){
+        if(lives==0){
+            running=false;
+            GraphicsText over = new GraphicsText("GAME OVER");
+
+            over.setFillColor(Color.PINK);
+            over.setFontStyle(FontStyle.BOLD);
+            over.setFontSize(20);
+            canvas.add(over, canvas.getWidth()/2, canvas.getHeight()/2);
+            
+            solarSystem.stopAnimate();
+        }
+    }
+
+    public void livesTxt (){
+        livesText.setText("Lives Left: " + getLives());
+        livesText.setPosition(20,30);
+        livesText.setFontStyle(FontStyle.BOLD);
+        livesText.setFillColor(Color.PINK);
+        if(getLives()==3){
+            canvas.add(livesText);
+        }
+    }
     public static void main(String[] args) {
-        new Game();
+        new Game(); 
     }
 
 

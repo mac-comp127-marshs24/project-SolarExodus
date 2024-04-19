@@ -9,6 +9,7 @@ public class SolarSystem {
     private static final double EARTH_SPEED = 2;
 
     private List<Planet> SolarSystem = new ArrayList<Planet>();;
+    private Boolean running;
 
     public SolarSystem(CanvasWindow canvas) {
         Planet mercury = new Planet(EARTH_SIZE * 0.5, EARTH_RADIUS * 0.5, EARTH_SPEED * 0.6, "planets/mercury.png");
@@ -29,16 +30,24 @@ public class SolarSystem {
         SolarSystem.add(venus);
         SolarSystem.add(mercury);
 
+        running = true;
+
 
         for (Planet planet : SolarSystem) {
             planet.addToCanvas(canvas);
         }
 
         canvas.animate(() -> {
-            for (Planet planet : SolarSystem) {
+            if(running){
+                for (Planet planet : SolarSystem) {
                 planet.move(canvas);
+                }
             }
         });
+    }
+
+    public void stopAnimate(){
+        running = false;
     }
 
     public List<Planet> getSolarSystem() {
