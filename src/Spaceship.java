@@ -1,5 +1,4 @@
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 
 public class Spaceship {

@@ -32,7 +32,6 @@ public class SolarSystem {
 
         running = true;
 
-
         for (Planet planet : SolarSystem) {
             planet.addToCanvas(canvas);
         }

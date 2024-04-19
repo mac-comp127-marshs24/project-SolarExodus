@@ -9,7 +9,6 @@ public class Earth extends Planet {
         game.decLives();
     }
 
-
     @Override
     public String getType() {
         return "Earth";

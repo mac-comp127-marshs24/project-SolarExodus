@@ -1,14 +1,10 @@
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
-import edu.macalester.graphics.GraphicsGroup;
-import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.ui.Button;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.List;
 import java.util.ArrayList;
 
 public class Game {
@@ -48,8 +44,6 @@ public class Game {
         lives = 3;
 
         livesText = new GraphicsText("Lives Left: " + getLives()); 
-        // canvas.add(livesText);
-
     }
 
     public void call(){
@@ -63,8 +57,6 @@ public class Game {
         animateGame();
         solarSystem = new SolarSystem(canvas);
         livesTxt();
-
-        // new SolarSystem(canvas);
     }
 
 
@@ -118,7 +110,6 @@ public class Game {
                 }
 
             }
-            // canvas.removeAll(); 
             gameOver();
         }
         });
@@ -214,7 +205,5 @@ public class Game {
     public static void main(String[] args) {
         new Game(); 
     }
-
-
 
 }
