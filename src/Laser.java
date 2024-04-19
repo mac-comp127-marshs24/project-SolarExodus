@@ -25,17 +25,4 @@ public class Laser extends Line {
     public void updatePosition(){
         this.moveBy(velocityX, velocityY);
     }
-
-    
-    // public GraphicsObject checkforCollision(CanvasWindow canvas){
-    //     double x = this.getX();
-    //     double y = this.getY();
-
-    //     GraphicsObject laserDetect = canvas.getElementAt(x,y);
-
-    //     if(laserDetect != null){
-    //         return laserDetect;
-    //     }
-    //     return null;
-    // }
 }

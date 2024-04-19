@@ -23,9 +23,6 @@ public class Game {
     public Game() {
         canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
 
-      
-
-
         Image spaceBG = new Image("planets/spaceBG2.png");
         spaceBG.setMaxWidth(WIDTH);
         spaceBG.setScale(2);
@@ -45,7 +42,6 @@ public class Game {
         spaceship = new Spaceship();
         lasers = new ArrayList <> ();
         lives = 3;
-        // startScreen();
     }
 
     public void call(){
@@ -88,9 +84,6 @@ public class Game {
             lasers.add(lasershot);
         });
     }
-    // public static ArrayList<PlanetImage> getPlanets(){
-    // return planets;
-    // }
 
     public void animateGame() {
         canvas.animate(() -> {
@@ -113,7 +106,6 @@ public class Game {
     }
 
     public void gameBG(){
-
         Image spaceBG = new Image("planets/spaceBG2.png");
         spaceBG.setMaxWidth(WIDTH);
         spaceBG.setScale(2);
@@ -166,8 +158,6 @@ public class Game {
         image.setScale(scale);
         canvas.add(image);
     }
-
-
 
     public int getLives() {
         return lives;
