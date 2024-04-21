@@ -28,25 +28,25 @@ public class Game {
         spaceBG.setScale(2);
 
         spaceBG.setMaxHeight(HEIGHT);
-        spaceBG.setPosition(0,0);
+        spaceBG.setPosition(0, 0);
         canvas.add(spaceBG);
 
         startButton = new Button("Start Game");
-        startButton.setPosition(400,400);
+        startButton.setPosition(400, 400);
         canvas.add(startButton);
 
         graphics();
 
-        startButton.onClick(()->call());
+        startButton.onClick(() -> call());
 
         spaceship = new Spaceship();
-        lasers = new ArrayList <> ();
+        lasers = new ArrayList<>();
         lives = 3;
 
-        livesText = new GraphicsText("Lives Left: " + getLives()); 
+        livesText = new GraphicsText("Lives Left: " + getLives());
     }
 
-    public void call(){
+    public void call() {
         canvas.remove(startButton);
         gameBG();
 
@@ -62,7 +62,7 @@ public class Game {
 
     public void createLaser() {
         canvas.onCharacterTyped(event -> {
-            double x1 = spaceship.getX() + 23;
+            double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
             double y1 = spaceship.getY() - 15;
             double y2 = spaceship.getY() - 5;
@@ -74,7 +74,7 @@ public class Game {
         });
 
         canvas.onClick(event -> {
-            double x1 = spaceship.getX() + 23;
+            double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
             double y1 = spaceship.getY() - 15;
             double y2 = spaceship.getY() - 5;
@@ -88,51 +88,53 @@ public class Game {
 
     public void animateGame() {
         canvas.animate(() -> {
-            if(running){
+            if (running) {
                 for (Laser laser : lasers) {
-                laser.updatePosition();
-                if (laser.collisionSS(spaceship)){
-                    canvas.remove(laser);
-                    lasers.remove(laser);
-                    System.out.println("laser hit");
-                }
-
-                for (Planet planet : solarSystem.getSolarSystem()) {
-                    if (planet.checkLaser(laser)) {
-                        if (planet.getType().equals("Planet")) {
-                            planet.reflect(laser);
-                        } else if (planet.getType().equals("Earth")) {
-                            planet.hit(this);
-                            System.out.println(getLives());
-                            livesTxt();
+                    laser.updatePosition();
+                    if (laser.collisionSS(spaceship)) {
+                        canvas.remove(laser);
+                        lasers.remove(laser);
+                        System.out.println("laser hit");
+                    }
+                    for (Planet planet : solarSystem.getSolarSystem()) {
+                        if (planet.checkLaser(laser)) {
+                            if (planet.getType().equals("Planet")) {
+                                planet.reflect(laser);
+                            } else if (planet.getType().equals("Earth")) {
+                                planet.hit(this);
+                                System.out.println(getLives());
+                                livesTxt();
+                            } else if (planet.getType().equals("Sun")) {
+                                planet.shrink();
+                            }
                         }
                     }
-                }
 
+                }
+                gameOver();
             }
-            gameOver();
-        }
         });
     }
 
-    public void gameBG(){
+    public void gameBG() {
         Image spaceBG = new Image("planets/spaceBG2.png");
         spaceBG.setMaxWidth(WIDTH);
         spaceBG.setScale(2);
         spaceBG.setMaxHeight(HEIGHT);
-        spaceBG.setPosition(0,0);
+        spaceBG.setPosition(0, 0);
         canvas.add(spaceBG);
     }
 
-    public void graphics(){
-        GraphicsText scriptText = new GraphicsText("Oh no! There are two suns threatening to overheat the Earth! Shoot down one of these suns to save Earth!");
-        scriptText.setPosition(80,310);
+    public void graphics() {
+        GraphicsText scriptText = new GraphicsText(
+            "Oh no! There are two suns threatening to overheat the Earth! Shoot down one of these suns to save Earth!");
+        scriptText.setPosition(80, 310);
         scriptText.setFontStyle(FontStyle.ITALIC);
         scriptText.setFillColor(Color.PINK);
         canvas.add(scriptText);
 
         GraphicsText gameName = new GraphicsText("Saving Earth");
-        gameName.setPosition(300,200);
+        gameName.setPosition(300, 200);
         gameName.setFontSize(50);
         gameName.setFontStyle(FontStyle.BOLD_ITALIC);
         gameName.setFillColor(Color.PINK);
@@ -140,7 +142,7 @@ public class Game {
 
         Image startMer = new Image("planets/mercury.png");
         planetStartUp(startMer, -770, -190, 0.03);
- 
+
         Image startVenus = new Image("planets/venus.png");
         planetStartUp(startVenus, -210, 300, 0.09);
 
@@ -163,7 +165,7 @@ public class Game {
         planetStartUp(startNep, 530, 300, 0.1);
     }
 
-    public void planetStartUp(Image image, int posX, int posY, Double scale){
+    public void planetStartUp(Image image, int posX, int posY, Double scale) {
         image.setPosition(posX, posY);
         image.setScale(scale);
         canvas.add(image);
@@ -174,36 +176,37 @@ public class Game {
     }
 
     public void decLives() {
-        if(lives >0){
+        if (lives > 0) {
             lives--;
         }
     }
 
-    public void gameOver(){
-        if(lives==0){
-            running=false;
+    public void gameOver() {
+        if (lives == 0) {
+            running = false;
             GraphicsText over = new GraphicsText("GAME OVER");
 
             over.setFillColor(Color.PINK);
             over.setFontStyle(FontStyle.BOLD);
             over.setFontSize(20);
-            canvas.add(over, canvas.getWidth()/2, canvas.getHeight()/2);
-            
+            canvas.add(over, canvas.getWidth() / 2, canvas.getHeight() / 2);
+
             solarSystem.stopAnimate();
         }
     }
 
-    public void livesTxt (){
+    public void livesTxt() {
         livesText.setText("Lives Left: " + getLives());
-        livesText.setPosition(20,30);
+        livesText.setPosition(20, 30);
         livesText.setFontStyle(FontStyle.BOLD);
         livesText.setFillColor(Color.PINK);
-        if(getLives()==3){
+        if (getLives() == 3) {
             canvas.add(livesText);
         }
     }
+
     public static void main(String[] args) {
-        new Game(); 
+        new Game();
     }
 
 }

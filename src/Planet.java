@@ -1,21 +1,30 @@
-import java.util.ArrayList;
 
-import java.util.List;
+import java.awt.Color;
 
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Image;
-import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.*;
 
 public class Planet {
     private double posX;
     private double posY;
     private double size, angle, speed, radius;
     private Image planet;
+    private Ellipse bound;
+    private GraphicsGroup group;
 
     public Planet(double size, double radius, double speed, String imgPath) {
+        group = new GraphicsGroup();
+
         planet = new Image(imgPath);
         planet.setMaxHeight(size);
         planet.setMaxWidth(size);
+
+        bound = new Ellipse(0, 0, size, size);
+        bound.setStrokeColor(Color.RED);
+        bound.setStrokeWidth(1);
+        bound.setCenter(planet.getCenter());
+
+        group.add(planet);
+        group.add(bound);
 
         this.size = size;
         this.angle = 0;
@@ -30,6 +39,7 @@ public class Planet {
         posX = canvas.getWidth() * 0.5 + xCoor;
         posY = canvas.getHeight() * 0.25 + yCoor;
         planet.setCenter(posX, posY);
+        bound.setCenter(posX, posY);
         angle = angle % 360 + speed;
     }
 
@@ -44,25 +54,30 @@ public class Planet {
         return "Planet";
     }
 
+    public void shrink() {
+        planet.setScale(0.9);
+        bound.setScale(0.9);
+    }
+
+
     public boolean checkLaser(Laser laser) {
         double laserX1 = laser.getX1();
         double laserY1 = laser.getY1();
         double laserX2 = laser.getX2();
         double laserY2 = laser.getY2();
 
-        double planetXCord = planet.getCenter().getX();
-        double planetYCord = planet.getCenter().getY();
-        double planetBound = planet.getHeight() * 0.5;
+        double planetXCord = bound.getCenter().getX();
+        double planetYCord = bound.getCenter().getY();
 
         double distanceX1Y1 = Math.sqrt(Math.pow(planetXCord - laserX1, 2) + Math.pow(planetYCord - laserY1, 2));
         double distanceX2Y2 = Math.sqrt(Math.pow(planetXCord - laserX2, 2) + Math.pow(planetYCord - laserY2, 2));
-        if (distanceX1Y1 <= planetBound && distanceX2Y2 <= planetBound) {
+        if (distanceX1Y1 <= size / 2 + 5 && distanceX2Y2 <= size / 2 + 5) {
             return true;
         }
         return false;
     }
 
     public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(planet);
+        canvas.add(group);
     }
 }

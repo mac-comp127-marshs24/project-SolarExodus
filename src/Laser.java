@@ -13,16 +13,23 @@ public class Laser extends Line {
     public Laser(double x1, double y1, double x2, double y2) {
         super(x1, y1, x2, y2);
         this.setStrokeWidth(3);
-        velocityX = -0.1;
+        velocityX = 0;
         velocityY = -3;
 
     }
-    public void changeDirection(){
-        velocityX = -velocityX;
-        velocityY=-velocityY;
+
+    public void updatePosition() {
+        this.moveBy(velocityX, velocityY);
     }
 
-    public boolean collisionSS(Spaceship spaceship){
+    public void changeDirection() {
+        velocityX = -velocityX;
+        velocityY = -velocityY;
+        this.moveBy(0, velocityY * 6);
+
+    }
+
+    public boolean collisionSS(Spaceship spaceship) {
         double spaceX = spaceship.getX();
         double spaceY = spaceship.getY();
         double distanceX1Y1 = Math.sqrt(Math.pow(spaceX - this.getX1(), 2) + Math.pow(spaceY - this.getY1(), 2));
@@ -37,31 +44,28 @@ public class Laser extends Line {
 
     }
     // public boolean (Spaceship spaceship){
-    //         double x = spaceship.getX();
-    //         double y = spaceship.getY();
-    
-    //         GraphicsObject topLeftCorner = canvas.getElementAt(x,y);
-    //         GraphicsObject topRightCorner = canvas.getElementAt(x+2*BALLRADIUS,y);
-    //         GraphicsObject  bottomLeftCorner = canvas.getElementAt(x, y + 2 * BALLRADIUS);
-    //         GraphicsObject bottomRightCorner = canvas.getElementAt(x + 2*BALLRADIUS,y+2*BALLRADIUS);
-    //         if (topLeftCorner != null){
-    //             return topRightCorner;
-    //         }
-    //         if (topRightCorner != null){
-    //             return topRightCorner;
-    //         }
-    //         if (bottomLeftCorner != null){
-    //             return bottomLeftCorner;
-    //         }
-    //         if (bottomRightCorner != null){
-    //             return bottomRightCorner;
-    //         }
-    //         return null;
-    //     }
+    // double x = spaceship.getX();
+    // double y = spaceship.getY();
+
+    // GraphicsObject topLeftCorner = canvas.getElementAt(x,y);
+    // GraphicsObject topRightCorner = canvas.getElementAt(x+2*BALLRADIUS,y);
+    // GraphicsObject bottomLeftCorner = canvas.getElementAt(x, y + 2 * BALLRADIUS);
+    // GraphicsObject bottomRightCorner = canvas.getElementAt(x + 2*BALLRADIUS,y+2*BALLRADIUS);
+    // if (topLeftCorner != null){
+    // return topRightCorner;
+    // }
+    // if (topRightCorner != null){
+    // return topRightCorner;
+    // }
+    // if (bottomLeftCorner != null){
+    // return bottomLeftCorner;
+    // }
+    // if (bottomRightCorner != null){
+    // return bottomRightCorner;
+    // }
+    // return null;
+    // }
     // }
 
-    public void updatePosition(){
-        this.moveBy(velocityX, velocityY);
 
-    }
 }
