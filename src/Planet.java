@@ -71,7 +71,7 @@ public class Planet {
 
         double distanceX1Y1 = Math.sqrt(Math.pow(planetXCord - laserX1, 2) + Math.pow(planetYCord - laserY1, 2));
         double distanceX2Y2 = Math.sqrt(Math.pow(planetXCord - laserX2, 2) + Math.pow(planetYCord - laserY2, 2));
-        if (distanceX1Y1 <= size / 2 + 5 && distanceX2Y2 <= size / 2 + 5) {
+        if (distanceX1Y1 <= size / 2 && distanceX2Y2 <= size / 2) {
             return true;
         }
         return false;

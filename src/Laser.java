@@ -25,8 +25,7 @@ public class Laser extends Line {
     public void changeDirection() {
         velocityX = -velocityX;
         velocityY = -velocityY;
-        this.moveBy(0, velocityY * 6);
-
+        this.moveBy(velocityX * 6, velocityY * 6);
     }
 
     public boolean collisionSS(Spaceship spaceship) {

@@ -33,7 +33,7 @@ public class Game {
     public Game() {
         canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
 
-        // Image spaceBG = new Image("planets/spaceBG2.png"); 
+        // Image spaceBG = new Image("planets/spaceBG2.png");
         // spaceBG.setMaxWidth(WIDTH);
         // spaceBG.setScale(2);
 
@@ -51,15 +51,15 @@ public class Game {
         canvas.add(startButton);
         startButton.onClick(() -> call());
 
-        againButton=new Button("Play Again");
+        againButton = new Button("Play Again");
         againButton.setPosition(400, 450);
-        againButton.onClick(()-> reSet());
+        againButton.onClick(() -> reSet());
 
         graphicsStartUp();
 
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
-        lives = 5;
+        lives = 100000;
 
         livesText = new GraphicsText("Lives Left: " + getLives());
         livesText.setPosition(20, 30);
@@ -67,16 +67,16 @@ public class Game {
         livesText.setFillColor(Color.PINK);
     }
 
-    public void reSet(){
+    public void reSet() {
         canvas.remove(againButton);
         gameBG();
         graphicsStartUp();
         canvas.add(startButton);
-        gameOver=false;
+        gameOver = false;
 
         startButton.onClick(() -> call());
         System.out.println("WOKRING???");
-   
+
     }
 
     public void call() {
@@ -98,35 +98,36 @@ public class Game {
 
     public void createLaser() {
         canvas.onCharacterTyped(event -> {
-            if (!gameOver){
-            double x1 = spaceship.getX() + 25;
-            double x2 = spaceship.getX() + 25;
-            double y1 = spaceship.getY() - 15;
-            double y2 = spaceship.getY() - 5;
-            Laser lasershot = new Laser(x1, y1, x2, y2);
-            lasershot.setStrokeColor(Color.PINK);
+            if (!gameOver) {
+                double x1 = spaceship.getX() + 25;
+                double x2 = spaceship.getX() + 25;
+                double y1 = spaceship.getY() - 10;
+                double y2 = spaceship.getY() - 5;
+                Laser lasershot = new Laser(x1, y1, x2, y2);
+                lasershot.setStrokeColor(Color.PINK);
 
-            canvas.add(lasershot);
-            lasers.add(lasershot);
+                canvas.add(lasershot);
+                lasers.add(lasershot);
             }
         });
 
         canvas.onClick(event -> {
-            if(!gameOver){
-            double x1 = spaceship.getX() + 25;
-            double x2 = spaceship.getX() + 25;
-            double y1 = spaceship.getY() - 15;
-            double y2 = spaceship.getY() - 5;
-            Laser lasershot = new Laser(x1, y1, x2, y2);
-            lasershot.setStrokeColor(Color.PINK);
+            if (!gameOver) {
+                double x1 = spaceship.getX() + 25;
+                double x2 = spaceship.getX() + 25;
+                double y1 = spaceship.getY() - 10;
+                double y2 = spaceship.getY() - 5;
+                Laser lasershot = new Laser(x1, y1, x2, y2);
+                lasershot.setStrokeColor(Color.PINK);
 
-            canvas.add(lasershot);
-            lasers.add(lasershot);
+                canvas.add(lasershot);
+                lasers.add(lasershot);
             }
         });
     }
-    public void deleteLaser(Planet planet, Laser laser){
-        if (planet.checkLaser(laser)){
+
+    public void deleteLaser(Planet planet, Laser laser) {
+        if (planet.checkLaser(laser)) {
             canvas.remove(laser);
             lasers.remove(laser);
         }
@@ -135,24 +136,34 @@ public class Game {
     public void animateGame() {
         canvas.animate(() -> {
             if (running) {
-                for (Laser laser : lasers) {
-                    laser.updatePosition();
-                    if (laser.collisionSS(spaceship)) {
-                        canvas.remove(laser);
-                        lasers.remove(laser);
+                for (int i = 0; i < lasers.size(); i++) {
+                    lasers.get(i).updatePosition();
+                    if (lasers.get(i).collisionSS(spaceship)) {
+                        canvas.remove(lasers.get(i));
+                        lasers.remove(lasers.get(i));
+                        i--;
                         System.out.println("laser hit");
                     }
                     for (Planet planet : solarSystem.getSolarSystem()) {
-                        if (planet.checkLaser(laser)) {
+                        if (planet.checkLaser(lasers.get(i))) {
                             if (planet.getType().equals("Planet")) {
-                                planet.reflect(laser);
+                                System.out.println("laser hit");
+
+                                planet.reflect(lasers.get(i));
+
                             } else if (planet.getType().equals("Earth")) {
-                                deleteLaser(planet,laser);
                                 planet.hit(this);
+                                canvas.remove(lasers.get(i));
+                                lasers.remove(lasers.get(i));
+                                i--;
+
                                 System.out.println(getLives());
                                 livesTxt();
                             } else if (planet.getType().equals("Sun")) {
                                 planet.shrink();
+                                canvas.remove(lasers.get(i));
+                                lasers.remove(lasers.get(i));
+                                i--;
                             }
                         }
                     }
@@ -162,6 +173,8 @@ public class Game {
             }
         });
     }
+
+    
 
     public void gameBG() {
         Image spaceBG = new Image("other/spaceBG.png");
@@ -231,12 +244,12 @@ public class Game {
     public void gameOver() {
         if (lives == 0) {
             running = false;
-            gameOver=true;
+            gameOver = true;
 
             canvas.removeAll();
             gameBG();
-            canvas.add(againButton);
-        
+
+
             GraphicsText over = new GraphicsText("GAME OVER");
             over.setFillColor(Color.PINK);
             over.setFontStyle(FontStyle.BOLD_ITALIC);
@@ -244,7 +257,7 @@ public class Game {
             canvas.add(over, 400, 400);
 
             // solarSystem.stopAnimate();
-    }
+        }
     }
 
     public void livesTxt() {
@@ -252,8 +265,8 @@ public class Game {
         // livesText.setPosition(20, 30);
         // livesText.setFontStyle(FontStyle.BOLD);
         // livesText.setFillColor(Color.PINK);
-        // if (getLives() == 5) {
-        //     canvas.add(livesText);
+        // getLives() == 5) {
+        // canvas.add(livesText);
         // }
     }
 
