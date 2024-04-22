@@ -1,11 +1,18 @@
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+
+// import org.w3c.dom.events.MouseEvent;
+import java.awt.event.MouseEvent;
+
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
+import edu.macalester.graphics.Point;
+import edu.macalester.graphics.events.MouseMotionEvent;
 import edu.macalester.graphics.ui.Button;
-
-import java.awt.Color;
-import java.util.ArrayList;
 
 public class Game {
     private CanvasWindow canvas;
@@ -16,34 +23,60 @@ public class Game {
     private SolarSystem solarSystem;
     private int lives;
     private Button startButton;
+    private Button againButton;
     private GraphicsText livesText;
     Boolean running = true;
+    private boolean gameOver = false;
+    private Image cursor;
 
 
     public Game() {
         canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
 
-        Image spaceBG = new Image("planets/spaceBG2.png");
-        spaceBG.setMaxWidth(WIDTH);
-        spaceBG.setScale(2);
+        // Image spaceBG = new Image("planets/spaceBG2.png"); 
+        // spaceBG.setMaxWidth(WIDTH);
+        // spaceBG.setScale(2);
 
-        spaceBG.setMaxHeight(HEIGHT);
-        spaceBG.setPosition(0, 0);
-        canvas.add(spaceBG);
+        // spaceBG.setMaxHeight(HEIGHT);
+        // spaceBG.setPosition(0, 0);
+        // canvas.add(spaceBG);
+        gameBG();
+
+        // Image cursor= new Image("other/cursor.png"); //trying to make cursor a png
+        // cursor.setPosition(0, 0);
+        // canvas.add(cursor);
 
         startButton = new Button("Start Game");
         startButton.setPosition(400, 400);
         canvas.add(startButton);
-
-        graphics();
-
         startButton.onClick(() -> call());
+
+        againButton=new Button("Play Again");
+        againButton.setPosition(400, 450);
+        againButton.onClick(()-> reSet());
+
+        graphicsStartUp();
 
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
-        lives = 3;
+        lives = 5;
 
         livesText = new GraphicsText("Lives Left: " + getLives());
+        livesText.setPosition(20, 30);
+        livesText.setFontStyle(FontStyle.BOLD);
+        livesText.setFillColor(Color.PINK);
+    }
+
+    public void reSet(){
+        canvas.remove(againButton);
+        gameBG();
+        graphicsStartUp();
+        canvas.add(startButton);
+        gameOver=false;
+
+        startButton.onClick(() -> call());
+        System.out.println("WOKRING???");
+   
     }
 
     public void call() {
@@ -56,12 +89,16 @@ public class Game {
         createLaser();
         animateGame();
         solarSystem = new SolarSystem(canvas);
-        livesTxt();
+        // livesTxt();
+        canvas.add(livesText);
+
+        System.out.println("YUH");
     }
 
 
     public void createLaser() {
         canvas.onCharacterTyped(event -> {
+            if (!gameOver){
             double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
             double y1 = spaceship.getY() - 15;
@@ -71,9 +108,11 @@ public class Game {
 
             canvas.add(lasershot);
             lasers.add(lasershot);
+            }
         });
 
         canvas.onClick(event -> {
+            if(!gameOver){
             double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
             double y1 = spaceship.getY() - 15;
@@ -83,6 +122,7 @@ public class Game {
 
             canvas.add(lasershot);
             lasers.add(lasershot);
+            }
         });
     }
 
@@ -117,7 +157,7 @@ public class Game {
     }
 
     public void gameBG() {
-        Image spaceBG = new Image("planets/spaceBG2.png");
+        Image spaceBG = new Image("other/spaceBG.png");
         spaceBG.setMaxWidth(WIDTH);
         spaceBG.setScale(2);
         spaceBG.setMaxHeight(HEIGHT);
@@ -125,7 +165,7 @@ public class Game {
         canvas.add(spaceBG);
     }
 
-    public void graphics() {
+    public void graphicsStartUp() {
         GraphicsText scriptText = new GraphicsText(
             "Oh no! There are two suns threatening to overheat the Earth! Shoot down one of these suns to save Earth!");
         scriptText.setPosition(80, 310);
@@ -184,25 +224,30 @@ public class Game {
     public void gameOver() {
         if (lives == 0) {
             running = false;
+            gameOver=true;
+
+            canvas.removeAll();
+            gameBG();
+            canvas.add(againButton);
+        
             GraphicsText over = new GraphicsText("GAME OVER");
-
             over.setFillColor(Color.PINK);
-            over.setFontStyle(FontStyle.BOLD);
+            over.setFontStyle(FontStyle.BOLD_ITALIC);
             over.setFontSize(20);
-            canvas.add(over, canvas.getWidth() / 2, canvas.getHeight() / 2);
+            canvas.add(over, 400, 400);
 
-            solarSystem.stopAnimate();
-        }
+            // solarSystem.stopAnimate();
+    }
     }
 
     public void livesTxt() {
         livesText.setText("Lives Left: " + getLives());
-        livesText.setPosition(20, 30);
-        livesText.setFontStyle(FontStyle.BOLD);
-        livesText.setFillColor(Color.PINK);
-        if (getLives() == 3) {
-            canvas.add(livesText);
-        }
+        // livesText.setPosition(20, 30);
+        // livesText.setFontStyle(FontStyle.BOLD);
+        // livesText.setFillColor(Color.PINK);
+        // if (getLives() == 5) {
+        //     canvas.add(livesText);
+        // }
     }
 
     public static void main(String[] args) {

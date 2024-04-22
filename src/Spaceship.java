@@ -8,7 +8,7 @@ public class Spaceship {
 
     public Spaceship() {
         spaceship = new Image(375, 700);
-        spaceship.setImagePath("spaceship1.png");
+        spaceship.setImagePath("other/spaceship1.png");
         spaceship.setMaxWidth(WIDTH);
         spaceship.setMaxHeight(HEIGHT);
     }
@@ -18,7 +18,7 @@ public class Spaceship {
             double mouseX = event.getPosition().getX();
             double spaceshipX = mouseX - WIDTH / 2;
             if (spaceshipX < 0) {
-                spaceshipX = 0;
+                spaceshipX = 0; 
             } else if (spaceshipX + WIDTH > canvas.getWidth()) {
                 spaceshipX = canvas.getWidth() - WIDTH;
             }
