@@ -125,6 +125,12 @@ public class Game {
             }
         });
     }
+    public void deleteLaser(Planet planet, Laser laser){
+        if (planet.checkLaser(laser)){
+            canvas.remove(laser);
+            lasers.remove(laser);
+        }
+    }
 
     public void animateGame() {
         canvas.animate(() -> {
@@ -141,6 +147,7 @@ public class Game {
                             if (planet.getType().equals("Planet")) {
                                 planet.reflect(laser);
                             } else if (planet.getType().equals("Earth")) {
+                                deleteLaser(planet,laser);
                                 planet.hit(this);
                                 System.out.println(getLives());
                                 livesTxt();
