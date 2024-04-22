@@ -59,7 +59,7 @@ public class Game {
 
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
-        lives = 100000;
+        lives = 5;
 
         livesText = new GraphicsText("Lives Left: " + getLives());
         livesText.setPosition(20, 30);
@@ -72,7 +72,10 @@ public class Game {
         gameBG();
         graphicsStartUp();
         canvas.add(startButton);
-        gameOver = false;
+
+        gameOver=false;
+        running = true;
+        lives = 5;
 
         startButton.onClick(() -> call());
         System.out.println("WOKRING???");
@@ -89,7 +92,7 @@ public class Game {
         createLaser();
         animateGame();
         solarSystem = new SolarSystem(canvas);
-        // livesTxt();
+        livesTxt();
         canvas.add(livesText);
 
         System.out.println("YUH");
@@ -248,6 +251,7 @@ public class Game {
 
             canvas.removeAll();
             gameBG();
+            canvas.add(againButton);
 
 
             GraphicsText over = new GraphicsText("GAME OVER");
@@ -256,7 +260,6 @@ public class Game {
             over.setFontSize(20);
             canvas.add(over, 400, 400);
 
-            // solarSystem.stopAnimate();
         }
     }
 
@@ -275,3 +278,8 @@ public class Game {
     }
 
 }
+
+
+
+
+
