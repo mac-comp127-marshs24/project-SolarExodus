@@ -1,11 +1,3 @@
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.util.ArrayList;
-
-// import org.w3c.dom.events.MouseEvent;
-import java.awt.event.MouseEvent;
-
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
@@ -13,6 +5,12 @@ import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.events.MouseMotionEvent;
 import edu.macalester.graphics.ui.Button;
+import java.awt.Color;
+import java.awt.Toolkit;
+// import org.w3c.dom.events.MouseEvent;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 
 public class Game {
     private CanvasWindow canvas;
@@ -25,10 +23,9 @@ public class Game {
     private Button startButton;
     private Button againButton;
     private GraphicsText livesText;
-    Boolean running = true;
+    private Boolean running = true;
     private boolean gameOver = false;
     private Image cursor;
-
 
     public Game() {
         canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
@@ -42,9 +39,8 @@ public class Game {
         // canvas.add(spaceBG);
         gameBG();
 
-        // Image cursor= new Image("other/cursor.png"); //trying to make cursor a png
-        // cursor.setPosition(0, 0);
-        // canvas.add(cursor);
+        // Image cursor= new Image("other/cursor.png"); //trying to make cursor a
+        // png cursor.setPosition(0, 0); canvas.add(cursor);
 
         startButton = new Button("Start Game");
         startButton.setPosition(400, 400);
@@ -73,13 +69,12 @@ public class Game {
         graphicsStartUp();
         canvas.add(startButton);
 
-        gameOver=false;
+        gameOver = false;
         running = true;
         lives = 5;
 
         startButton.onClick(() -> call());
         System.out.println("WOKRING???");
-
     }
 
     public void call() {
@@ -97,7 +92,6 @@ public class Game {
 
         System.out.println("YUH");
     }
-
 
     public void createLaser() {
         canvas.onCharacterTyped(event -> {
@@ -118,7 +112,7 @@ public class Game {
             if (!gameOver) {
                 double x1 = spaceship.getX() + 25;
                 double x2 = spaceship.getX() + 25;
-                double y1 = spaceship.getY() - 10;
+                double y1 = spaceship.getY() - 35;
                 double y2 = spaceship.getY() - 5;
                 Laser lasershot = new Laser(x1, y1, x2, y2);
                 lasershot.setStrokeColor(Color.PINK);
@@ -127,13 +121,6 @@ public class Game {
                 lasers.add(lasershot);
             }
         });
-    }
-
-    public void deleteLaser(Planet planet, Laser laser) {
-        if (planet.checkLaser(laser)) {
-            canvas.remove(laser);
-            lasers.remove(laser);
-        }
     }
 
     public void animateGame() {
@@ -148,7 +135,8 @@ public class Game {
                         System.out.println("laser hit");
                     }
                     for (Planet planet : solarSystem.getSolarSystem()) {
-                        if (planet.checkLaser(lasers.get(i))) {
+                        if (planet.checkLaser(lasers.get(i)) == 1 ||
+                            planet.checkLaser(lasers.get(i)) == 2) {
                             if (planet.getType().equals("Planet")) {
                                 System.out.println("laser hit");
 
@@ -163,21 +151,20 @@ public class Game {
                                 System.out.println(getLives());
                                 livesTxt();
                             } else if (planet.getType().equals("Sun")) {
-                                planet.shrink();
-                                canvas.remove(lasers.get(i));
-                                lasers.remove(lasers.get(i));
-                                i--;
+                                // canvas.remove(lasers.get(i));
+                                // lasers.remove(lasers.get(i));
+                                // planet.shrink();
+                                // i--;
+                                planet.reflect(lasers.get(i));
+                                
                             }
                         }
                     }
-
                 }
                 gameOver();
             }
         });
     }
-
-    
 
     public void gameBG() {
         Image spaceBG = new Image("other/spaceBG.png");
@@ -253,13 +240,11 @@ public class Game {
             gameBG();
             canvas.add(againButton);
 
-
             GraphicsText over = new GraphicsText("GAME OVER");
             over.setFillColor(Color.PINK);
             over.setFontStyle(FontStyle.BOLD_ITALIC);
             over.setFontSize(20);
             canvas.add(over, 400, 400);
-
         }
     }
 
@@ -276,10 +261,4 @@ public class Game {
     public static void main(String[] args) {
         new Game();
     }
-
 }
-
-
-
-
-
