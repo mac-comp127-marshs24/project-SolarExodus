@@ -15,12 +15,12 @@ public class Game {
     private ArrayList<Laser> lasers;
     private SolarSystem solarSystem;
     private int lives;
+    private double cooldown;
     private Button startButton;
     private Button againButton;
     private Boolean running = true;
     private boolean gameOver = false;
     private Image cursor;
-    private double cooldown;
     private GraphicsGroup cooldownBar;
     private GraphicsGroup healthBar;
 
@@ -59,17 +59,8 @@ public class Game {
     }
 
     public void reSet() {
-        canvas.remove(againButton);
-        gameBG();
-        graphicsStartUp();
-        canvas.add(startButton);
-
-        gameOver = false;
-        running = true;
-        lives = 5;
-
-        startButton.onClick(() -> call());
-        System.out.println("WOKRING???");
+        new Game();
+        canvas.closeWindow();
     }
 
     public void call() {
@@ -135,7 +126,6 @@ public class Game {
                 if (cooldown < 50) {
                     cooldown += 0.2;
                 }
-
                 for (int i = 0; i < lasers.size(); i++) {
                     lasers.get(i).updatePosition();
                     // if (lasers.get(i).collisionSS(spaceship)) {
@@ -147,23 +137,16 @@ public class Game {
                     for (Planet planet : solarSystem.getSolarSystem()) {
                         if (planet.checkLaser(lasers.get(i))) {
                             if (planet.getType().equals("Planet")) {
-                                System.out.println("laser hit");
-
                                 planet.reflect(lasers.get(i));
-
                             } else if (planet.getType().equals("Earth")) {
-                                planet.hit(this);
+                                lives--;
                                 canvas.remove(healthBar);
                                 healthBar = healthBar(20, 10);
                                 canvas.add(healthBar);
-                                canvas.remove(lasers.get(i));
-                                lasers.remove(lasers.get(i));
+                                removeLaser(lasers.get(i));
                                 i--;
-
-                                System.out.println(getLives());
                             } else if (planet.getType().equals("Sun")) {
-                                canvas.remove(lasers.get(i));
-                                lasers.remove(lasers.get(i));
+                                removeLaser(lasers.get(i));
                                 planet.shrink();
                                 i--;
                             }
@@ -174,6 +157,11 @@ public class Game {
                 gameOver();
             }
         });
+    }
+
+    private void removeLaser(Laser laser) {
+        canvas.remove(laser);
+        lasers.remove(laser);
     }
 
     public void gameBG() {
@@ -235,12 +223,6 @@ public class Game {
         return lives;
     }
 
-    public void decLives() {
-        if (lives > 0) {
-            lives--;
-        }
-    }
-
     public void gameOver() {
         if (lives == 0) {
             running = false;
@@ -269,7 +251,7 @@ public class Game {
         return g;
     }
 
-    public GraphicsGroup healthBar(double xPos, double yPos) {
+    private GraphicsGroup healthBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup(xPos, yPos);
         for (int i = 0; i < lives; i++) {
             Image heart = new Image("other/heart.png");

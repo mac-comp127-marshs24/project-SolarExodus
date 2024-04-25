@@ -47,10 +47,6 @@ public class Planet {
         laser.changeDirection(this);
     }
 
-    public void hit(Game game) {
-        game.decLives();
-    }
-
     public void shrink() {
         planet.setScale(0.9);
         bound.setScale(0.9);
