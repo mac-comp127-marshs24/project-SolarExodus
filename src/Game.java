@@ -109,6 +109,7 @@ public class Game {
                         canvas.remove(lasers.get(i));
                         lasers.remove(lasers.get(i));
                         i--;
+                        lives--;
                     System.out.println("laser hit");
                     break;
                     }
