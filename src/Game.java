@@ -21,7 +21,8 @@ public class Game {
     private Button startButton;
     private Button againButton;
     private Boolean running = true;
-    private boolean gameOver = false;
+    private Boolean gameOver = false;
+    private Boolean gameWin = false;
     private Image cursor;
     private GraphicsGroup cooldownBar;
     private GraphicsGroup healthBar;
@@ -166,6 +167,7 @@ public class Game {
                     }
                 }
                 gameOver();
+                gameWin();
             }
         });
     }
@@ -196,8 +198,9 @@ public class Game {
                 + "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
                 + "\n"
                 + "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
-        scriptText.setCenter(420, 300);
-        scriptText.setFont(FontStyle.PLAIN, 16);
+        scriptText.setCenter(450, 300);
+        scriptText.setFont(FontStyle.ITALIC, 14);
+        // scriptText.setFillColor(Color.PINK);
         scriptText.setFillColor(new Color(135, 206, 250));
         canvas.add(scriptText);
 
@@ -259,6 +262,24 @@ public class Game {
             over.setFontSize(20);
             canvas.add(over, 400, 400);
         }
+    }
+
+    public void gameWin(){
+        if(sunLife==0){
+            running=false;
+            gameWin=true;
+
+            canvas.removeAll();
+            gameBG();
+            canvas.add(againButton);
+
+            GraphicsText win = new GraphicsText("GAME WIN YAY YIPPEE");
+            win.setFillColor(Color.PINK);
+            win.setFontStyle(FontStyle.BOLD_ITALIC);
+            win.setFontSize(20);
+            canvas.add(win,400,400);
+        }
+
     }
 
     private GraphicsGroup cooldownBar(double xPos, double yPos) {
