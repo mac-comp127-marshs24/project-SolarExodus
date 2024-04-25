@@ -19,7 +19,12 @@ public class StartScreen {
         scriptText.setFont(FontStyle.ITALIC, 14);
         scriptText.setFillColor(new Color(135, 206, 250));
         scriptText.setAlignment(TextAlignment.CENTER);
+        
+        scriptText.moveBy(10,10);
+
         canvas.add(scriptText);
+
+
 
         GraphicsText gameName = new GraphicsText("Solar Exodus");
         gameName.setFont(FontStyle.BOLD, 50);
