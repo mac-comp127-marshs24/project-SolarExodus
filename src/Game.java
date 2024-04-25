@@ -11,23 +11,16 @@ import edu.macalester.graphics.ui.Button;
 
 public class Game {
     private CanvasWindow canvas;
-    private static final int HEIGHT = 750;
-    private static final int WIDTH = 900;
+    private static final int HEIGHT = 750, WIDTH = 900;
     private Spaceship spaceship;
     private ArrayList<Laser> lasers;
     private SolarSystem solarSystem;
-    private int lives;
+    private int lives, sunLife;
     private double cooldown;
-    private int sunLife;
-    private Button startButton;
-    private Button againButton;
-    private Boolean running = true;
-    private Boolean gameOver = false;
-    private Boolean gameWin = false;
+    private Button startButton, againButton;
+    private Boolean running = true, gameWin = false, gameOver = false;
     private Image cursor;
-    private GraphicsGroup cooldownBar;
-    private GraphicsGroup healthBar;
-    private GraphicsGroup sunBar;
+    private GraphicsGroup cooldownBar, sunBar, healthBar;
 
     public Game() {
         canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
@@ -113,6 +106,11 @@ public class Game {
                         i--;
                         lives--;
                         System.out.println("laser hit");
+                        break;
+                    }
+                    if(lasers.get(i).outOfBounds()){
+                        canvas.remove(lasers.get(i));
+                        lasers.remove(lasers.get(i));
                         break;
                     }
                     for (Planet planet : solarSystem.getSolarSystem()) {

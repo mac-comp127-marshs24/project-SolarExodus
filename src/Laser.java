@@ -9,7 +9,7 @@ public class Laser extends Line {
         super(x1, y1, x2, y2);
         this.setStrokeWidth(3);
         velocityX = 0;
-        velocityY = -4;
+        velocityY = -6;
         p1 = new Point(x1, y1);
         p2 = new Point(x2, y2);
     }
@@ -36,6 +36,15 @@ public class Laser extends Line {
         p1 = new Point(this.getX1(), this.getY1());
         p2 = new Point(this.getX2(), this.getY2());
     }
+    public boolean outOfBounds(){
+        double x = this.getX1();
+        double y = this.getY1();
+        if(x>900||x<0||y>750||y<0){
+            return true;
+        }
+        return false;
+    }
+
 
     public void changeDirection(Planet planet) {
         double angle = angle(p1, p2, planet.getCenter());
@@ -102,7 +111,6 @@ public class Laser extends Line {
         double spaceY = spaceship.getY();
         double distanceX1Y1 = Math.sqrt(Math.pow(spaceX - this.getX1(), 2) + Math.pow(spaceY - this.getY1(), 2));
         double distanceX2Y2 = Math.sqrt(Math.pow(spaceX - this.getX2(), 2) + Math.pow(spaceY - this.getY2(), 2));
-        // double maxSpace = spaceship.getY();
 
         if (distanceX1Y1 <= 0 && distanceX2Y2 <= 0) {
             return true;
@@ -111,29 +119,4 @@ public class Laser extends Line {
 
 
     }
-    // public boolean (Spaceship spaceship){
-    // double x = spaceship.getX();
-    // double y = spaceship.getY();
-
-    // GraphicsObject topLeftCorner = canvas.getElementAt(x,y);
-    // GraphicsObject topRightCorner = canvas.getElementAt(x+2*BALLRADIUS,y);
-    // GraphicsObject bottomLeftCorner = canvas.getElementAt(x, y + 2 * BALLRADIUS);
-    // GraphicsObject bottomRightCorner = canvas.getElementAt(x + 2*BALLRADIUS,y+2*BALLRADIUS);
-    // if (topLeftCorner != null){
-    // return topRightCorner;
-    // }
-    // if (topRightCorner != null){
-    // return topRightCorner;
-    // }
-    // if (bottomLeftCorner != null){
-    // return bottomLeftCorner;
-    // }
-    // if (bottomRightCorner != null){
-    // return bottomRightCorner;
-    // }
-    // return null;
-    // }
-    // }
-
-
 }

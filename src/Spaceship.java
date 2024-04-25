@@ -16,21 +16,21 @@ public class Spaceship {
     }
 
     public void moveShip(CanvasWindow canvas) {
-        canvas.onMouseMove(event -> {
-            double mouseX = event.getPosition().getX();
-            double spaceshipX = mouseX - WIDTH / 2;
-            if (spaceshipX < 0) {
-                spaceshipX = 0;
-            } else if (spaceshipX + WIDTH > canvas.getWidth()) {
-                spaceshipX = canvas.getWidth() - WIDTH;
-            }
-            spaceship.setPosition(spaceshipX, spaceship.getY());
-        });
+        // canvas.onMouseMove(event -> {
+        //     double mouseX = event.getPosition().getX();
+        //     double spaceshipX = mouseX - WIDTH / 2;
+        //     if (spaceshipX < 0) {
+        //         spaceshipX = 0;
+        //     } else if (spaceshipX + WIDTH > canvas.getWidth()) {
+        //         spaceshipX = canvas.getWidth() - WIDTH;
+        //     }
+        //     spaceship.setPosition(spaceshipX, spaceship.getY());
+        // });
         canvas.onKeyDown(event -> {
             if (event.getKey() == Key.LEFT_ARROW) {
-                spaceship.moveBy(-10, 0);
+                spaceship.moveBy(-5, 0);
             } else if (event.getKey() == Key.RIGHT_ARROW) {
-                spaceship.moveBy(10, 0);
+                spaceship.moveBy(5, 0);
             }
         });
     }
