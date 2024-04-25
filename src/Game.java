@@ -112,7 +112,7 @@ public class Game {
             if (!gameOver) {
                 double x1 = spaceship.getX() + 25;
                 double x2 = spaceship.getX() + 25;
-                double y1 = spaceship.getY() - 35;
+                double y1 = spaceship.getY() - 10;
                 double y2 = spaceship.getY() - 5;
                 Laser lasershot = new Laser(x1, y1, x2, y2);
                 lasershot.setStrokeColor(Color.PINK);
@@ -156,7 +156,7 @@ public class Game {
                                 // planet.shrink();
                                 // i--;
                                 planet.reflect(lasers.get(i));
-                                
+
                             }
                         }
                     }

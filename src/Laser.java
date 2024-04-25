@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import edu.macalester.graphics.*;
 
 public class Laser extends Line {
@@ -21,31 +23,20 @@ public class Laser extends Line {
         p2 = new Point(this.getX2(), this.getY2());
     }
 
-    public void changeDirection(Planet planet, CanvasWindow canvas) {
+    public void changeDirection(Planet planet) {
         double angle = angle(p1, p2, planet.getCenter());
         double rotateAngle = 2 * (180 - angle);
-        System.out.println(angle);
-        // if (planet.checkLaser(this) == 1) {
-        //     this.setAnchor(p1);
-        //     if (this.getX1() <= planet.getCenter().getX()) {
-        //         this.rotateBy(rotateAngle);
-        //     } else {
-        //         this.rotateBy(-rotateAngle);
-        //     }
-        // }
-        // } else if (planet.checkLaser(this) == 2) {
-        //     this.setAnchor(p2);
-        //     if (this.getX2() <= planet.getCenter().getX()) {
-        //         this.rotateBy(-rotateAngle);
-        //     } else {
-        //         this.rotateBy(rotateAngle);
-        //     }
-        // }
-        System.out.println(this);
-        
-        // velocityX = -velocityX;
-        // velocityY = -velocityY * 2;
+
+        this.setStartPosition(
+            newP1(Math.toRadians(rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+        this.setEndPosition(p1);
+
+        velocityX = (this.getX1() - this.getX2()) * 0.6;
+        velocityY = (this.getY1() - this.getY2()) * 0.6;
+
         // this.moveBy(velocityX * 6, velocityY * 6);
+        p1 = new Point(this.getX1(), this.getY1());
+        p2 = new Point(this.getX2(), this.getY2());
     }
 
     private double angle(Point center, Point point1, Point point2) {
@@ -58,7 +49,7 @@ public class Laser extends Line {
 
     private Point newP1(double angle, double x1, double y1, double centerX, double centerY) {
         double x2 = (x1 - centerX) * Math.cos(angle) - (y1 - centerY) * Math.sin(angle) + centerX;
-        double y2 = (x1 - centerX) * Math.sin(angle) - (y1 - centerY) * Math.cos(angle) + centerY;
+        double y2 = (x1 - centerX) * Math.sin(angle) + (y1 - centerY) * Math.cos(angle) + centerY;
         return new Point(x2, y2);
     }
 
