@@ -1,12 +1,13 @@
-import edu.macalester.graphics.*;
-import edu.macalester.graphics.events.MouseMotionEvent;
-import edu.macalester.graphics.ui.Button;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Toolkit;
-// import org.w3c.dom.events.MouseEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsGroup;
+import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.Image;
+import edu.macalester.graphics.Rectangle;
+import edu.macalester.graphics.ui.Button;
 
 public class Game {
     private CanvasWindow canvas;
@@ -49,7 +50,7 @@ public class Game {
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
 
-        lives = 2;
+        lives = 1;
         cooldown = 50;
         sunLife = 100;
 
@@ -188,6 +189,11 @@ public class Game {
             over.setFontStyle(FontStyle.BOLD_ITALIC);
             over.setFontSize(20);
             canvas.add(over, 400, 400);
+
+            Image sadEarth = new Image("other/sadEarth.JPG");
+            canvas.add(sadEarth);
+            sadEarth.setPosition(330,160);
+            sadEarth.setScale(0.5);
         }
     }
 
@@ -200,11 +206,17 @@ public class Game {
             gameBG();
             canvas.add(againButton);
 
-            GraphicsText win = new GraphicsText("GAME WIN YAY YIPPEE");
+            GraphicsText win = new GraphicsText("GAME WIN");
             win.setFillColor(Color.PINK);
             win.setFontStyle(FontStyle.BOLD_ITALIC);
             win.setFontSize(20);
             canvas.add(win, 400, 400);
+
+            Image happyEarth = new Image("other/happyEarth.JPG");
+            canvas.add(happyEarth);
+            happyEarth.setPosition(230,50);
+            happyEarth.setScale(0.3);
+
         }
 
     }
