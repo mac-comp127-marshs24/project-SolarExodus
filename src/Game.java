@@ -98,11 +98,12 @@ public class Game {
         canvas.animate(() -> {
 
             if (running) {
-                canvas.remove(cooldownBar);
-                cooldownBar = cooldownBar(770, 700);
-                canvas.add(cooldownBar);
+
                 if (cooldown < 50) {
                     cooldown += 0.2;
+                    canvas.remove(cooldownBar);
+                    cooldownBar = cooldownBar(770, 700);
+                    canvas.add(cooldownBar);
                 }
                 for (int i = 0; i < lasers.size(); i++) {
                     lasers.get(i).updatePosition();
@@ -111,8 +112,8 @@ public class Game {
                         lasers.remove(lasers.get(i));
                         i--;
                         lives--;
-                    System.out.println("laser hit");
-                    break;
+                        System.out.println("laser hit");
+                        break;
                     }
                     for (Planet planet : solarSystem.getSolarSystem()) {
                         if (planet.checkLaser(lasers.get(i))) {
@@ -192,7 +193,7 @@ public class Game {
 
             Image sadEarth = new Image("other/sadEarth.JPG");
             canvas.add(sadEarth);
-            sadEarth.setPosition(330,160);
+            sadEarth.setPosition(330, 160);
             sadEarth.setScale(0.5);
         }
     }
@@ -214,7 +215,7 @@ public class Game {
 
             Image happyEarth = new Image("other/happyEarth.JPG");
             canvas.add(happyEarth);
-            happyEarth.setPosition(230,50);
+            happyEarth.setPosition(230, 50);
             happyEarth.setScale(0.3);
 
         }

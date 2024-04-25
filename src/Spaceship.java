@@ -1,7 +1,7 @@
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Point;
+import edu.macalester.graphics.events.Key;
 
 public class Spaceship {
     private static final int WIDTH = 50;
@@ -20,21 +20,29 @@ public class Spaceship {
             double mouseX = event.getPosition().getX();
             double spaceshipX = mouseX - WIDTH / 2;
             if (spaceshipX < 0) {
-                spaceshipX = 0; 
+                spaceshipX = 0;
             } else if (spaceshipX + WIDTH > canvas.getWidth()) {
                 spaceshipX = canvas.getWidth() - WIDTH;
             }
             spaceship.setPosition(spaceshipX, spaceship.getY());
+        });
+        canvas.onKeyDown(event -> {
+            if (event.getKey() == Key.LEFT_ARROW) {
+                spaceship.moveBy(-10, 0);
+            } else if (event.getKey() == Key.RIGHT_ARROW) {
+                spaceship.moveBy(10, 0);
+            }
         });
     }
 
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(spaceship);
     }
-   
+
     public double getX() {
         return spaceship.getX();
     }
+
     public double getY() {
         return spaceship.getY();
     }
