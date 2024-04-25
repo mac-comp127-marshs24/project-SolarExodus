@@ -9,7 +9,7 @@ public class Laser extends Line {
         super(x1, y1, x2, y2);
         this.setStrokeWidth(3);
         velocityX = 0;
-        velocityY = -4;
+        velocityY = -6;
         p1 = new Point(x1, y1);
         p2 = new Point(x2, y2);
     }
