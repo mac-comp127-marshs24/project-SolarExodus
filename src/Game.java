@@ -30,14 +30,6 @@ public class Game {
 
     public Game() {
         canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
-
-        // Image spaceBG = new Image("planets/spaceBG2.png");
-        // spaceBG.setMaxWidth(WIDTH);
-        // spaceBG.setScale(2);
-
-        // spaceBG.setMaxHeight(HEIGHT);
-        // spaceBG.setPosition(0, 0);
-        // canvas.add(spaceBG);
         gameBG();
 
         // Image cursor= new Image("other/cursor.png"); //trying to make cursor a
@@ -52,12 +44,12 @@ public class Game {
         againButton.setPosition(400, 450);
         againButton.onClick(() -> reSet());
 
-        graphicsStartUp();
+        new StartScreen(canvas);
 
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
 
-        lives = 5;
+        lives = 2;
         cooldown = 50;
         sunLife = 100;
 
@@ -75,7 +67,7 @@ public class Game {
         spaceship.addToCanvas(canvas);
         spaceship.moveShip(canvas);
 
-        createLaser();
+        shootLaser();
         animateGame();
 
         solarSystem = new SolarSystem(canvas);
@@ -90,41 +82,18 @@ public class Game {
         canvas.add(sunBar);
     }
 
-    public void createLaser() {
+
+    public void shootLaser() {
         canvas.onCharacterTyped(event -> {
-            if (!gameOver && cooldown >= 10) {
-                double x1 = spaceship.getX() + 25;
-                double x2 = spaceship.getX() + 25;
-                double y1 = spaceship.getY() - 10;
-                double y2 = spaceship.getY() - 5;
-                Laser lasershot = new Laser(x1, y1, x2, y2);
-                lasershot.setStrokeColor(new Color(0, 255, 0));
-
-                canvas.add(lasershot);
-                lasers.add(lasershot);
-
-                cooldown -= 10;
-            }
+            createLaser();
         });
 
         canvas.onClick(event -> {
-            if (!gameOver && cooldown >= 10) {
-                double x1 = spaceship.getX() + 25;
-                double x2 = spaceship.getX() + 25;
-                double y1 = spaceship.getY() - 10;
-                double y2 = spaceship.getY() - 5;
-                Laser lasershot = new Laser(x1, y1, x2, y2);
-                lasershot.setStrokeColor(new Color(0, 255, 0));
-
-                canvas.add(lasershot);
-                lasers.add(lasershot);
-
-                cooldown -= 10;
-            }
+            createLaser();
         });
     }
 
-    public void animateGame() {
+    private void animateGame() {
         canvas.animate(() -> {
 
             if (running) {
@@ -172,12 +141,7 @@ public class Game {
         });
     }
 
-    private void removeLaser(Laser laser) {
-        canvas.remove(laser);
-        lasers.remove(laser);
-    }
-
-    public void gameBG() {
+    private void gameBG() {
         Image spaceBG = new Image("other/spaceBG.png");
         spaceBG.setMaxWidth(WIDTH);
         spaceBG.setScale(2);
@@ -186,68 +150,29 @@ public class Game {
         canvas.add(spaceBG);
     }
 
-    public void graphicsStartUp() {
-        GraphicsText scriptText = new GraphicsText(
-            "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired big time.\n"
-                +
-                "The original sun's gone haywire, heating things up even more. That's where you come in.\n"
-                + "You're at the helm of the spaceship Aurora. Your mission? Destroy that pesky original sun.\n"
-                + "\n"
-                + "But hey, it's not gonna be a walk in the park. You'll be dodging solar flares and dodging lasers bouncing off planets.\n"
-                + "Gotta keep your eyes peeled and your reflexes sharp.\n"
-                + "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
-                + "\n"
-                + "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
-        scriptText.setCenter(450, 300);
-        scriptText.setFont(FontStyle.ITALIC, 14);
-        // scriptText.setFillColor(Color.PINK);
-        scriptText.setFillColor(new Color(135, 206, 250));
-        canvas.add(scriptText);
+    private void createLaser() {
+        if (!gameOver && cooldown >= 10) {
+            double x1 = spaceship.getX() + 25;
+            double x2 = spaceship.getX() + 25;
+            double y1 = spaceship.getY() - 10;
+            double y2 = spaceship.getY() - 5;
+            Laser lasershot = new Laser(x1, y1, x2, y2);
+            lasershot.setStrokeColor(new Color(0, 255, 0));
 
-        GraphicsText gameName = new GraphicsText("Solar Exodus");
-        gameName.setFont(FontStyle.BOLD, 50);
+            canvas.add(lasershot);
+            lasers.add(lasershot);
 
-        gameName.setFillColor(new Color(135, 206, 250));
-        gameName.setCenter(450, 150);
-
-        canvas.add(gameName);
-
-        Image startMer = new Image("planets/mercury.png");
-        planetStartUp(startMer, -770, -190, 0.03);
-
-        Image startVenus = new Image("planets/venus.png");
-        planetStartUp(startVenus, -210, 300, 0.09);
-
-        Image startEarth = new Image("planets/earth.png");
-        planetStartUp(startEarth, -165, 260, 0.09);
-
-        Image startMars = new Image("planets/mars1.png");
-        planetStartUp(startMars, -120, 230, 0.06);
-
-        Image startJup = new Image("planets/jupiter.png");
-        planetStartUp(startJup, 20, 250, 0.2);
-
-        Image startSat = new Image("planets/saturn.png");
-        planetStartUp(startSat, 170, 350, 0.3);
-
-        Image startUra = new Image("planets/uranus.png");
-        planetStartUp(startUra, 440, 340, 0.15);
-
-        Image startNep = new Image("planets/neptune.png");
-        planetStartUp(startNep, 530, 300, 0.1);
+            cooldown -= 10;
+        }
     }
 
-    public void planetStartUp(Image image, int posX, int posY, Double scale) {
-        image.setPosition(posX, posY);
-        image.setScale(scale);
-        canvas.add(image);
+    private void removeLaser(Laser laser) {
+        canvas.remove(laser);
+        lasers.remove(laser);
     }
 
-    public int getLives() {
-        return lives;
-    }
 
-    public void gameOver() {
+    private void gameOver() {
         if (lives == 0) {
             running = false;
             gameOver = true;
@@ -264,10 +189,10 @@ public class Game {
         }
     }
 
-    public void gameWin(){
-        if(sunLife==0){
-            running=false;
-            gameWin=true;
+    private void gameWin() {
+        if (sunLife == 0) {
+            running = false;
+            gameWin = true;
 
             canvas.removeAll();
             gameBG();
@@ -277,7 +202,7 @@ public class Game {
             win.setFillColor(Color.PINK);
             win.setFontStyle(FontStyle.BOLD_ITALIC);
             win.setFontSize(20);
-            canvas.add(win,400,400);
+            canvas.add(win, 400, 400);
         }
 
     }
