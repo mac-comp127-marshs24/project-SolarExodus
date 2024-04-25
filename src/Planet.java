@@ -54,8 +54,6 @@ public class Planet {
     public void shrink() {
         planet.setScale(0.9);
         bound.setScale(0.9);
-        System.out.println(planet);
-        System.out.println(bound);
     }
 
     public String getType() {
