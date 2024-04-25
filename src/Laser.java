@@ -24,8 +24,9 @@ public class Laser extends Line {
     public void changeDirection(Planet planet) {
         double angle = angle(p1, p2, planet.getCenter());
         double rotateAngle = 2 * (180 - angle);
-
         double slope = slope(planet.getCenter(), p1);
+        double speed = velocityX * velocityX + velocityY * velocityY;
+
         if (velocityX == 0) {
             if ((planet.getCenter().getX() - this.getX1()) * (planet.getCenter().getY() - this.getY1()) >= 0) {
                 this.setStartPosition(
@@ -44,8 +45,8 @@ public class Laser extends Line {
 
         this.setEndPosition(p1);
 
-        velocityX = (this.getX1() - this.getX2()) * 0.6;
-        velocityY = (this.getY1() - this.getY2()) * 0.6;
+        velocityX = (this.getX1() - this.getX2()) * Math.sqrt(speed) / 5;
+        velocityY = (this.getY1() - this.getY2()) * Math.sqrt(speed) / 5;
 
         this.moveBy(velocityX * 5, velocityY * 5);
 

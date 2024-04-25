@@ -6,7 +6,7 @@ import edu.macalester.graphics.CanvasWindow;
 public class SolarSystem {
     private static final double EARTH_SIZE = 30;
     private static final double EARTH_RADIUS = 200;
-    private static final double EARTH_SPEED = 2;
+    private static final double EARTH_SPEED = 1.5;
 
     private List<Planet> SolarSystem = new ArrayList<Planet>();;
     private Boolean running;

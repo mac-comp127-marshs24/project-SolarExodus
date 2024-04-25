@@ -16,6 +16,7 @@ public class Game {
     private SolarSystem solarSystem;
     private int lives;
     private double cooldown;
+    private int sunLife;
     private Button startButton;
     private Button againButton;
     private Boolean running = true;
@@ -23,6 +24,7 @@ public class Game {
     private Image cursor;
     private GraphicsGroup cooldownBar;
     private GraphicsGroup healthBar;
+    private GraphicsGroup sunBar;
 
     public Game() {
         canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
@@ -55,6 +57,7 @@ public class Game {
 
         lives = 5;
         cooldown = 50;
+        sunLife = 100;
 
     }
 
@@ -72,14 +75,17 @@ public class Game {
 
         createLaser();
         animateGame();
+
         solarSystem = new SolarSystem(canvas);
 
-        System.out.println("YUH");
         cooldownBar = cooldownBar(770, 700);
         canvas.add(cooldownBar);
 
         healthBar = healthBar(20, 10);
         canvas.add(healthBar);
+
+        sunBar = sunBar(770, 20);
+        canvas.add(sunBar);
     }
 
     public void createLaser() {
@@ -146,8 +152,12 @@ public class Game {
                                 removeLaser(lasers.get(i));
                                 i--;
                             } else if (planet.getType().equals("Sun")) {
-                                removeLaser(lasers.get(i));
                                 planet.shrink();
+                                sunLife -= 10;
+                                canvas.remove(sunBar);
+                                sunBar = sunBar(770, 20);
+                                canvas.add(sunBar);
+                                removeLaser(lasers.get(i));
                                 i--;
                             }
                             break;
@@ -247,6 +257,17 @@ public class Game {
         g.add(bar);
         Rectangle limit = new Rectangle(xPos, yPos, cooldown * 2, 20);
         limit.setFillColor(Color.PINK);
+        g.add(limit);
+        return g;
+    }
+
+    private GraphicsGroup sunBar(double xPos, double yPos) {
+        GraphicsGroup g = new GraphicsGroup();
+        Rectangle bar = new Rectangle(xPos, yPos, 100, 20);
+        bar.setStrokeColor(Color.RED);
+        g.add(bar);
+        Rectangle limit = new Rectangle(xPos, yPos, sunLife, 20);
+        limit.setFillColor(new Color(255, 206, 23, 255));
         g.add(limit);
         return g;
     }
