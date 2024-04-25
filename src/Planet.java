@@ -10,6 +10,8 @@ public class Planet {
     private Image planet;
     private Ellipse bound;
     private GraphicsGroup group;
+    private double scale;
+    private double initialSize;
 
     public Planet(double size, double radius, double speed, String imgPath) {
         group = new GraphicsGroup();
@@ -27,9 +29,12 @@ public class Planet {
         group.add(bound);
 
         this.size = size;
+        initialSize = size;
         this.angle = 0;
         this.radius = radius;
         this.speed = speed;
+
+        scale = 1;
     }
 
     public void move(CanvasWindow canvas) {
@@ -48,8 +53,11 @@ public class Planet {
     }
 
     public void shrink() {
-        planet.setScale(0.9);
-        bound.setScale(0.9);
+        scale -= 0.1;
+        planet.setScale(scale);
+        bound.setScale(scale);
+        size -= initialSize / 10;
+        System.out.println(size);
     }
 
     public String getType() {
