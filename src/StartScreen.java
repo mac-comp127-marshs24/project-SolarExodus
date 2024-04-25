@@ -3,6 +3,8 @@ import java.awt.Color;
 import edu.macalester.graphics.*;
 
 public class StartScreen {
+    CanvasWindow canvas;
+
     public StartScreen(CanvasWindow canvas) {
         GraphicsText scriptText = new GraphicsText(
             "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired big time.\n"
@@ -19,10 +21,8 @@ public class StartScreen {
         scriptText.setFont(FontStyle.ITALIC, 14);
         scriptText.setFillColor(new Color(135, 206, 250));
         scriptText.setAlignment(TextAlignment.CENTER);
-        
-        scriptText.moveBy(10,10);
-
         canvas.add(scriptText);
+        moveText(scriptText, 5, 5);        
 
 
 
@@ -63,5 +63,13 @@ public class StartScreen {
         image.setPosition(posX, posY);
         image.setScale(scale);
         canvas.add(image);
+    }
+
+    public void moveText(GraphicsText script, double dx, double dy){
+        canvas.animate(()->{
+            if(script.getX()+script.getWidth()+50<canvas.getWidth()){
+                script.moveBy(dx,dy);
+            }
+        });
     }
 }

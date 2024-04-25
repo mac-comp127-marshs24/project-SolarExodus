@@ -201,7 +201,7 @@ public class Game {
     private void gameWin() {
         if (sunLife == 0) {
             running = false;
-            gameWin = true;
+            // gameWin = true;
 
             canvas.removeAll();
             gameBG();
