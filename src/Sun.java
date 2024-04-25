@@ -5,11 +5,6 @@ public class Sun extends Planet {
     }
 
     @Override
-    public void hit(Game game) {
-
-    }
-
-    @Override
     public String getType() {
         return "Sun";
     }

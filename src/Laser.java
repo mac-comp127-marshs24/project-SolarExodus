@@ -1,5 +1,3 @@
-import java.awt.Color;
-
 import edu.macalester.graphics.*;
 
 public class Laser extends Line {
@@ -50,6 +48,7 @@ public class Laser extends Line {
         velocityY = (this.getY1() - this.getY2()) * 0.6;
 
         this.moveBy(velocityX * 5, velocityY * 5);
+
         p1 = new Point(this.getX1(), this.getY1());
         p2 = new Point(this.getX2(), this.getY2());
     }

@@ -1,4 +1,4 @@
-import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.*;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
@@ -10,7 +10,6 @@ import java.awt.Toolkit;
 // import org.w3c.dom.events.MouseEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 
 public class Game {
     private CanvasWindow canvas;
@@ -26,6 +25,8 @@ public class Game {
     private Boolean running = true;
     private boolean gameOver = false;
     private Image cursor;
+    private double cooldown;
+    private GraphicsGroup cooldownbar;
 
     public Game() {
         canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
@@ -61,6 +62,10 @@ public class Game {
         livesText.setPosition(20, 30);
         livesText.setFontStyle(FontStyle.BOLD);
         livesText.setFillColor(Color.PINK);
+
+        cooldown = 50;
+        cooldownbar = cooldownBar(cooldown, 770, 700);
+        canvas.add(cooldownbar);
     }
 
     public void reSet() {
@@ -95,7 +100,7 @@ public class Game {
 
     public void createLaser() {
         canvas.onCharacterTyped(event -> {
-            if (!gameOver) {
+            if (!gameOver && cooldown >= 10) {
                 double x1 = spaceship.getX() + 25;
                 double x2 = spaceship.getX() + 25;
                 double y1 = spaceship.getY() - 10;
@@ -105,11 +110,17 @@ public class Game {
 
                 canvas.add(lasershot);
                 lasers.add(lasershot);
+
+                cooldown -= 10;
+                canvas.remove(cooldownbar);
+                cooldownbar = cooldownBar(cooldown, 770, 700);
+                canvas.add(cooldownbar);
+
             }
         });
 
         canvas.onClick(event -> {
-            if (!gameOver) {
+            if (!gameOver && cooldown >= 10) {
                 double x1 = spaceship.getX() + 25;
                 double x2 = spaceship.getX() + 25;
                 double y1 = spaceship.getY() - 10;
@@ -119,24 +130,37 @@ public class Game {
 
                 canvas.add(lasershot);
                 lasers.add(lasershot);
+
+                cooldown -= 10;
+                canvas.remove(cooldownbar);
+                cooldownbar = cooldownBar(cooldown, 770, 700);
+                canvas.add(cooldownbar);
             }
         });
     }
 
     public void animateGame() {
         canvas.animate(() -> {
+
             if (running) {
+
+                if (cooldown < 50) {
+                    cooldown += 0.2;
+                    canvas.remove(cooldownbar);
+                    cooldownbar = cooldownBar(cooldown, 770, 700);
+                    canvas.add(cooldownbar);
+                }
+
                 for (int i = 0; i < lasers.size(); i++) {
                     lasers.get(i).updatePosition();
-                    if (lasers.get(i).collisionSS(spaceship)) {
-                        canvas.remove(lasers.get(i));
-                        lasers.remove(lasers.get(i));
-                        i--;
-                        System.out.println("laser hit");
-                    }
+                    // if (lasers.get(i).collisionSS(spaceship)) {
+                    // canvas.remove(lasers.get(i));
+                    // lasers.remove(lasers.get(i));
+                    // i--;
+                    // System.out.println("laser hit");
+                    // }
                     for (Planet planet : solarSystem.getSolarSystem()) {
-                        if (planet.checkLaser(lasers.get(i)) == 1 ||
-                            planet.checkLaser(lasers.get(i)) == 2) {
+                        if (planet.checkLaser(lasers.get(i))) {
                             if (planet.getType().equals("Planet")) {
                                 System.out.println("laser hit");
 
@@ -151,13 +175,12 @@ public class Game {
                                 System.out.println(getLives());
                                 livesTxt();
                             } else if (planet.getType().equals("Sun")) {
-                                // canvas.remove(lasers.get(i));
-                                // lasers.remove(lasers.get(i));
-                                // planet.shrink();
-                                // i--;
-                                planet.reflect(lasers.get(i));
-
+                                canvas.remove(lasers.get(i));
+                                lasers.remove(lasers.get(i));
+                                planet.shrink();
+                                i--;
                             }
+                            break;
                         }
                     }
                 }
@@ -256,6 +279,17 @@ public class Game {
         // getLives() == 5) {
         // canvas.add(livesText);
         // }
+    }
+
+    private GraphicsGroup cooldownBar(double cooldown, double xPos, double yPos) {
+        GraphicsGroup g = new GraphicsGroup();
+        Rectangle bar = new Rectangle(xPos, yPos, 100, 20);
+        bar.setStrokeColor(Color.PINK);
+        g.add(bar);
+        Rectangle limit = new Rectangle(xPos, yPos, cooldown * 2, 20);
+        limit.setFillColor(Color.PINK);
+        g.add(limit);
+        return g;
     }
 
     public static void main(String[] args) {

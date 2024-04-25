@@ -48,22 +48,25 @@ public class Planet {
     }
 
     public void hit(Game game) {
+        game.decLives();
+    }
+
+    public void shrink() {
+        planet.setScale(0.9);
+        bound.setScale(0.9);
+        System.out.println(planet);
+        System.out.println(bound);
     }
 
     public String getType() {
         return "Planet";
     }
 
-    public void shrink() {
-        planet.setScale(0.9);
-        bound.setScale(0.9);
-    }
-
     public Point getCenter() {
         return bound.getCenter();
     }
 
-    public int checkLaser(Laser laser) {
+    public boolean checkLaser(Laser laser) {
         double laserX1 = laser.getX1();
         double laserY1 = laser.getY1();
         double laserX2 = laser.getX2();
@@ -74,12 +77,10 @@ public class Planet {
 
         double distanceX1Y1 = Math.sqrt(Math.pow(planetXCord - laserX1, 2) + Math.pow(planetYCord - laserY1, 2));
         double distanceX2Y2 = Math.sqrt(Math.pow(planetXCord - laserX2, 2) + Math.pow(planetYCord - laserY2, 2));
-        if (distanceX1Y1 <= size / 2) {
-            return 1;
-        } else if (distanceX2Y2 <= size / 2) {
-            return 2;
+        if (distanceX1Y1 <= size / 2 || distanceX2Y2 <= size / 2) {
+            return true;
         }
-        return 0;
+        return false;
     }
 
     public void addToCanvas(CanvasWindow canvas) {

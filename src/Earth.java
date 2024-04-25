@@ -5,11 +5,6 @@ public class Earth extends Planet {
     }
 
     @Override
-    public void hit(Game game) {
-        game.decLives();
-    }
-
-    @Override
     public String getType() {
         return "Earth";
     }
