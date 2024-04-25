@@ -105,12 +105,13 @@ public class Game {
                 }
                 for (int i = 0; i < lasers.size(); i++) {
                     lasers.get(i).updatePosition();
-                    // if (lasers.get(i).collisionSS(spaceship)) {
-                    // canvas.remove(lasers.get(i));
-                    // lasers.remove(lasers.get(i));
-                    // i--;
-                    // System.out.println("laser hit");
-                    // }
+                    if (lasers.get(i).shipCollision(spaceship)) {
+                        canvas.remove(lasers.get(i));
+                        lasers.remove(lasers.get(i));
+                        i--;
+                    System.out.println("laser hit");
+                    break;
+                    }
                     for (Planet planet : solarSystem.getSolarSystem()) {
                         if (planet.checkLaser(lasers.get(i))) {
                             if (planet.getType().equals("Planet")) {

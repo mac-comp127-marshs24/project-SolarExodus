@@ -13,6 +13,22 @@ public class Laser extends Line {
         p1 = new Point(x1, y1);
         p2 = new Point(x2, y2);
     }
+    public boolean shipCollision(Spaceship spaceship) {
+        double laserX1 = this.getX1();
+        double laserY1 = this.getY1();
+        double laserX2 = this.getX2();
+        double laserY2 = this.getY2();
+
+        double shipX = spaceship.getCenter().getX();
+        double shipY = spaceship.getCenter().getY();
+        
+        double distanceX1Y1 = Math.sqrt(Math.pow(shipX - laserX1, 2) + Math.pow(shipY - laserY1, 2));
+        double distanceX2Y2 = Math.sqrt(Math.pow(shipX - laserX2, 2) + Math.pow(shipY - laserY2, 2));
+        if (distanceX1Y1 <= 50 / 2 || distanceX2Y2 <= 50 / 2) {
+            return true;
+        }
+        return false;
+    }
 
 
     public void updatePosition() {
