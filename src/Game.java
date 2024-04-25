@@ -108,6 +108,11 @@ public class Game {
                         System.out.println("laser hit");
                         break;
                     }
+                    if(lasers.get(i).outOfBounds()){
+                        canvas.remove(lasers.get(i));
+                        lasers.remove(lasers.get(i));
+                        break;
+                    }
                     for (Planet planet : solarSystem.getSolarSystem()) {
                         if (planet.checkLaser(lasers.get(i))) {
                             if (planet.getType().equals("Planet")) {
