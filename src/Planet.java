@@ -57,7 +57,6 @@ public class Planet {
         planet.setScale(scale);
         bound.setScale(scale);
         size -= initialSize / 10;
-        System.out.println(size);
     }
 
     public String getType() {

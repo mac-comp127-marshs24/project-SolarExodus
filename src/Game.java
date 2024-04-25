@@ -2,6 +2,7 @@ import edu.macalester.graphics.*;
 import edu.macalester.graphics.events.MouseMotionEvent;
 import edu.macalester.graphics.ui.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 // import org.w3c.dom.events.MouseEvent;
 import java.awt.event.MouseEvent;
@@ -27,7 +28,7 @@ public class Game {
     private GraphicsGroup sunBar;
 
     public Game() {
-        canvas = new CanvasWindow("Game Screen", WIDTH, HEIGHT);
+        canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
 
         // Image spaceBG = new Image("planets/spaceBG2.png");
         // spaceBG.setMaxWidth(WIDTH);
@@ -41,8 +42,8 @@ public class Game {
         // Image cursor= new Image("other/cursor.png"); //trying to make cursor a
         // png cursor.setPosition(0, 0); canvas.add(cursor);
 
-        startButton = new Button("Start Game");
-        startButton.setPosition(400, 400);
+        startButton = new Button("Start the Mission");
+        startButton.setCenter(450, 450);
         canvas.add(startButton);
         startButton.onClick(() -> call());
 
@@ -96,7 +97,7 @@ public class Game {
                 double y1 = spaceship.getY() - 10;
                 double y2 = spaceship.getY() - 5;
                 Laser lasershot = new Laser(x1, y1, x2, y2);
-                lasershot.setStrokeColor(Color.PINK);
+                lasershot.setStrokeColor(new Color(0, 255, 0));
 
                 canvas.add(lasershot);
                 lasers.add(lasershot);
@@ -112,7 +113,7 @@ public class Game {
                 double y1 = spaceship.getY() - 10;
                 double y2 = spaceship.getY() - 5;
                 Laser lasershot = new Laser(x1, y1, x2, y2);
-                lasershot.setStrokeColor(Color.PINK);
+                lasershot.setStrokeColor(new Color(0, 255, 0));
 
                 canvas.add(lasershot);
                 lasers.add(lasershot);
@@ -185,17 +186,27 @@ public class Game {
 
     public void graphicsStartUp() {
         GraphicsText scriptText = new GraphicsText(
-            "Oh no! There are two suns threatening to overheat the Earth! Shoot down one of these suns to save Earth!");
-        scriptText.setPosition(80, 310);
-        scriptText.setFontStyle(FontStyle.ITALIC);
-        scriptText.setFillColor(Color.PINK);
+            "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired big time.\n"
+                +
+                "The original sun's gone haywire, heating things up even more. That's where you come in.\n"
+                + "You're at the helm of the spaceship Aurora. Your mission? Destroy that pesky original sun.\n"
+                + "\n"
+                + "But hey, it's not gonna be a walk in the park. You'll be dodging solar flares and dodging lasers bouncing off planets.\n"
+                + "Gotta keep your eyes peeled and your reflexes sharp.\n"
+                + "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
+                + "\n"
+                + "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
+        scriptText.setCenter(420, 300);
+        scriptText.setFont(FontStyle.PLAIN, 16);
+        scriptText.setFillColor(new Color(135, 206, 250));
         canvas.add(scriptText);
 
-        GraphicsText gameName = new GraphicsText("Saving Earth");
-        gameName.setPosition(300, 200);
-        gameName.setFontSize(50);
-        gameName.setFontStyle(FontStyle.BOLD_ITALIC);
-        gameName.setFillColor(Color.PINK);
+        GraphicsText gameName = new GraphicsText("Solar Exodus");
+        gameName.setFont(FontStyle.BOLD, 50);
+
+        gameName.setFillColor(new Color(135, 206, 250));
+        gameName.setCenter(450, 150);
+
         canvas.add(gameName);
 
         Image startMer = new Image("planets/mercury.png");
@@ -253,10 +264,10 @@ public class Game {
     private GraphicsGroup cooldownBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup();
         Rectangle bar = new Rectangle(xPos, yPos, 100, 20);
-        bar.setStrokeColor(Color.PINK);
+        bar.setStrokeColor(new Color(0, 255, 0));
         g.add(bar);
         Rectangle limit = new Rectangle(xPos, yPos, cooldown * 2, 20);
-        limit.setFillColor(Color.PINK);
+        limit.setFillColor(new Color(0, 255, 0));
         g.add(limit);
         return g;
     }
