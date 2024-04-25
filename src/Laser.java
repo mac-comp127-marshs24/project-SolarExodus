@@ -27,14 +27,29 @@ public class Laser extends Line {
         double angle = angle(p1, p2, planet.getCenter());
         double rotateAngle = 2 * (180 - angle);
 
-        this.setStartPosition(
-            newP1(Math.toRadians(rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+        double slope = slope(planet.getCenter(), p1);
+        if (velocityX == 0) {
+            if ((planet.getCenter().getX() - this.getX1()) * (planet.getCenter().getY() - this.getY1()) >= 0) {
+                this.setStartPosition(
+                    newP1(Math.toRadians(-rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+            } else {
+                this.setStartPosition(
+                    newP1(Math.toRadians(rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+            }
+        } else if (Math.abs(slope) >= Math.abs(velocityY / velocityX)) {
+            this.setStartPosition(
+                newP1(Math.toRadians(-rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+        } else {
+            this.setStartPosition(
+                newP1(Math.toRadians(rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+        }
+
         this.setEndPosition(p1);
 
         velocityX = (this.getX1() - this.getX2()) * 0.6;
         velocityY = (this.getY1() - this.getY2()) * 0.6;
 
-        // this.moveBy(velocityX * 6, velocityY * 6);
+        this.moveBy(velocityX * 5, velocityY * 5);
         p1 = new Point(this.getX1(), this.getY1());
         p2 = new Point(this.getX2(), this.getY2());
     }
@@ -60,6 +75,10 @@ public class Laser extends Line {
         double by = b.getY();
 
         return Math.sqrt(Math.pow(ax - bx, 2) + Math.pow(ay - by, 2));
+    }
+
+    private double slope(Point a, Point b) {
+        return (a.getY() - b.getY()) / (a.getX() - b.getX());
     }
 
     public boolean collisionSS(Spaceship spaceship) {

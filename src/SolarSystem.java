@@ -4,9 +4,9 @@ import java.util.List;
 import edu.macalester.graphics.CanvasWindow;
 
 public class SolarSystem {
-    private static final double EARTH_SIZE = 50;
+    private static final double EARTH_SIZE = 30;
     private static final double EARTH_RADIUS = 200;
-    private static final double EARTH_SPEED = 1.8;
+    private static final double EARTH_SPEED = 1.5;
 
     private List<Planet> SolarSystem = new ArrayList<Planet>();;
     private Boolean running;
@@ -23,14 +23,14 @@ public class SolarSystem {
         Planet neptune = new Planet(EARTH_SIZE * 1.3, EARTH_RADIUS * 2.25, EARTH_SPEED * 0.1, "planets/neptune.png");
 
         SolarSystem.add(sun);
-        // SolarSystem.add(neptune);
-        // SolarSystem.add(uranus);
-        // SolarSystem.add(saturn);
-        // SolarSystem.add(jupiter);
-        // SolarSystem.add(mars);
-        // SolarSystem.add(earth);
-        // SolarSystem.add(venus);
-        // SolarSystem.add(mercury);
+        SolarSystem.add(neptune);
+        SolarSystem.add(uranus);
+        SolarSystem.add(saturn);
+        SolarSystem.add(jupiter);
+        SolarSystem.add(mars);
+        SolarSystem.add(earth);
+        SolarSystem.add(venus);
+        SolarSystem.add(mercury);
 
         running = true;
 
