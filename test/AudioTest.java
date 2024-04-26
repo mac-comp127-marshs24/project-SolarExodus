@@ -6,16 +6,36 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
+
 
 public class AudioTest {
+    public void playSound() {
+        try {
+            AudioInputStream audioInputStream = AudioSystem
+                .getAudioInputStream(new File("res/sound/laser.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            System.out.println("s");
+        } catch (Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File soundFile = new File("sound//laser.wav");
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile.getAbsoluteFile());
+        File file = new File("res/sound/laser.wav");
+        AudioInputStream audioInputStream = AudioSystem
+            .getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
         clip.open(audioInputStream);
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
         clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        System.out.println(audioInputStream.getFormat());
+        while (true) {
+            System.out.println("1");
+        }
+
     }
 
 }
