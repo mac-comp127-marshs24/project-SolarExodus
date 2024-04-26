@@ -17,7 +17,7 @@ public class Game {
     private SolarSystem solarSystem;
     private int lives, sunLife;
     private double cooldown;
-    private Button startButton, againButton;
+    private Button startButton, againButton, backButton, pauseButton;
     private Boolean running = true, gameWin = false, gameOver = false;
     private Image cursor;
     private GraphicsGroup cooldownBar, sunBar, healthBar;
@@ -38,12 +38,19 @@ public class Game {
         againButton.setPosition(400, 450);
         againButton.onClick(() -> reSet());
 
+        backButton = new Button("Back");
+        backButton.setPosition(10,10);
+        backButton.onClick(()->reSet());
+
+        pauseButton = new Button("PAUSE");
+        pauseButton.setPosition(20, 10);
+
         new StartScreen(canvas);
 
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
 
-        lives = 1;
+        lives = 5;
         cooldown = 50;
         sunLife = 100;
 
@@ -58,6 +65,8 @@ public class Game {
         canvas.remove(startButton);
         gameBG();
 
+        canvas.add(backButton);
+
         spaceship.addToCanvas(canvas);
         spaceship.moveShip(canvas);
 
@@ -69,7 +78,7 @@ public class Game {
         cooldownBar = cooldownBar(770, 700);
         canvas.add(cooldownBar);
 
-        healthBar = healthBar(20, 10);
+        healthBar = healthBar(20, 360);
         canvas.add(healthBar);
 
         sunBar = sunBar(770, 20);
@@ -87,11 +96,11 @@ public class Game {
         });
     }
 
+    
+
     private void animateGame() {
         canvas.animate(() -> {
-
             if (running) {
-
                 if (cooldown < 50) {
                     cooldown += 0.2;
                     canvas.remove(cooldownBar);
@@ -120,7 +129,7 @@ public class Game {
                             } else if (planet.getType().equals("Earth")) {
                                 lives--;
                                 canvas.remove(healthBar);
-                                healthBar = healthBar(20, 10);
+                                healthBar = healthBar(20, 360);
                                 canvas.add(healthBar);
                                 removeLaser(lasers.get(i));
                                 i--;

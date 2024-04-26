@@ -22,7 +22,7 @@ public class StartScreen {
         scriptText.setFillColor(new Color(135, 206, 250));
         scriptText.setAlignment(TextAlignment.CENTER);
         canvas.add(scriptText);
-        moveText(scriptText, 5, 5);        
+        // moveText(scriptText, 5, 5);        
 
 
 
