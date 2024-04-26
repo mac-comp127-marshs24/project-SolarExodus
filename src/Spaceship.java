@@ -27,6 +27,14 @@ public class Spaceship {
         //     spaceship.setPosition(spaceshipX, spaceship.getY());
         // });
         canvas.onKeyDown(event -> {
+            double spaceshipX = spaceship.getX();
+            if (spaceshipX < 0) {
+                spaceshipX = 0;
+            } else if (spaceshipX + WIDTH > canvas.getWidth()) {
+                spaceshipX = canvas.getWidth() - WIDTH;
+            }
+            spaceship.setPosition(spaceshipX, spaceship.getY());
+        
             if (event.getKey() == Key.LEFT_ARROW) {
                 spaceship.moveBy(-5, 0);
             } else if (event.getKey() == Key.RIGHT_ARROW) {
