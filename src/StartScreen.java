@@ -22,9 +22,6 @@ public class StartScreen {
         scriptText.setFillColor(new Color(135, 206, 250));
         scriptText.setAlignment(TextAlignment.CENTER);
         canvas.add(scriptText);
-        // moveText(scriptText, 5, 5);        
-
-
 
         GraphicsText gameName = new GraphicsText("Solar Exodus");
         gameName.setFont(FontStyle.BOLD, 50);
@@ -65,11 +62,11 @@ public class StartScreen {
         canvas.add(image);
     }
 
-    public void moveText(GraphicsText script, double dx, double dy){
-        canvas.animate(()->{
-            if(script.getX()+script.getWidth()+50<canvas.getWidth()){
-                script.moveBy(dx,dy);
-            }
-        });
-    }
+    // public void moveText(GraphicsText script, double dx, double dy){
+    //     canvas.animate(()->{
+    //         if(script.getX()+script.getWidth()+50<canvas.getWidth()){
+    //             script.moveBy(dx,dy);
+    //         }
+    //     });
+    // }
 }

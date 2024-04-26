@@ -9,6 +9,9 @@ import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
 
+/**
+ * 
+ */
 public class Game {
     private CanvasWindow canvas;
     private static final int HEIGHT = 750, WIDTH = 900;
@@ -56,11 +59,17 @@ public class Game {
 
     }
 
+    /**
+     * Resets the game window for a replay
+     */
     public void reSet() {
         new Game();
         canvas.closeWindow();
     }
 
+    /**
+     * Calls all the relevant game elements on the screen to be ready for play
+     */
     public void call() {
         canvas.remove(startButton);
         gameBG();
@@ -82,10 +91,23 @@ public class Game {
         canvas.add(healthBar);
 
         sunBar = sunBar(770, 20);
-        canvas.add(sunBar);
+        canvas.add(sunBar);        
+        sunFlare(canvas);
+
+    }
+
+    public void sunFlare(CanvasWindow canvas){
+        //use random num generator if odd create if even then dont create flare;
+        Image sunFlare = new Image("other/flare.JPG");
+        sunFlare.setPosition(100,100);
+        canvas.add(sunFlare);
+        
     }
 
 
+    /**
+     * Shoots the laser on space bar press or on click
+     */
     public void shootLaser() {
         canvas.onCharacterTyped(event -> {
             createLaser();
@@ -152,6 +174,9 @@ public class Game {
         });
     }
 
+    /**
+     * Creates the overall gameBG for use in multiple instances
+     */
     private void gameBG() {
         Image spaceBG = new Image("other/spaceBG.png");
         spaceBG.setMaxWidth(WIDTH);
@@ -161,6 +186,9 @@ public class Game {
         canvas.add(spaceBG);
     }
 
+    /**
+     * 
+     */
     private void createLaser() {
         if (!gameOver && cooldown >= 10) {
             double x1 = spaceship.getX() + 25;
@@ -177,12 +205,19 @@ public class Game {
         }
     }
 
+    /**
+     * 
+     * @param laser
+     */
     private void removeLaser(Laser laser) {
         canvas.remove(laser);
         lasers.remove(laser);
     }
 
 
+    /**
+     * Checks if the conditions for a Game Over are true and sets up the screen 
+     */
     private void gameOver() {
         if (lives == 0) {
             running = false;
@@ -205,10 +240,12 @@ public class Game {
         }
     }
 
+    /**
+     * Checks if the conditions for a Game Win are true and sets up the screen
+     */
     private void gameWin() {
         if (sunLife == 0) {
             running = false;
-            // gameWin = true;
 
             canvas.removeAll();
             gameBG();
@@ -229,6 +266,12 @@ public class Game {
 
     }
 
+    /**
+     * 
+     * @param xPos
+     * @param yPos
+     * @return
+     */
     private GraphicsGroup cooldownBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup();
         Rectangle bar = new Rectangle(xPos, yPos, 100, 20);
@@ -240,6 +283,12 @@ public class Game {
         return g;
     }
 
+    /**
+     * 
+     * @param xPos
+     * @param yPos
+     * @return
+     */
     private GraphicsGroup sunBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup();
         Rectangle bar = new Rectangle(xPos, yPos, 100, 20);
@@ -251,6 +300,12 @@ public class Game {
         return g;
     }
 
+    /**
+     * 
+     * @param xPos
+     * @param yPos
+     * @return
+     */
     private GraphicsGroup healthBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup(xPos, yPos);
         for (int i = 0; i < lives; i++) {
