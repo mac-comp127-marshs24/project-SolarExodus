@@ -50,7 +50,7 @@ public class Game {
         spaceship = new Spaceship();
         lasers = new ArrayList<>();
 
-        lives = 5;
+        lives = 3;
         cooldown = 50;
         sunLife = 100;
 
