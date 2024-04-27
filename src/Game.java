@@ -1,8 +1,10 @@
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.SortingFocusTraversalPolicy;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
@@ -106,11 +108,21 @@ public class Game {
      */
     public void shootLaser() {
         canvas.onCharacterTyped(event -> {
-            createLaser();
+            try {
+                createLaser();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
 
         canvas.onClick(event -> {
-            createLaser();
+            try {
+                createLaser();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
     }
 
@@ -230,9 +242,12 @@ public class Game {
     }
 
     /**
+     * @throws LineUnavailableException
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
      * 
      */
-    private void createLaser() {
+    private void createLaser() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         if (!gameOver && cooldown >= 10) {
             double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
@@ -245,6 +260,9 @@ public class Game {
             lasers.add(lasershot);
 
             cooldown -= 10;
+
+            Audio.laser();
+
         }
     }
 

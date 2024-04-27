@@ -9,20 +9,26 @@ import java.io.IOException;
 
 
 public class AudioTest {
-    public void playSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File file = new File("res/sound/laser.wav");
+    Clip clip;
+
+    public AudioTest(String path) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File file = new File(path);
         AudioInputStream audioInputStream = AudioSystem
             .getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
+        clip = AudioSystem.getClip();
         clip.open(audioInputStream);
+        // clip.start();
+    }
+
+    public void play() {
         clip.start();
     }
 
     public static void main(String[] args)
         throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
 
-        AudioTest test = new AudioTest();
-        test.playSound();
+        AudioTest test = new AudioTest("res/sound/laser.wav");
+        test.play();
 
         Thread.sleep(1000);
     }
