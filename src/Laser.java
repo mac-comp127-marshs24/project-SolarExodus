@@ -13,6 +13,7 @@ public class Laser extends Line {
         p1 = new Point(x1, y1);
         p2 = new Point(x2, y2);
     }
+
     public boolean shipCollision(Spaceship spaceship) {
         double laserX1 = this.getX1();
         double laserY1 = this.getY1();
@@ -21,7 +22,7 @@ public class Laser extends Line {
 
         double shipX = spaceship.getCenter().getX();
         double shipY = spaceship.getCenter().getY();
-        
+
         double distanceX1Y1 = Math.sqrt(Math.pow(shipX - laserX1, 2) + Math.pow(shipY - laserY1, 2));
         double distanceX2Y2 = Math.sqrt(Math.pow(shipX - laserX2, 2) + Math.pow(shipY - laserY2, 2));
         if (distanceX1Y1 <= 50 / 2 || distanceX2Y2 <= 50 / 2) {
@@ -36,11 +37,11 @@ public class Laser extends Line {
         p1 = new Point(this.getX1(), this.getY1());
         p2 = new Point(this.getX2(), this.getY2());
     }
-    
-    public boolean outOfBounds(){
+
+    public boolean outOfBounds() {
         double x = this.getX1();
         double y = this.getY1();
-        if(x>900||x<0||y>750||y<0){
+        if (x > 900 || x < 0 || y > 750 || y < 0) {
             return true;
         }
         return false;

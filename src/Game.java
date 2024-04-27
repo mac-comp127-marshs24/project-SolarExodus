@@ -47,8 +47,8 @@ public class Game {
         againButton.onClick(() -> reSet());
 
         backButton = new Button("Back");
-        backButton.setPosition(10,10);
-        backButton.onClick(()->reSet());
+        backButton.setPosition(10, 10);
+        backButton.onClick(() -> reSet());
 
         pauseButton = new Button("PAUSE");
         pauseButton.setPosition(20, 10);
@@ -96,7 +96,7 @@ public class Game {
         canvas.add(healthBar);
 
         sunBar = sunBar(770, 20);
-        canvas.add(sunBar);        
+        canvas.add(sunBar);
 
     }
 
@@ -114,16 +114,15 @@ public class Game {
         });
     }
 
-    
 
     private void animateGame() {
         canvas.animate(() -> {
             if (running) {
-                if(rand.nextDouble() > 0.9 && flare==null){
+                if (rand.nextDouble() > 0.9 && flare == null) {
                     flare = solarSystem.getSun().shootFlare(canvas);
                     canvas.add(flare);
                 }
-                
+
                 if (cooldown < 50) {
                     cooldown += 0.2;
                     canvas.remove(cooldownBar);
@@ -137,12 +136,12 @@ public class Game {
                         lasers.remove(lasers.get(i));
                         i--;
                         lives--;
+                        updateHealthBar();
                         System.out.println("laser hit");
                         break;
                     }
-                    if(lasers.get(i).outOfBounds()){
-                        canvas.remove(lasers.get(i));
-                        lasers.remove(lasers.get(i));
+                    if (lasers.get(i).outOfBounds()) {
+                        removeLaser(lasers.get(i));
                         break;
                     }
                     for (Planet planet : solarSystem.getSolarSystem()) {
@@ -151,9 +150,7 @@ public class Game {
                                 planet.reflect(lasers.get(i));
                             } else if (planet.getType().equals("Earth")) {
                                 lives--;
-                                canvas.remove(healthBar);
-                                healthBar = healthBar(20, 360);
-                                canvas.add(healthBar);
+                                updateHealthBar();
                                 removeLaser(lasers.get(i));
                                 i--;
                             } else if (planet.getType().equals("Sun")) {
@@ -170,49 +167,54 @@ public class Game {
                         }
                     }
                 }
-                if(flare != null){
+                if (flare != null) {
                     flare.updatePosition();
 
-                    if(flare.getPosition().getY() > canvas.getHeight()){
+                    if (flare.getPosition().getY() > canvas.getHeight()) {
                         flare = null;
                     }
                 }
-                if(flare!=null &&flare.shipCollision(spaceship)){
+                if (flare != null && flare.shipCollision(spaceship)) {
                     canvas.remove(flare);
-                    flare=null;
+                    flare = null;
                     lives--;
+                    updateHealthBar();
                     System.out.println("FLARE HOT BITCH");
                     // break;
                 }
 
-            
-                // for (int i = 0; i<lasers.size(); i++){
-                //     lasers.get(i).updatePosition();
-                //     if(lasers.get(i).shipCollision(spaceship)){
-                //         canvas.remove(lasers.get(i));
-                //         lasers.remove(lasers.get(i));
-                //         i--;
-                //         lives--;
-                //         System.out.println("LASER HIT BITCH");
-                //         break;
-                //     }
-                    
-                        // if(lasers.get(i).shipCollision(spaceship)){
-                        //     canvas.remove(lasers.get(i));
-                        //     lasers.remove(lasers.get(i));
-                        //     i--;
-                        //     lives--;
-                        //     System.out.println("LASER HIT BITCH");
-                        //     break;
-                        // }
 
-            
-               
-                
+                // for (int i = 0; i<lasers.size(); i++){
+                // lasers.get(i).updatePosition();
+                // if(lasers.get(i).shipCollision(spaceship)){
+                // canvas.remove(lasers.get(i));
+                // lasers.remove(lasers.get(i));
+                // i--;
+                // lives--;
+                // System.out.println("LASER HIT BITCH");
+                // break;
+                // }
+
+                // if(lasers.get(i).shipCollision(spaceship)){
+                // canvas.remove(lasers.get(i));
+                // lasers.remove(lasers.get(i));
+                // i--;
+                // lives--;
+                // System.out.println("LASER HIT BITCH");
+                // break;
+                // }
+
+
                 gameOver();
                 gameWin();
             }
         });
+    }
+
+    private void updateHealthBar() {
+        canvas.remove(healthBar);
+        healthBar = healthBar(20, 360);
+        canvas.add(healthBar);
     }
 
     /**
@@ -257,7 +259,7 @@ public class Game {
 
 
     /**
-     * Checks if the conditions for a Game Over are true and sets up the screen 
+     * Checks if the conditions for a Game Over are true and sets up the screen
      */
     private void gameOver() {
         if (lives == 0) {
@@ -274,7 +276,7 @@ public class Game {
             over.setFontSize(20);
             canvas.add(over, 400, 400);
 
-            Image sadEarth = new Image("other/sadEarth.JPG");
+            Image sadEarth = new Image("other/sadEarth.png");
             canvas.add(sadEarth);
             sadEarth.setPosition(330, 160);
             sadEarth.setScale(0.5);
@@ -298,7 +300,7 @@ public class Game {
             win.setFontSize(20);
             canvas.add(win, 400, 400);
 
-            Image happyEarth = new Image("other/happyEarth.JPG");
+            Image happyEarth = new Image("other/happyEarth.png");
             canvas.add(happyEarth);
             happyEarth.setPosition(230, 50);
             happyEarth.setScale(0.3);

@@ -17,8 +17,8 @@ public class StartScreen {
                 + "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
                 + "\n"
                 + "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
-        scriptText.setCenter(850, 300);
-        scriptText.setFont(FontStyle.ITALIC, 14);
+        scriptText.setCenter(840, 300);
+        scriptText.setFont(FontStyle.ITALIC, 16);
         scriptText.setFillColor(new Color(135, 206, 250));
         scriptText.setAlignment(TextAlignment.CENTER);
         canvas.add(scriptText);
@@ -63,10 +63,10 @@ public class StartScreen {
     }
 
     // public void moveText(GraphicsText script, double dx, double dy){
-    //     canvas.animate(()->{
-    //         if(script.getX()+script.getWidth()+50<canvas.getWidth()){
-    //             script.moveBy(dx,dy);
-    //         }
-    //     });
+    // canvas.animate(()->{
+    // if(script.getX()+script.getWidth()+50<canvas.getWidth()){
+    // script.moveBy(dx,dy);
+    // }
+    // });
     // }
 }

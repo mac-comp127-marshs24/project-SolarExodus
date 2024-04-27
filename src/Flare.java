@@ -1,8 +1,8 @@
 import java.util.Random;
 import edu.macalester.graphics.Image;
 
-public class Flare extends Image{
-    
+public class Flare extends Image {
+
     private double dx;
     private double dy;
     Random rand = new Random();
@@ -10,25 +10,25 @@ public class Flare extends Image{
     double spaceshipY;
 
 
-    public Flare(){
-        super(0,0);
-        setImagePath("other/flare.JPG");
+    public Flare() {
+        super(0, 0);
+        setImagePath("other/flare.png");
         dx = rand.nextDouble(-2, 2);
         dy = rand.nextDouble(5, 15);
     }
 
-    public void updatePosition(){
+    public void updatePosition() {
         moveBy(dx, dy);
-    
+
     }
 
     public boolean shipCollision(Spaceship spaceship) {
         double flareX = this.getPosition().getX();
         double flareY = this.getPosition().getY();
 
-        double spaceshipX = spaceship.getX(); 
+        double spaceshipX = spaceship.getX();
         double spaceshipY = spaceship.getY();
-    
+
         double spaceshipWidth = spaceship.getWidth();
         double spaceshipHeight = spaceship.getHeight();
 
@@ -39,5 +39,5 @@ public class Flare extends Image{
         return false;
     }
 
-    
+
 }
