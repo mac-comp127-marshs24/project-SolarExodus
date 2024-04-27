@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
+
+import javax.swing.SortingFocusTraversalPolicy;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
@@ -24,6 +27,8 @@ public class Game {
     private Boolean running = true, gameWin = false, gameOver = false;
     private Image cursor;
     private GraphicsGroup cooldownBar, sunBar, healthBar;
+    private Random rand = new Random();
+    private Flare flare;
 
     public Game() {
         canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
@@ -92,16 +97,7 @@ public class Game {
 
         sunBar = sunBar(770, 20);
         canvas.add(sunBar);        
-        sunFlare(canvas);
 
-    }
-
-    public void sunFlare(CanvasWindow canvas){
-        //use random num generator if odd create if even then dont create flare;
-        Image sunFlare = new Image("other/flare.JPG");
-        sunFlare.setPosition(100,100);
-        canvas.add(sunFlare);
-        
     }
 
 
@@ -123,6 +119,11 @@ public class Game {
     private void animateGame() {
         canvas.animate(() -> {
             if (running) {
+                if(rand.nextDouble() > 0.9 && flare==null){
+                    flare = solarSystem.getSun().shootFlare(canvas);
+                    canvas.add(flare);
+                }
+                
                 if (cooldown < 50) {
                     cooldown += 0.2;
                     canvas.remove(cooldownBar);
@@ -164,10 +165,50 @@ public class Game {
                                 removeLaser(lasers.get(i));
                                 i--;
                             }
+
                             break;
                         }
                     }
                 }
+                if(flare != null){
+                    flare.updatePosition();
+
+                    if(flare.getPosition().getY() > canvas.getHeight()){
+                        flare = null;
+                    }
+                }
+                if(flare!=null &&flare.shipCollision(spaceship)){
+                    canvas.remove(flare);
+                    flare=null;
+                    lives--;
+                    System.out.println("FLARE HOT BITCH");
+                    // break;
+                }
+
+            
+                // for (int i = 0; i<lasers.size(); i++){
+                //     lasers.get(i).updatePosition();
+                //     if(lasers.get(i).shipCollision(spaceship)){
+                //         canvas.remove(lasers.get(i));
+                //         lasers.remove(lasers.get(i));
+                //         i--;
+                //         lives--;
+                //         System.out.println("LASER HIT BITCH");
+                //         break;
+                //     }
+                    
+                        // if(lasers.get(i).shipCollision(spaceship)){
+                        //     canvas.remove(lasers.get(i));
+                        //     lasers.remove(lasers.get(i));
+                        //     i--;
+                        //     lives--;
+                        //     System.out.println("LASER HIT BITCH");
+                        //     break;
+                        // }
+
+            
+               
+                
                 gameOver();
                 gameWin();
             }

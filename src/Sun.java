@@ -1,11 +1,24 @@
+import java.util.List;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Image;
 
 public class Sun extends Planet {
     // private Image sunflare;
+    List<Flare> flares;
 
     public Sun(double size, double radius, double speed, String imgPath) {
         super(size, radius, speed, imgPath);
+    }
+
+
+    public Flare shootFlare(CanvasWindow canvas){
+        Flare sunFlare = new Flare();
+        sunFlare.setPosition((canvas.getCenter().getX())-120,100);
+        sunFlare.setScale(0.15);
+        return sunFlare;
+
+
     }
 
     // public void createsunflare(){

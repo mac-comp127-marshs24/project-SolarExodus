@@ -36,6 +36,7 @@ public class Laser extends Line {
         p1 = new Point(this.getX1(), this.getY1());
         p2 = new Point(this.getX2(), this.getY2());
     }
+    
     public boolean outOfBounds(){
         double x = this.getX1();
         double y = this.getY1();

@@ -16,16 +16,18 @@ public class Spaceship {
     }
 
     public void moveShip(CanvasWindow canvas) {
-        // canvas.onMouseMove(event -> {
-        //     double mouseX = event.getPosition().getX();
-        //     double spaceshipX = mouseX - WIDTH / 2;
-        //     if (spaceshipX < 0) {
-        //         spaceshipX = 0;
-        //     } else if (spaceshipX + WIDTH > canvas.getWidth()) {
-        //         spaceshipX = canvas.getWidth() - WIDTH;
-        //     }
-        //     spaceship.setPosition(spaceshipX, spaceship.getY());
-        // });
+        canvas.onMouseMove(event -> {
+            double mouseX = event.getPosition().getX();
+            double spaceshipX = mouseX - WIDTH / 2;
+            if (spaceshipX < 0) {
+                spaceshipX = 0;
+            } else if (spaceshipX + WIDTH > canvas.getWidth()) {
+                spaceshipX = canvas.getWidth() - WIDTH;
+            }
+            spaceship.setPosition(spaceshipX, spaceship.getY());
+        });
+
+        
         canvas.onKeyDown(event -> {
             double spaceshipX = spaceship.getX();
             if (spaceshipX < 0) {
@@ -40,6 +42,7 @@ public class Spaceship {
             } else if (event.getKey() == Key.RIGHT_ARROW) {
                 spaceship.moveBy(5, 0);
             }
+    
         });
     }
 
@@ -57,6 +60,14 @@ public class Spaceship {
 
     public Point getCenter() {
         return spaceship.getCenter();
+    }
+
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    public int getHeight() {
+        return HEIGHT;
     }
 
 }
