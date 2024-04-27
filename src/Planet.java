@@ -1,7 +1,10 @@
 
-import java.awt.Color;
-
 import edu.macalester.graphics.*;
+import java.awt.Color;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 public class Planet {
     private double posX;
@@ -52,11 +55,13 @@ public class Planet {
         laser.changeDirection(this);
     }
 
-    public void shrink() {
+    public void shrink() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         scale -= 0.1;
         planet.setScale(scale);
         bound.setScale(scale);
         size -= initialSize / 10;
+        Audio.hitSun();
     }
 
     public String getType() {
@@ -76,8 +81,10 @@ public class Planet {
         double planetXCord = bound.getCenter().getX();
         double planetYCord = bound.getCenter().getY();
 
-        double distanceX1Y1 = Math.sqrt(Math.pow(planetXCord - laserX1, 2) + Math.pow(planetYCord - laserY1, 2));
-        double distanceX2Y2 = Math.sqrt(Math.pow(planetXCord - laserX2, 2) + Math.pow(planetYCord - laserY2, 2));
+        double distanceX1Y1 = Math.sqrt(Math.pow(planetXCord - laserX1, 2) +
+            Math.pow(planetYCord - laserY1, 2));
+        double distanceX2Y2 = Math.sqrt(Math.pow(planetXCord - laserX2, 2) +
+            Math.pow(planetYCord - laserY2, 2));
         if (distanceX1Y1 <= size / 2 || distanceX2Y2 <= size / 2) {
             return true;
         }

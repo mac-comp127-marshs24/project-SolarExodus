@@ -1,3 +1,8 @@
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import edu.macalester.graphics.*;
 
 public class Laser extends Line {
@@ -5,13 +10,14 @@ public class Laser extends Line {
     private double velocityY;
     private Point p1, p2;
 
-    public Laser(double x1, double y1, double x2, double y2) {
+    public Laser(double x1, double y1, double x2, double y2) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         super(x1, y1, x2, y2);
         this.setStrokeWidth(3);
         velocityX = 0;
         velocityY = -6;
         p1 = new Point(x1, y1);
         p2 = new Point(x2, y2);
+        Audio.laser();
     }
 
     public boolean shipCollision(Spaceship spaceship) {

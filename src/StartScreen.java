@@ -1,6 +1,6 @@
+import edu.macalester.graphics.*;
 import java.awt.Color;
 
-import edu.macalester.graphics.*;
 
 public class StartScreen {
     CanvasWindow canvas;
@@ -10,13 +10,17 @@ public class StartScreen {
             "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired big time.\n"
                 +
                 "The original sun's gone haywire, heating things up even more. That's where you come in.\n"
-                + "You're at the helm of the spaceship Aurora. Your mission? Destroy that pesky original sun.\n"
+                +
+                "You're at the helm of the spaceship Aurora. Your mission? Destroy that pesky original sun.\n"
                 + "\n"
-                + "But hey, it's not gonna be a walk in the park. You'll be dodging solar flares and dodging lasers bouncing off planets.\n"
+                +
+                "But hey, it's not gonna be a walk in the park. You'll be dodging solar flares and dodging lasers bouncing off planets.\n"
                 + "Gotta keep your eyes peeled and your reflexes sharp.\n"
-                + "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
+                +
+                "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
                 + "\n"
-                + "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
+                +
+                "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
         scriptText.setCenter(840, 300);
         scriptText.setFont(FontStyle.ITALIC, 16);
         scriptText.setFillColor(new Color(135, 206, 250));
@@ -56,7 +60,12 @@ public class StartScreen {
         planetStartUp(startNep, 530, 300, 0.1, canvas);
     }
 
-    private void planetStartUp(Image image, int posX, int posY, Double scale, CanvasWindow canvas) {
+    private void planetStartUp(
+        Image image,
+        int posX,
+        int posY,
+        Double scale,
+        CanvasWindow canvas) {
         image.setPosition(posX, posY);
         image.setScale(scale);
         canvas.add(image);

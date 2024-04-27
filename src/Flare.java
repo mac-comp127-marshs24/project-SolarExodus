@@ -1,4 +1,9 @@
+import java.io.IOException;
 import java.util.Random;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import edu.macalester.graphics.Image;
 
 public class Flare extends Image {
@@ -10,11 +15,12 @@ public class Flare extends Image {
     double spaceshipY;
 
 
-    public Flare() {
+    public Flare() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         super(0, 0);
         setImagePath("other/flare.png");
         dx = rand.nextDouble(-2, 2);
         dy = rand.nextDouble(5, 15);
+        Audio.flare();
     }
 
     public void updatePosition() {

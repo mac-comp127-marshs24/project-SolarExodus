@@ -1,11 +1,3 @@
-import java.awt.Color;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsGroup;
@@ -13,9 +5,16 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.ui.Button;
+import java.awt.Color;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 /**
- * 
+ *
  */
 public class Game {
     private CanvasWindow canvas;
@@ -32,7 +31,8 @@ public class Game {
     private Random rand = new Random();
     private Flare flare;
 
-    public Game() {
+    public Game() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
         gameBG();
 
@@ -46,11 +46,23 @@ public class Game {
 
         againButton = new Button("Play Again");
         againButton.setPosition(400, 450);
-        againButton.onClick(() -> reSet());
+        againButton.onClick(() -> {
+            try {
+                reSet();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        });
 
         backButton = new Button("Back");
         backButton.setPosition(10, 10);
-        backButton.onClick(() -> reSet());
+        backButton.onClick(() -> {
+            try {
+                reSet();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        });
 
         pauseButton = new Button("PAUSE");
         pauseButton.setPosition(20, 10);
@@ -61,15 +73,21 @@ public class Game {
         lasers = new ArrayList<>();
 
         lives = 3;
-        cooldown = 50;
+        cooldown = 20;
         sunLife = 100;
 
+        Audio.intro();
     }
 
     /**
      * Resets the game window for a replay
+     *
+     * @throws LineUnavailableException
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
      */
-    public void reSet() {
+    public void reSet() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         new Game();
         canvas.closeWindow();
     }
@@ -99,9 +117,7 @@ public class Game {
 
         sunBar = sunBar(770, 20);
         canvas.add(sunBar);
-
     }
-
 
     /**
      * Shoots the laser on space bar press or on click
@@ -111,7 +127,6 @@ public class Game {
             try {
                 createLaser();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
@@ -120,22 +135,24 @@ public class Game {
             try {
                 createLaser();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
     }
 
-
     private void animateGame() {
         canvas.animate(() -> {
             if (running) {
                 if (rand.nextDouble() > 0.9 && flare == null) {
-                    flare = solarSystem.getSun().shootFlare(canvas);
+                    try {
+                        flare = solarSystem.getSun().shootFlare(canvas);
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
                     canvas.add(flare);
                 }
 
-                if (cooldown < 50) {
+                if (cooldown < 20) {
                     cooldown += 0.2;
                     canvas.remove(cooldownBar);
                     cooldownBar = cooldownBar(770, 700);
@@ -148,6 +165,11 @@ public class Game {
                         lasers.remove(lasers.get(i));
                         i--;
                         lives--;
+                        try {
+                            Audio.hitSpaceship();
+                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                            e.printStackTrace();
+                        }
                         updateHealthBar();
                         System.out.println("laser hit");
                         break;
@@ -163,10 +185,19 @@ public class Game {
                             } else if (planet.getType().equals("Earth")) {
                                 lives--;
                                 updateHealthBar();
+                                try {
+                                    Audio.hitEarth();
+                                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                                    e.printStackTrace();
+                                }
                                 removeLaser(lasers.get(i));
                                 i--;
                             } else if (planet.getType().equals("Sun")) {
-                                planet.shrink();
+                                try {
+                                    planet.shrink();
+                                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                                    e.printStackTrace();
+                                }
                                 sunLife -= 10;
                                 canvas.remove(sunBar);
                                 sunBar = sunBar(770, 20);
@@ -190,11 +221,15 @@ public class Game {
                     canvas.remove(flare);
                     flare = null;
                     lives--;
+                    try {
+                        Audio.hitSpaceship();
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
                     updateHealthBar();
                     System.out.println("FLARE HOT BITCH");
                     // break;
                 }
-
 
                 // for (int i = 0; i<lasers.size(); i++){
                 // lasers.get(i).updatePosition();
@@ -215,7 +250,6 @@ public class Game {
                 // System.out.println("LASER HIT BITCH");
                 // break;
                 // }
-
 
                 gameOver();
                 gameWin();
@@ -245,9 +279,10 @@ public class Game {
      * @throws LineUnavailableException
      * @throws IOException
      * @throws UnsupportedAudioFileException
-     * 
+     *
      */
-    private void createLaser() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    private void createLaser() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         if (!gameOver && cooldown >= 10) {
             double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
@@ -260,21 +295,17 @@ public class Game {
             lasers.add(lasershot);
 
             cooldown -= 10;
-
-            Audio.laser();
-
         }
     }
 
     /**
-     * 
+     *
      * @param laser
      */
     private void removeLaser(Laser laser) {
         canvas.remove(laser);
         lasers.remove(laser);
     }
-
 
     /**
      * Checks if the conditions for a Game Over are true and sets up the screen
@@ -322,13 +353,11 @@ public class Game {
             canvas.add(happyEarth);
             happyEarth.setPosition(230, 50);
             happyEarth.setScale(0.3);
-
         }
-
     }
 
     /**
-     * 
+     *
      * @param xPos
      * @param yPos
      * @return
@@ -338,14 +367,14 @@ public class Game {
         Rectangle bar = new Rectangle(xPos, yPos, 100, 20);
         bar.setStrokeColor(new Color(0, 255, 0));
         g.add(bar);
-        Rectangle limit = new Rectangle(xPos, yPos, cooldown * 2, 20);
+        Rectangle limit = new Rectangle(xPos, yPos, cooldown * 5, 20);
         limit.setFillColor(new Color(0, 255, 0));
         g.add(limit);
         return g;
     }
 
     /**
-     * 
+     *
      * @param xPos
      * @param yPos
      * @return
@@ -362,7 +391,7 @@ public class Game {
     }
 
     /**
-     * 
+     *
      * @param xPos
      * @param yPos
      * @return
@@ -378,7 +407,9 @@ public class Game {
         return g;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedAudioFileException,
+        IOException,
+        LineUnavailableException {
         new Game();
     }
 }

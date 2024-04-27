@@ -27,7 +27,6 @@ public class Spaceship {
             spaceship.setPosition(spaceshipX, spaceship.getY());
         });
 
-
         canvas.onKeyDown(event -> {
             double spaceshipX = spaceship.getX();
             if (spaceshipX < 0) {
@@ -42,7 +41,6 @@ public class Spaceship {
             } else if (event.getKey() == Key.RIGHT_ARROW) {
                 spaceship.moveBy(5, 0);
             }
-
         });
     }
 
@@ -69,5 +67,4 @@ public class Spaceship {
     public int getHeight() {
         return HEIGHT;
     }
-
 }

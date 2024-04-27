@@ -1,6 +1,9 @@
-import java.util.List;
-
 import edu.macalester.graphics.CanvasWindow;
+import java.io.IOException;
+import java.util.List;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 public class Sun extends Planet {
     // private Image sunflare;
@@ -10,14 +13,13 @@ public class Sun extends Planet {
         super(size, radius, speed, imgPath);
     }
 
-
-    public Flare shootFlare(CanvasWindow canvas) {
+    public Flare shootFlare(CanvasWindow canvas)
+        throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         Flare sunFlare = new Flare();
         sunFlare.setPosition((canvas.getCenter().getX()) - 120, 100);
         sunFlare.setScale(0.15);
         return sunFlare;
-
-
     }
 
     // public void createsunflare(){
