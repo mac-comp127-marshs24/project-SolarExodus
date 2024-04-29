@@ -56,7 +56,7 @@ public class Game {
         againButton.setPosition(400, 450);
         againButton.onClick(() -> {
             try {
-                reSet();
+                resetGame();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
@@ -66,7 +66,7 @@ public class Game {
         backButton.setPosition(10, 10);
         backButton.onClick(() -> {
             try {
-                reSet();
+                resetGame();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
@@ -94,7 +94,7 @@ public class Game {
      * @throws IOException
      * @throws UnsupportedAudioFileException
      */
-    public void reSet() throws UnsupportedAudioFileException, IOException,
+    public void resetGame() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
         new Game();
         canvas.closeWindow();
