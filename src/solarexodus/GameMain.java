@@ -15,9 +15,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
- * The main class containing the Solor Exodus Game. 
- * Help From Preceptors: Soulai, Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The main class
+ * containing the Solor Exodus Game. Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class GameMain {
     private CanvasWindow canvas;
@@ -166,6 +165,11 @@ public class GameMain {
                         removeLaser(lasers.get(i));
                         i--;
                         lives--;
+                        try {
+                            Audio.loseLife();
+                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                            e.printStackTrace();
+                        }
                         updateHealthBar();
                         break;
                     }
@@ -180,6 +184,11 @@ public class GameMain {
                                 planet.reflect(lasers.get(i));
                             } else if (planet.getType().equals("Earth")) {
                                 lives--;
+                                try {
+                                    Audio.loseLife();
+                                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                                    e.printStackTrace();
+                                }
                                 updateHealthBar();
                                 removeLaser(lasers.get(i));
                                 i--;
@@ -212,6 +221,11 @@ public class GameMain {
                     canvas.remove(flare);
                     flare = null;
                     lives--;
+                    try {
+                        Audio.loseLife();
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
                     updateHealthBar();
                 }
 
