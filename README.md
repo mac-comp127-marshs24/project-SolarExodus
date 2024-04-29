@@ -1,3 +1,3 @@
-# Project Title Goes Here
+# Solar Exodus
 
 Info about your project goes here

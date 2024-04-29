@@ -1,3 +1,5 @@
+package solarexodus;
+
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;

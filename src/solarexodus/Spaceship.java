@@ -1,3 +1,5 @@
+package solarexodus;
+
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Point;

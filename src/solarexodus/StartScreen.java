@@ -1,3 +1,5 @@
+package solarexodus;
+
 import edu.macalester.graphics.*;
 import java.awt.Color;
 

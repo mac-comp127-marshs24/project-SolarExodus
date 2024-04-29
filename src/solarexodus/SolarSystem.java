@@ -1,3 +1,5 @@
+package solarexodus;
+
 import edu.macalester.graphics.CanvasWindow;
 import java.util.ArrayList;
 import java.util.List;
