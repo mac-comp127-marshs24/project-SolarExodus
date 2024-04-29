@@ -15,9 +15,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 
-/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
- * The main class containing the Solor Exodus Game.
- * Help From Preceptors: Soulai, Hadley, Courtney
+/**
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The main class
+ * containing the Solor Exodus Game. Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class Game {
     private CanvasWindow canvas;
@@ -33,12 +33,14 @@ public class Game {
     private GraphicsGroup cooldownBar, sunBar, healthBar;
     private Random rand = new Random();
     private Flare flare;
+    private Audio introSound;
 
     /**
      * Constructs a new instance of the Solar Exodus game.
-     * @throws UnsupportedAudioFileException 
-     * @throws IOException 
-     * @throws LineUnavailableException 
+     * 
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
      */
 
     public Game() throws UnsupportedAudioFileException, IOException,
@@ -86,7 +88,7 @@ public class Game {
         cooldown = 20;
         sunLife = 100;
 
-        Audio.intro();
+        introSound = new Audio("res/sound/intro.wav");
     }
 
     /**
@@ -103,7 +105,7 @@ public class Game {
     }
 
     /**
-     * Initializes and displays the game elements on the screen to be ready for play. 
+     * Initializes and displays the game elements on the screen to be ready for play.
      */
     public void startGameScreen() {
         canvas.remove(startButton);
@@ -127,6 +129,8 @@ public class Game {
 
         sunBar = sunBar(770, 20);
         canvas.add(sunBar);
+
+        introSound.stop();
     }
 
     /**
@@ -151,8 +155,8 @@ public class Game {
     }
 
     /**
-     * Animates the game by updating the game elements and checking for collision between
-     * the lasers and spaceship, lasers and planets, and flares and the spaceship.
+     * Animates the game by updating the game elements and checking for collision between the lasers and
+     * spaceship, lasers and planets, and flares and the spaceship.
      */
     private void animateGame() {
         canvas.animate(() -> {
@@ -175,22 +179,15 @@ public class Game {
                 for (int i = 0; i < lasers.size(); i++) {
                     lasers.get(i).updatePosition();
                     if (lasers.get(i).shipCollision(spaceship)) {
-                        canvas.remove(lasers.get(i));
-                        lasers.remove(lasers.get(i));
+                        removeLaser(lasers.get(i));
                         i--;
                         lives--;
-                        try {
-                            Audio.hitSpaceship();
-                        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                            e.printStackTrace();
-                        }
                         updateHealthBar();
                         System.out.println("laser hit");
                         break;
                     }
                     if (lasers.get(i).outOfBounds()) {
-                        canvas.remove(lasers.get(i));
-                        lasers.remove(lasers.get(i));
+                        removeLaser(lasers.get(i));
                         i--;
                         break;
                     }
@@ -201,19 +198,10 @@ public class Game {
                             } else if (planet.getType().equals("Earth")) {
                                 lives--;
                                 updateHealthBar();
-                                try {
-                                    Audio.hitEarth();
-                                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                                    e.printStackTrace();
-                                }
                                 removeLaser(lasers.get(i));
                                 i--;
                             } else if (planet.getType().equals("Sun")) {
-                                try {
-                                    planet.shrink();
-                                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                                    e.printStackTrace();
-                                }
+                                planet.shrink();
                                 sunLife -= 10;
                                 canvas.remove(sunBar);
                                 sunBar = sunBar(770, 20);
@@ -237,35 +225,10 @@ public class Game {
                     canvas.remove(flare);
                     flare = null;
                     lives--;
-                    try {
-                        Audio.hitSpaceship();
-                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                        e.printStackTrace();
-                    }
                     updateHealthBar();
                     System.out.println("FLARE HOT BITCH");
                     // break;
                 }
-
-                // for (int i = 0; i<lasers.size(); i++){
-                // lasers.get(i).updatePosition();
-                // if(lasers.get(i).shipCollision(spaceship)){
-                // canvas.remove(lasers.get(i));
-                // lasers.remove(lasers.get(i));
-                // i--;
-                // lives--;
-                // System.out.println("LASER HIT BITCH");
-                // break;
-                // }
-
-                // if(lasers.get(i).shipCollision(spaceship)){
-                // canvas.remove(lasers.get(i));
-                // lasers.remove(lasers.get(i));
-                // i--;
-                // lives--;
-                // System.out.println("LASER HIT BITCH");
-                // break;
-                // }
 
                 gameOver();
                 gameWon();
@@ -295,15 +258,14 @@ public class Game {
     }
 
     /**
-     * Creates a laser when called, and if the game is running and the cooldown is above or equal to 10. 
+     * Creates a laser when called, and if the game is running and the cooldown is above or equal to 10.
      * Adds the laser to the canvas and to the laser list.
      * 
      * @throws LineUnavailableException
      * @throws IOException
      * @throws UnsupportedAudioFileException
      */
-    private void createLaser() throws UnsupportedAudioFileException, IOException,
-        LineUnavailableException {
+    private void createLaser() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         if (!gameOver && cooldown >= 10) {
             double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
@@ -322,7 +284,7 @@ public class Game {
     /**
      * Removes a laser from the canvas.
      * 
-     * @param laser The laser to be removed. 
+     * @param laser The laser to be removed.
      */
     private void removeLaser(Laser laser) {
         canvas.remove(laser);
@@ -330,8 +292,7 @@ public class Game {
     }
 
     /**
-     * Checks if the conditions of game over are true based on lives,
-     * and updates the game accordingly.
+     * Checks if the conditions of game over are true based on lives, and updates the game accordingly.
      */
     private void gameOver() {
         if (lives == 0) {
@@ -356,8 +317,7 @@ public class Game {
     }
 
     /**
-     * Checks if the conditions for a game won are true,
-     * and updates the screen accordingly.
+     * Checks if the conditions for a game won are true, and updates the screen accordingly.
      */
     private void gameWon() {
         if (sunLife == 0) {

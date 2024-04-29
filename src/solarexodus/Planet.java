@@ -84,13 +84,11 @@ public class Planet {
      * @throws IOException
      * @throws LineUnavailableException
      */
-    public void shrink() throws UnsupportedAudioFileException, IOException,
-        LineUnavailableException {
+    public void shrink(){
         scale -= 0.1;
         planet.setScale(scale);
         bound.setScale(scale);
         size -= initialSize / 10;
-        Audio.hitSun();
     }
 
     /**
