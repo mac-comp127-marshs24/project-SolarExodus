@@ -4,9 +4,8 @@ import edu.macalester.graphics.*;
 import java.awt.Color;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
- * This startscreen class represents the start screen of the game. 
- * Help From Preceptors: Soulai, Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas This startscreen class
+ * represents the start screen of the game. Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class StartScreen {
     CanvasWindow canvas;
@@ -29,7 +28,7 @@ public class StartScreen {
                 +
                 "You'll be dodging solar flares and dodging lasers bouncing off planets. Gotta keep your eyes peeled and your \n"
                 +
-                "reflexes sharp. Remember, our goal is to save Earth,so be careful notto blast our home planet to smithereens.\n"
+                "reflexes sharp. Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
                 + "\n"
                 + "\n"
                 +
