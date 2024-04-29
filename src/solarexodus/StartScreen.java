@@ -27,7 +27,7 @@ public class StartScreen {
                 "\n" + "\n"
                 +
                 "You'll be dodging solar flares and dodging lasers bouncing off planets. Gotta keep your eyes peeled and your \n"
-                + "reflexes sharp. Remember, our goal is to save Earth,so be careful notto blast our home planet to smithereens.\n"
+                + "reflexes sharp. Remember, our goal is to save Earth,so be careful not to blast our home planet to smithereens.\n"
                 +
                 "\n" + "\n" 
                 +
