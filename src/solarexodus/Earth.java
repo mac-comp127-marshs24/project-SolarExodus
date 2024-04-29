@@ -1,8 +1,9 @@
 package solarexodus;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The earth class creates
- * the Earth in the game, it extends Planet class. Help From Preceptors: Soulai, Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
+ * The earth class creates the Earth in the game, it extends Planet class. 
+ * Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class Earth extends Planet {
 

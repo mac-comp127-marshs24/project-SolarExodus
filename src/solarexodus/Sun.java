@@ -6,9 +6,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The class represents the
- * Sun in the game, this class extends the Planet class. Help From Preceptors: Soulai, Hadley,
- * Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
+ * The class represents the Sun in the game, this class extends the Planet class. 
+ * Help From Preceptors: Soulai, Hadley,Courtney
  */
 public class Sun extends Planet {
 

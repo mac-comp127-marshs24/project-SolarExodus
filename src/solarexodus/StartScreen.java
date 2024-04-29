@@ -4,8 +4,9 @@ import edu.macalester.graphics.*;
 import java.awt.Color;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas This startscreen class
- * represents the start screen of the game. Help From Preceptors: Soulai, Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
+ * This startscreen class represents the start screen of the game. 
+ * Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class StartScreen {
     CanvasWindow canvas;

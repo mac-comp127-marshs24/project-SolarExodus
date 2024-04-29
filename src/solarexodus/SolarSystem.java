@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The SolarSystem class
- * represents the solar system with its planets and controls their animation. Help From Preceptors:
- * Soulai, Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
+ * The SolarSystem class represents the solar system with its planets and controls their animation. 
+ * Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class SolarSystem {
     private static final double EARTH_SIZE = 30;

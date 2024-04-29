@@ -4,9 +4,9 @@ import edu.macalester.graphics.*;
 import java.awt.Color;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The planet class
- * represents a planet in the solar system and its shape and movement. Help From Preceptors: Soulai,
- * Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
+ * The planet class represents a planet in the solar system and its shape and movement. 
+ * Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class Planet {
     private double posX;

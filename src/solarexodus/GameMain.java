@@ -15,8 +15,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The main class
- * containing the Solor Exodus Game. Help From Preceptors: Soulai, Hadley, Courtney
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
+ * The main class containing the Solor Exodus Game. 
+ * Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class GameMain {
     private CanvasWindow canvas;
