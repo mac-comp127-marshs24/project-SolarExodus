@@ -18,8 +18,6 @@ public class Flare extends Image {
     private double dx;
     private double dy;
     private Random rand = new Random();
-    private double spaceshipX;
-    private double spaceshipY;
 
     /**
      * Constructs and initializes a Flare object and it's image, randomizes its initial velocity, and
