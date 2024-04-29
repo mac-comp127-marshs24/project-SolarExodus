@@ -218,6 +218,7 @@ public class Game {
                     }
                     if (flare.flareOutOfBounds()){
                         canvas.remove(flare);
+                        flare=null;
                     }
                 }
                 if (flare != null && flare.shipCollision(spaceship)) {

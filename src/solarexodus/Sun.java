@@ -2,7 +2,6 @@ package solarexodus;
 
 import edu.macalester.graphics.CanvasWindow;
 import java.io.IOException;
-import java.util.List;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
