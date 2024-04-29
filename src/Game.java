@@ -175,7 +175,9 @@ public class Game {
                         break;
                     }
                     if (lasers.get(i).outOfBounds()) {
-                        removeLaser(lasers.get(i));
+                        canvas.remove(lasers.get(i));
+                        lasers.remove(lasers.get(i));
+                        i--;
                         break;
                     }
                     for (Planet planet : solarSystem.getSolarSystem()) {
