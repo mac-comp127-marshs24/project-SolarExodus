@@ -178,7 +178,6 @@ public class GameMain {
                         i--;
                         lives--;
                         updateHealthBar();
-                        System.out.println("laser hit");
                         break;
                     }
                     if (lasers.get(i).outOfBounds()) {
@@ -225,7 +224,6 @@ public class GameMain {
                     flare = null;
                     lives--;
                     updateHealthBar();
-                    System.out.println("FLARE HOT BITCH");
                 }
 
                 gameOver();
