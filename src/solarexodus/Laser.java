@@ -1,11 +1,10 @@
 package solarexodus;
 
+import edu.macalester.graphics.*;
 import java.io.IOException;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import edu.macalester.graphics.*;
 
 /**
  * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The laser class
@@ -18,7 +17,7 @@ public class Laser extends Line {
 
     /**
      * Constructs a Laser object with the specified coordinates.
-     * 
+     *
      * @param x1 The x-coordinate of the starting point.
      * @param y1 The y-coordinate of the starting point.
      * @param x2 The x-coordinate of the ending point.
@@ -28,7 +27,8 @@ public class Laser extends Line {
      * @throws LineUnavailableException
      */
     public Laser(double x1, double y1, double x2, double y2)
-        throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         super(x1, y1, x2, y2);
         this.setStrokeWidth(3);
         velocityX = 0;
@@ -40,7 +40,7 @@ public class Laser extends Line {
 
     /**
      * Checks if the laser collides with a spaceship.
-     * 
+     *
      * @param spaceship The spaceship to check the collision with.
      * @return True if the laser collides with spaceship, or else false.
      */
@@ -61,7 +61,6 @@ public class Laser extends Line {
         return false;
     }
 
-
     /**
      * Updates the position of the laser by using its velocities.
      */
@@ -73,7 +72,7 @@ public class Laser extends Line {
 
     /**
      * Checks if the laser is out of bounds.
-     * 
+     *
      * @return True if the laser is out of bounds, or else false.
      */
     public boolean outOfBounds() {
@@ -85,11 +84,10 @@ public class Laser extends Line {
         return false;
     }
 
-
     /**
      * Changes the direction of the laser's angle and slope after reflecting from a planet using it's
      * coordinates.
-     * 
+     *
      * @param planet The planets which the laser reflects from.
      */
     public void changeDirection(Planet planet) {
@@ -99,19 +97,20 @@ public class Laser extends Line {
         double speed = velocityX * velocityX + velocityY * velocityY;
 
         if (velocityX == 0) {
-            if ((planet.getCenter().getX() - this.getX1()) * (planet.getCenter().getY() - this.getY1()) >= 0) {
-                this.setStartPosition(
-                    newP1(Math.toRadians(-rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+            if ((planet.getCenter().getX() - this.getX1()) *
+                (planet.getCenter().getY() - this.getY1()) >= 0) {
+                this.setStartPosition(newP1(Math.toRadians(-rotateAngle), this.getX2(),
+                    this.getY2(), this.getX1(), this.getY1()));
             } else {
-                this.setStartPosition(
-                    newP1(Math.toRadians(rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+                this.setStartPosition(newP1(Math.toRadians(rotateAngle), this.getX2(),
+                    this.getY2(), this.getX1(), this.getY1()));
             }
         } else if (Math.abs(slope) >= Math.abs(velocityY / velocityX)) {
-            this.setStartPosition(
-                newP1(Math.toRadians(-rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+            this.setStartPosition(newP1(Math.toRadians(-rotateAngle), this.getX2(),
+                this.getY2(), this.getX1(), this.getY1()));
         } else {
-            this.setStartPosition(
-                newP1(Math.toRadians(rotateAngle), this.getX2(), this.getY2(), this.getX1(), this.getY1()));
+            this.setStartPosition(newP1(Math.toRadians(rotateAngle), this.getX2(),
+                this.getY2(), this.getX1(), this.getY1()));
         }
 
         this.setEndPosition(p1);
@@ -127,7 +126,7 @@ public class Laser extends Line {
 
     /**
      * Calculates the angle formed by the specified three points.
-     * 
+     *
      * @param center The center point.
      * @param point1 The first point.
      * @param point2 The second point.
@@ -144,7 +143,7 @@ public class Laser extends Line {
     /**
      * Calculates the new coordinates after a point is rotated around another point by the angle
      * specified.
-     * 
+     *
      * @param angle   The angle of the rotation in degrees/radians?.
      * @param x1      The x-coordinate of the point
      * @param y1      The y-coordinate of the point
@@ -152,9 +151,16 @@ public class Laser extends Line {
      * @param centerY The y-coordinate of the center of
      * @return The new coordinates of the rotated point.
      */
-    private Point newP1(double angle, double x1, double y1, double centerX, double centerY) {
-        double x2 = (x1 - centerX) * Math.cos(angle) - (y1 - centerY) * Math.sin(angle) + centerX;
-        double y2 = (x1 - centerX) * Math.sin(angle) + (y1 - centerY) * Math.cos(angle) + centerY;
+    private Point newP1(
+        double angle,
+        double x1,
+        double y1,
+        double centerX,
+        double centerY) {
+        double x2 = (x1 - centerX) * Math.cos(angle) -
+            (y1 - centerY) * Math.sin(angle) + centerX;
+        double y2 = (x1 - centerX) * Math.sin(angle) +
+            (y1 - centerY) * Math.cos(angle) + centerY;
         return new Point(x2, y2);
     }
 

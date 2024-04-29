@@ -14,12 +14,11 @@ import java.util.Random;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
 /**
  * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The main class
  * containing the Solor Exodus Game. Help From Preceptors: Soulai, Hadley, Courtney
  */
-public class Game {
+public class GameMain {
     private CanvasWindow canvas;
     private static final int HEIGHT = 750, WIDTH = 900;
     private Spaceship spaceship;
@@ -36,13 +35,13 @@ public class Game {
 
     /**
      * Constructs a new instance of the Solar Exodus game.
-     * 
+     *
      * @throws UnsupportedAudioFileException
      * @throws IOException
      * @throws LineUnavailableException
      */
 
-    public Game() throws UnsupportedAudioFileException, IOException,
+    public GameMain() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
         canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
         gameBG();
@@ -96,7 +95,7 @@ public class Game {
      */
     public void resetGame() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
-        new Game();
+        new GameMain();
         canvas.closeWindow();
     }
 
@@ -216,9 +215,9 @@ public class Game {
                     if (flare.getPosition().getY() > canvas.getHeight()) {
                         flare = null;
                     }
-                    if (flare.flareOutOfBounds()){
+                    if (flare.flareOutOfBounds()) {
                         canvas.remove(flare);
-                        flare=null;
+                        flare = null;
                     }
                 }
                 if (flare != null && flare.shipCollision(spaceship)) {
@@ -228,9 +227,6 @@ public class Game {
                     updateHealthBar();
                     System.out.println("FLARE HOT BITCH");
                 }
-                // if (flare!=null && flare.flareOutOfBounds()){
-                //     canvas.remove(flare);
-                // }
 
                 gameOver();
                 gameWon();
@@ -262,12 +258,13 @@ public class Game {
     /**
      * Creates a laser when called, and if the game is running and the cooldown is above or equal to 10.
      * Adds the laser to the canvas and to the laser list.
-     * 
+     *
      * @throws LineUnavailableException
      * @throws IOException
      * @throws UnsupportedAudioFileException
      */
-    private void createLaser() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    private void createLaser() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         if (!gameOver && cooldown >= 10) {
             double x1 = spaceship.getX() + 25;
             double x2 = spaceship.getX() + 25;
@@ -285,7 +282,7 @@ public class Game {
 
     /**
      * Removes a laser from the canvas.
-     * 
+     *
      * @param laser The laser to be removed.
      */
     private void removeLaser(Laser laser) {
@@ -344,7 +341,7 @@ public class Game {
 
     /**
      * Creates a graphics group representing the cooldown bar.
-     * 
+     *
      * @param xPos The x coordinate of the cooldown bar.
      * @param yPos The y coordinate of the cooldown bar.
      * @return The graphics group representing the cooldown bar.
@@ -362,7 +359,7 @@ public class Game {
 
     /**
      * Creates a graphics group representing the sun's health bar.
-     * 
+     *
      * @param xPos The x coordinate of the sun's health bar.
      * @param yPos The y coordinate of the sun's health bar.
      * @return The graphics group representing the sun's health bar.
@@ -380,7 +377,7 @@ public class Game {
 
     /**
      * Creates a graphics group representing the player's health bar.
-     * 
+     *
      * @param xPos The x coordinate of the player's health bar.
      * @param yPos The y coordinate of the player's health bar.
      * @return The graphics group representing the player's health bar.
@@ -398,7 +395,7 @@ public class Game {
 
     /**
      * This is the main method to start the game.
-     * 
+     *
      * @param args
      * @throws UnsupportedAudioFileException
      * @throws IOException
@@ -407,6 +404,6 @@ public class Game {
     public static void main(String[] args) throws UnsupportedAudioFileException,
         IOException,
         LineUnavailableException {
-        new Game();
+        new GameMain();
     }
 }

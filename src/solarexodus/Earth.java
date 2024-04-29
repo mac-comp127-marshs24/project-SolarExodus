@@ -8,7 +8,7 @@ public class Earth extends Planet {
 
     /**
      * Constructs an Earth object with the specified parameters of the Earth.
-     * 
+     *
      * @param earthSize   The size of the Earth.
      * @param earthRadius The radius of the Earth's ...
      * @param earthSpeed  The speed of the Earth.

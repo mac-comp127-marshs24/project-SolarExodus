@@ -4,9 +4,10 @@ import edu.macalester.graphics.CanvasWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
- * The SolarSystem class represents the solar system with its planets and controls their animation.
- * Help From Preceptors: Soulai, Hadley, Courtney
+/**
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The SolarSystem class
+ * represents the solar system with its planets and controls their animation. Help From Preceptors:
+ * Soulai, Hadley, Courtney
  */
 public class SolarSystem {
     private static final double EARTH_SIZE = 30;
@@ -19,7 +20,7 @@ public class SolarSystem {
 
     /**
      * Constructs a SolarSystem object and initializes the planets.
-     * 
+     *
      * @param canvas The canvas where the planets will be displayed.
      */
     public SolarSystem(CanvasWindow canvas) {
@@ -63,13 +64,6 @@ public class SolarSystem {
                 }
             }
         });
-    }
-
-    /**
-     * Stops the animation of the solar system.
-     */
-    public void stopAnimate() {
-        running = false;
     }
 
     /**

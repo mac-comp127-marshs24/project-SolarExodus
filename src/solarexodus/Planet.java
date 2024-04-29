@@ -20,7 +20,7 @@ public class Planet {
 
     /**
      * Constructs a Planet object using the following parameters.
-     * 
+     *
      * @param size    The size of the planet.
      * @param radius  The radius of the orbit.
      * @param speed   The speed of the planet's movement.
@@ -52,7 +52,7 @@ public class Planet {
 
     /**
      * Moves the planet on the created orbit.
-     * 
+     *
      * @param canvas The canvas where the planet is shown.
      */
     public void move(CanvasWindow canvas) {
@@ -68,7 +68,7 @@ public class Planet {
 
     /**
      * Reflects a laser off the planet's surface.
-     * 
+     *
      * @param laser The laser object that will be reflected.
      */
     public void reflect(Laser laser) {
@@ -77,7 +77,7 @@ public class Planet {
 
     /**
      * Shrinks the planet's size according to scale.
-     * 
+     *
      */
     public void shrink() {
         scale -= 0.1;
@@ -102,7 +102,7 @@ public class Planet {
 
     /**
      * Checks if a laser intersects with the planet.
-     * 
+     *
      * @param laser The laser to check.
      * @return True if the laser intersects with the planet, or else false.
      */
@@ -127,7 +127,7 @@ public class Planet {
 
     /**
      * Adds the planet to the specified canvas.
-     * 
+     *
      * @param canvas The canvas where the planet will be shown.
      */
     public void addToCanvas(CanvasWindow canvas) {

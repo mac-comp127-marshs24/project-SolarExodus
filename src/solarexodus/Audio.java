@@ -15,6 +15,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Audio {
     private Clip clip;
 
+    /**
+     *
+     * @param path : The path to the audio file
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public Audio(String path) throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
         File file = new File(path);
@@ -24,15 +31,32 @@ public class Audio {
         clip.start();
     }
 
+    /**
+     * Stops the sound
+     */
     public void stop() {
         clip.stop();
     }
 
+    /**
+     * Plays the laser sound once
+     *
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public static void laser() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
         new Audio("res/sound/laser.wav");
     }
 
+    /**
+     * Plays the flare sound once
+     *
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public static void flare() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
         new Audio("res/sound/flare.wav");

@@ -1,12 +1,10 @@
 package solarexodus;
 
+import edu.macalester.graphics.Image;
 import java.io.IOException;
 import java.util.Random;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import edu.macalester.graphics.Image;
 
 /**
  * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The flare class
@@ -21,12 +19,13 @@ public class Flare extends Image {
     /**
      * Constructs and initializes a Flare object and it's image, randomizes its initial velocity, and
      * adds audio to the flare.
-     * 
+     *
      * @throws UnsupportedAudioFileException
      * @throws IOException
      * @throws LineUnavailableException
      */
-    public Flare() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public Flare() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
         super(0, 0);
         this.setImagePath("other/flare.png");
         this.setMaxWidth(200);
@@ -53,7 +52,7 @@ public class Flare extends Image {
 
     /**
      * Checks if the flare collides with the spaceship.
-     * 
+     *
      * @param spaceship The spaceship to check the collision with.
      * @return True if the flare collides with the spaceship, or else its false.
      */

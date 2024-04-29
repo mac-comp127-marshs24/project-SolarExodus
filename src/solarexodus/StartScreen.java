@@ -13,7 +13,7 @@ public class StartScreen {
     /**
      * Constructs a new StartScreen object including the introductory text and images of the planets on
      * the startscreen.
-     * 
+     *
      * @param canvas The canvas where the start screen will be shown.
      */
     public StartScreen(CanvasWindow canvas) {
@@ -23,13 +23,14 @@ public class StartScreen {
                 "big time. The original sun's gone haywire, heating things up even more. That's where you come in. You're at the helm\n"
                 +
                 "of the spaceship Aurora. Your mission? Destroy that pesky original sun. But hey, it's not gonna be a walk in the park.\n"
-                + 
-                "\n" + "\n"
+                + "\n"
+                + "\n"
                 +
                 "You'll be dodging solar flares and dodging lasers bouncing off planets. Gotta keep your eyes peeled and your \n"
-                + "reflexes sharp. Remember, our goal is to save Earth,so be careful notto blast our home planet to smithereens.\n"
                 +
-                "\n" + "\n" 
+                "reflexes sharp. Remember, our goal is to save Earth,so be careful notto blast our home planet to smithereens.\n"
+                + "\n"
+                + "\n"
                 +
                 "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
         scriptText.setCenter(855, 310);
@@ -73,7 +74,7 @@ public class StartScreen {
 
     /**
      * Displays a planet image at the specified position and scale.
-     * 
+     *
      * @param image  The path to the image file of the planet.
      * @param posX   The x-coordinate of the planet's position.
      * @param posY   The y-coordinate of the planet's position.
