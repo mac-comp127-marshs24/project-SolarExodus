@@ -17,9 +17,9 @@ public class Flare extends Image {
 
     private double dx;
     private double dy;
-    Random rand = new Random();
-    double spaceshipX;
-    double spaceshipY;
+    private Random rand = new Random();
+    private double spaceshipX;
+    private double spaceshipY;
 
     /**
      * Constructs and initializes a Flare object and it's image, randomizes its initial velocity, and
@@ -31,7 +31,8 @@ public class Flare extends Image {
      */
     public Flare() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         super(0, 0);
-        setImagePath("other/flare.png");
+        this.setImagePath("other/flare.png");
+        this.setMaxWidth(200);
         dx = rand.nextDouble(-2, 2);
         dy = rand.nextDouble(5, 15);
         Audio.flare();
@@ -41,8 +42,7 @@ public class Flare extends Image {
      * Updates the flare's position depending on its velocity.
      */
     public void updatePosition() {
-        moveBy(dx, dy);
-
+        this.moveBy(dx, dy);
     }
 
     /**
@@ -52,8 +52,8 @@ public class Flare extends Image {
      * @return True if the flare collides with the spaceship, or else its false.
      */
     public boolean shipCollision(Spaceship spaceship) {
-        double flareX = this.getPosition().getX();
-        double flareY = this.getPosition().getY();
+        double flareX = this.getPosition().getX() + this.getWidth() / 2;
+        double flareY = this.getPosition().getY() + this.getHeight() / 2;
 
         double spaceshipX = spaceship.getX();
         double spaceshipY = spaceship.getY();
@@ -67,6 +67,4 @@ public class Flare extends Image {
         }
         return false;
     }
-
-
 }
