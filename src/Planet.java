@@ -5,7 +5,10 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
+/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
+ * The planet class represents a planet in the solar system and its shape and movement.
+ * Help From Preceptors: Soulai, Hadley, Courtney
+ */
 public class Planet {
     private double posX;
     private double posY;
@@ -16,6 +19,14 @@ public class Planet {
     private double scale;
     private double initialSize;
 
+    /**
+     * Constructs a Planet object using the following parameters.
+     * 
+     * @param size The size of the planet.
+     * @param radius The radius of the orbit.
+     * @param speed The speed of the planet's movement.
+     * @param imgPath The image's file path of the planet.
+     */
     public Planet(double size, double radius, double speed, String imgPath) {
         group = new GraphicsGroup();
 
@@ -40,6 +51,11 @@ public class Planet {
         scale = 1;
     }
 
+    /**
+     * Moves the planet on the created orbit.
+     * 
+     * @param canvas The canvas where the planet is shown.
+     */
     public void move(CanvasWindow canvas) {
         double angleRad = Math.toRadians(angle);
         double xCoor = radius * Math.cos(angleRad);
@@ -51,10 +67,22 @@ public class Planet {
         angle = angle % 360 + speed;
     }
 
+    /**
+     * Reflects a laser off the planet's surface.
+     * 
+     * @param laser The laser object that will be reflected.
+     */
     public void reflect(Laser laser) {
         laser.changeDirection(this);
     }
 
+    /**
+     * Shrinks the planet's size according to scale.
+     * 
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public void shrink() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
         scale -= 0.1;
@@ -64,14 +92,26 @@ public class Planet {
         Audio.hitSun();
     }
 
+    /**
+     * Returns the type of the planet.
+     */
     public String getType() {
         return "Planet";
     }
 
+    /**
+     * Returns the center point of the planet's bounding ellipse.
+     */
     public Point getCenter() {
         return bound.getCenter();
     }
 
+    /**
+     * Checks if a laser intersects with the planet.
+     * 
+     * @param laser The laser to check.
+     * @return True if the laser intersects with the planet, or else false.
+     */
     public boolean checkLaser(Laser laser) {
         double laserX1 = laser.getX1();
         double laserY1 = laser.getY1();
@@ -91,6 +131,11 @@ public class Planet {
         return false;
     }
 
+    /**
+     * Adds the planet to the specified canvas. 
+     * 
+     * @param canvas The canvas where the planet will be shown.
+     */
     public void addToCanvas(CanvasWindow canvas) {
         canvas.add(group);
     }

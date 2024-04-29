@@ -13,8 +13,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 
-/**
- *
+/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
+ * The main class containing the Solor Exodus Game.
+ * Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class Game {
     private CanvasWindow canvas;
@@ -25,11 +26,18 @@ public class Game {
     private int lives, sunLife;
     private double cooldown;
     private Button startButton, againButton, backButton, pauseButton;
-    private Boolean running = true, gameWin = false, gameOver = false;
+    private Boolean running = true, gameWon = false, gameOver = false;
     private Image cursor;
     private GraphicsGroup cooldownBar, sunBar, healthBar;
     private Random rand = new Random();
     private Flare flare;
+
+    /**
+     * Constructs a new instance of the Solar Exodus game.
+     * @throws UnsupportedAudioFileException 
+     * @throws IOException 
+     * @throws LineUnavailableException 
+     */
 
     public Game() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
@@ -42,7 +50,7 @@ public class Game {
         startButton = new Button("Start the Mission");
         startButton.setCenter(450, 450);
         canvas.add(startButton);
-        startButton.onClick(() -> call());
+        startButton.onClick(() -> startGameScreen());
 
         againButton = new Button("Play Again");
         againButton.setPosition(400, 450);
@@ -80,7 +88,7 @@ public class Game {
     }
 
     /**
-     * Resets the game window for a replay
+     * Resets the game window for a replay.
      *
      * @throws LineUnavailableException
      * @throws IOException
@@ -93,9 +101,9 @@ public class Game {
     }
 
     /**
-     * Calls all the relevant game elements on the screen to be ready for play
+     * Initializes and displays the game elements on the screen to be ready for play. 
      */
-    public void call() {
+    public void startGameScreen() {
         canvas.remove(startButton);
         gameBG();
 
@@ -120,7 +128,7 @@ public class Game {
     }
 
     /**
-     * Shoots the laser on space bar press or on click
+     * This handles shooting lasers on space bar press or mouse click.
      */
     public void shootLaser() {
         canvas.onCharacterTyped(event -> {
@@ -140,6 +148,10 @@ public class Game {
         });
     }
 
+    /**
+     * Animates the game by updating the game elements and checking for collision between
+     * the lasers and spaceship, lasers and planets, and flares and the spaceship.
+     */
     private void animateGame() {
         canvas.animate(() -> {
             if (running) {
@@ -254,11 +266,14 @@ public class Game {
                 // }
 
                 gameOver();
-                gameWin();
+                gameWon();
             }
         });
     }
 
+    /**
+     * Updates the health bar graphics when health is impacted.
+     */
     private void updateHealthBar() {
         canvas.remove(healthBar);
         healthBar = healthBar(20, 360);
@@ -266,7 +281,7 @@ public class Game {
     }
 
     /**
-     * Creates the overall gameBG for use in multiple instances
+     * Creates the space background image for the game.
      */
     private void gameBG() {
         Image spaceBG = new Image("other/spaceBG.png");
@@ -278,10 +293,12 @@ public class Game {
     }
 
     /**
+     * Creates a laser when called, and if the game is running and the cooldown is above or equal to 10. 
+     * Adds the laser to the canvas and to the laser list.
+     * 
      * @throws LineUnavailableException
      * @throws IOException
      * @throws UnsupportedAudioFileException
-     *
      */
     private void createLaser() throws UnsupportedAudioFileException, IOException,
         LineUnavailableException {
@@ -301,8 +318,9 @@ public class Game {
     }
 
     /**
-     *
-     * @param laser
+     * Removes a laser from the canvas.
+     * 
+     * @param laser The laser to be removed. 
      */
     private void removeLaser(Laser laser) {
         canvas.remove(laser);
@@ -310,7 +328,8 @@ public class Game {
     }
 
     /**
-     * Checks if the conditions for a Game Over are true and sets up the screen
+     * Checks if the conditions of game over are true based on lives,
+     * and updates the game accordingly.
      */
     private void gameOver() {
         if (lives == 0) {
@@ -335,9 +354,10 @@ public class Game {
     }
 
     /**
-     * Checks if the conditions for a Game Win are true and sets up the screen
+     * Checks if the conditions for a game won are true,
+     * and updates the screen accordingly.
      */
-    private void gameWin() {
+    private void gameWon() {
         if (sunLife == 0) {
             running = false;
 
@@ -359,10 +379,11 @@ public class Game {
     }
 
     /**
-     *
-     * @param xPos
-     * @param yPos
-     * @return
+     * Creates a graphics group representing the cooldown bar.
+     * 
+     * @param xPos The x coordinate of the cooldown bar.
+     * @param yPos The y coordinate of the cooldown bar.
+     * @return The graphics group representing the cooldown bar.
      */
     private GraphicsGroup cooldownBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup();
@@ -376,10 +397,11 @@ public class Game {
     }
 
     /**
-     *
-     * @param xPos
-     * @param yPos
-     * @return
+     * Creates a graphics group representing the sun's health bar.
+     * 
+     * @param xPos The x coordinate of the sun's health bar.
+     * @param yPos The y coordinate of the sun's health bar.
+     * @return The graphics group representing the sun's health bar.
      */
     private GraphicsGroup sunBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup();
@@ -393,10 +415,11 @@ public class Game {
     }
 
     /**
-     *
-     * @param xPos
-     * @param yPos
-     * @return
+     * Creates a graphics group representing the player's health bar.
+     * 
+     * @param xPos The x coordinate of the player's health bar.
+     * @param yPos The y coordinate of the player's health bar.
+     * @return The graphics group representing the player's health bar.
      */
     private GraphicsGroup healthBar(double xPos, double yPos) {
         GraphicsGroup g = new GraphicsGroup(xPos, yPos);
@@ -409,6 +432,14 @@ public class Game {
         return g;
     }
 
+    /**
+     * This is the main method to start the game.
+     * 
+     * @param args
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public static void main(String[] args) throws UnsupportedAudioFileException,
         IOException,
         LineUnavailableException {

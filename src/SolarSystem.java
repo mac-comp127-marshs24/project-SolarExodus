@@ -2,7 +2,10 @@ import edu.macalester.graphics.CanvasWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
+ * The SolarSystem class represents the solar system with its planets and controls their animation.
+ * Help From Preceptors: Soulai, Hadley, Courtney
+ */
 public class SolarSystem {
     private static final double EARTH_SIZE = 30;
     private static final double EARTH_RADIUS = 200;
@@ -12,6 +15,11 @@ public class SolarSystem {
     Planet sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune;
     private Boolean running;
 
+    /**
+     * Constructs a SolarSystem object and initializes the planets.
+     * 
+     * @param canvas The canvas where the planets will be displayed.
+     */
     public SolarSystem(CanvasWindow canvas) {
         sun = new Sun(EARTH_SIZE * 5, 0, 0, "planets/sun.png");
         mercury = new Planet(EARTH_SIZE * 0.5, EARTH_RADIUS * 0.5,
@@ -55,14 +63,23 @@ public class SolarSystem {
         });
     }
 
+    /**
+     * Stops the animation of the solar system.
+     */
     public void stopAnimate() {
         running = false;
     }
 
+    /**
+     * Returns the list of planets in the solar system.
+     */
     public List<Planet> getSolarSystem() {
         return SolarSystem;
     }
 
+    /**
+     * Returns the Sun object in the solar system.
+     */
     public Sun getSun() {
         return (Sun) sun;
     }

@@ -9,6 +9,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
+ * The audio class imports audio and controls the audio aspects of the game.
+ * Help From Preceptors: Soulai, Hadley, Courtney
+ */
 public class Audio {
     private Clip clip;
 

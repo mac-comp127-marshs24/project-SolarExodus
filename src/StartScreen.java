@@ -1,10 +1,18 @@
 import edu.macalester.graphics.*;
 import java.awt.Color;
 
-
+/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
+ * This startscreen class represents the start screen of the game.
+ * Help From Preceptors: Soulai, Hadley, Courtney
+ */
 public class StartScreen {
     CanvasWindow canvas;
 
+    /**
+     * Constructs a new StartScreen object including the introductory text and images of the planets on the startscreen.
+     * 
+     * @param canvas The canvas where the start screen will be shown.
+     */
     public StartScreen(CanvasWindow canvas) {
         GraphicsText scriptText = new GraphicsText(
             "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired big time.\n"
@@ -60,6 +68,15 @@ public class StartScreen {
         planetStartUp(startNep, 530, 300, 0.1, canvas);
     }
 
+    /**
+     * Displays a planet image at the specified position and scale.
+     * 
+     * @param image The path to the image file of the planet.
+     * @param posX The x-coordinate of the planet's position.
+     * @param posY The y-coordinate of the planet's position.
+     * @param scale The scale of the planet image.
+     * @param canvas The specified canvas to be shown on.
+     */
     private void planetStartUp(
         Image image,
         int posX,

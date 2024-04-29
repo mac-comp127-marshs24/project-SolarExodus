@@ -6,6 +6,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.macalester.graphics.Image;
 
+/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
+ * The flare class represents a flare object that extends Image and is created.
+ * Help From Preceptors: Soulai, Hadley, Courtney
+ */
 public class Flare extends Image {
 
     private double dx;
@@ -14,7 +18,13 @@ public class Flare extends Image {
     double spaceshipX;
     double spaceshipY;
 
-
+    /**
+     * Constructs and initializes a Flare object and it's image, 
+     * randomizes its initial velocity, and adds audio to the flare.
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public Flare() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         super(0, 0);
         setImagePath("other/flare.png");
@@ -23,11 +33,20 @@ public class Flare extends Image {
         Audio.flare();
     }
 
+    /**
+     * Updates the flare's position depending on its velocity.
+     */
     public void updatePosition() {
         moveBy(dx, dy);
 
     }
 
+    /**
+     * Checks if the flare collides with the spaceship.
+     * 
+     * @param spaceship The spaceship to check the collision with.
+     * @return True if the flare collides with the spaceship, or else its false.
+     */
     public boolean shipCollision(Spaceship spaceship) {
         double flareX = this.getPosition().getX();
         double flareY = this.getPosition().getY();
