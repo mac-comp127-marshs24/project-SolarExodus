@@ -14,7 +14,6 @@ import edu.macalester.graphics.Image;
  * Hadley, Courtney
  */
 public class Flare extends Image {
-
     private double dx;
     private double dy;
     private Random rand = new Random();
@@ -41,6 +40,15 @@ public class Flare extends Image {
      */
     public void updatePosition() {
         this.moveBy(dx, dy);
+    }
+
+    public boolean flareOutOfBounds() {
+        double x = this.getPosition().getX() + this.getWidth() / 2;
+        double y = this.getPosition().getY() + this.getHeight() / 2;
+        if (x > 900 || x < 0 || y > 750 || y < 0) {
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -12,8 +12,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * Courtney
  */
 public class Sun extends Planet {
-    // private Image sunflare;
-    List<Flare> flares;
 
     /**
      * Constructs a Sun object with specified parameters.

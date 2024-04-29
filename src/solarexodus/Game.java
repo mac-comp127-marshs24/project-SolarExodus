@@ -216,6 +216,9 @@ public class Game {
                     if (flare.getPosition().getY() > canvas.getHeight()) {
                         flare = null;
                     }
+                    if (flare.flareOutOfBounds()){
+                        canvas.remove(flare);
+                    }
                 }
                 if (flare != null && flare.shipCollision(spaceship)) {
                     canvas.remove(flare);
@@ -223,8 +226,10 @@ public class Game {
                     lives--;
                     updateHealthBar();
                     System.out.println("FLARE HOT BITCH");
-                    // break;
                 }
+                // if (flare!=null && flare.flareOutOfBounds()){
+                //     canvas.remove(flare);
+                // }
 
                 gameOver();
                 gameWon();
