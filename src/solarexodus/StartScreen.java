@@ -3,15 +3,16 @@ package solarexodus;
 import edu.macalester.graphics.*;
 import java.awt.Color;
 
-/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
- * This startscreen class represents the start screen of the game.
- * Help From Preceptors: Soulai, Hadley, Courtney
+/**
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas This startscreen class
+ * represents the start screen of the game. Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class StartScreen {
     CanvasWindow canvas;
 
     /**
-     * Constructs a new StartScreen object including the introductory text and images of the planets on the startscreen.
+     * Constructs a new StartScreen object including the introductory text and images of the planets on
+     * the startscreen.
      * 
      * @param canvas The canvas where the start screen will be shown.
      */
@@ -73,10 +74,10 @@ public class StartScreen {
     /**
      * Displays a planet image at the specified position and scale.
      * 
-     * @param image The path to the image file of the planet.
-     * @param posX The x-coordinate of the planet's position.
-     * @param posY The y-coordinate of the planet's position.
-     * @param scale The scale of the planet image.
+     * @param image  The path to the image file of the planet.
+     * @param posX   The x-coordinate of the planet's position.
+     * @param posY   The y-coordinate of the planet's position.
+     * @param scale  The scale of the planet image.
      * @param canvas The specified canvas to be shown on.
      */
     private void planetStartUp(
@@ -89,12 +90,4 @@ public class StartScreen {
         image.setScale(scale);
         canvas.add(image);
     }
-
-    // public void moveText(GraphicsText script, double dx, double dy){
-    // canvas.animate(()->{
-    // if(script.getX()+script.getWidth()+50<canvas.getWidth()){
-    // script.moveBy(dx,dy);
-    // }
-    // });
-    // }
 }

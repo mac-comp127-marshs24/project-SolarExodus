@@ -7,9 +7,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.macalester.graphics.*;
 
-/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
- * The laser class represents a laser that extends line.
- * Help From Preceptors: Soulai, Hadley, Courtney
+/**
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The laser class
+ * represents a laser that extends line. Help From Preceptors: Soulai, Hadley, Courtney
  */
 public class Laser extends Line {
     private double velocityX;
@@ -19,7 +19,7 @@ public class Laser extends Line {
     /**
      * Constructs a Laser object with the specified coordinates.
      * 
-     * @param x1 The x-coordinate of the starting point. 
+     * @param x1 The x-coordinate of the starting point.
      * @param y1 The y-coordinate of the starting point.
      * @param x2 The x-coordinate of the ending point.
      * @param y2 The y-coordinate of the ending point.
@@ -27,7 +27,8 @@ public class Laser extends Line {
      * @throws IOException
      * @throws LineUnavailableException
      */
-    public Laser(double x1, double y1, double x2, double y2) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public Laser(double x1, double y1, double x2, double y2)
+        throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         super(x1, y1, x2, y2);
         this.setStrokeWidth(3);
         velocityX = 0;
@@ -86,8 +87,8 @@ public class Laser extends Line {
 
 
     /**
-     * Changes the direction of the laser's angle and slope after reflecting from a planet
-     * using it's coordinates.
+     * Changes the direction of the laser's angle and slope after reflecting from a planet using it's
+     * coordinates.
      * 
      * @param planet The planets which the laser reflects from.
      */
@@ -127,7 +128,7 @@ public class Laser extends Line {
     /**
      * Calculates the angle formed by the specified three points.
      * 
-     * @param center The center point. 
+     * @param center The center point.
      * @param point1 The first point.
      * @param point2 The second point.
      * @return The angle that is formed by the three points specified, in degrees.
@@ -141,14 +142,14 @@ public class Laser extends Line {
     }
 
     /**
-     * Calculates the new coordinates after a point is rotated 
-     * around another point by the angle specified.
+     * Calculates the new coordinates after a point is rotated around another point by the angle
+     * specified.
      * 
-     * @param angle The angle of the rotation in degrees/radians?.
-     * @param x1 The x-coordinate of the point 
-     * @param y1 The y-coordinate of the point
-     * @param centerX The x-coordinate of the center of 
-     * @param centerY The y-coordinate of the center of 
+     * @param angle   The angle of the rotation in degrees/radians?.
+     * @param x1      The x-coordinate of the point
+     * @param y1      The y-coordinate of the point
+     * @param centerX The x-coordinate of the center of
+     * @param centerY The y-coordinate of the center of
      * @return The new coordinates of the rotated point.
      */
     private Point newP1(double angle, double x1, double y1, double centerX, double centerY) {
@@ -170,24 +171,9 @@ public class Laser extends Line {
     }
 
     /**
-     * Returns the slope of a line that passes through 
-     * the first point a, and second point b.
+     * Returns the slope of a line that passes through the first point a, and second point b.
      */
     private double slope(Point a, Point b) {
         return (a.getY() - b.getY()) / (a.getX() - b.getX());
     }
-
-    // public boolean collisionSS(Spaceship spaceship) {
-    //     double spaceX = spaceship.getX();
-    //     double spaceY = spaceship.getY();
-    //     double distanceX1Y1 = Math.sqrt(Math.pow(spaceX - this.getX1(), 2) + Math.pow(spaceY - this.getY1(), 2));
-    //     double distanceX2Y2 = Math.sqrt(Math.pow(spaceX - this.getX2(), 2) + Math.pow(spaceY - this.getY2(), 2));
-
-    //     if (distanceX1Y1 <= 0 && distanceX2Y2 <= 0) {
-    //         return true;
-    //     }
-    //     return false;
-
-
-    // }
 }

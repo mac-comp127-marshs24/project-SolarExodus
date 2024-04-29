@@ -28,8 +28,7 @@ public class Game {
     private int lives, sunLife;
     private double cooldown;
     private Button startButton, againButton, backButton, pauseButton;
-    private Boolean running = true, gameWon = false, gameOver = false;
-    private Image cursor;
+    private Boolean running = true, gameOver = false;
     private GraphicsGroup cooldownBar, sunBar, healthBar;
     private Random rand = new Random();
     private Flare flare;
@@ -47,9 +46,6 @@ public class Game {
         LineUnavailableException {
         canvas = new CanvasWindow("Solar Exodus", WIDTH, HEIGHT);
         gameBG();
-
-        // Image cursor= new Image("other/cursor.png"); //trying to make cursor a
-        // png cursor.setPosition(0, 0); canvas.add(cursor);
 
         startButton = new Button("Start the Mission");
         startButton.setCenter(450, 450);

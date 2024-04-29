@@ -2,13 +2,11 @@ package solarexodus;
 
 import edu.macalester.graphics.*;
 import java.awt.Color;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
-/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
- * The planet class represents a planet in the solar system and its shape and movement.
- * Help From Preceptors: Soulai, Hadley, Courtney
+/**
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The planet class
+ * represents a planet in the solar system and its shape and movement. Help From Preceptors: Soulai,
+ * Hadley, Courtney
  */
 public class Planet {
     private double posX;
@@ -23,9 +21,9 @@ public class Planet {
     /**
      * Constructs a Planet object using the following parameters.
      * 
-     * @param size The size of the planet.
-     * @param radius The radius of the orbit.
-     * @param speed The speed of the planet's movement.
+     * @param size    The size of the planet.
+     * @param radius  The radius of the orbit.
+     * @param speed   The speed of the planet's movement.
      * @param imgPath The image's file path of the planet.
      */
     public Planet(double size, double radius, double speed, String imgPath) {
@@ -80,11 +78,8 @@ public class Planet {
     /**
      * Shrinks the planet's size according to scale.
      * 
-     * @throws UnsupportedAudioFileException
-     * @throws IOException
-     * @throws LineUnavailableException
      */
-    public void shrink(){
+    public void shrink() {
         scale -= 0.1;
         planet.setScale(scale);
         bound.setScale(scale);
@@ -131,7 +126,7 @@ public class Planet {
     }
 
     /**
-     * Adds the planet to the specified canvas. 
+     * Adds the planet to the specified canvas.
      * 
      * @param canvas The canvas where the planet will be shown.
      */

@@ -8,9 +8,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.macalester.graphics.Image;
 
-/** Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas
- * The flare class represents a flare object that extends Image and is created.
- * Help From Preceptors: Soulai, Hadley, Courtney
+/**
+ * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas The flare class
+ * represents a flare object that extends Image and is created. Help From Preceptors: Soulai,
+ * Hadley, Courtney
  */
 public class Flare extends Image {
 
@@ -21,8 +22,9 @@ public class Flare extends Image {
     double spaceshipY;
 
     /**
-     * Constructs and initializes a Flare object and it's image, 
-     * randomizes its initial velocity, and adds audio to the flare.
+     * Constructs and initializes a Flare object and it's image, randomizes its initial velocity, and
+     * adds audio to the flare.
+     * 
      * @throws UnsupportedAudioFileException
      * @throws IOException
      * @throws LineUnavailableException
