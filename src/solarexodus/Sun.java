@@ -2,7 +2,6 @@ package solarexodus;
 
 import edu.macalester.graphics.CanvasWindow;
 import java.io.IOException;
-import java.util.List;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -12,8 +11,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * Courtney
  */
 public class Sun extends Planet {
-    // private Image sunflare;
-    List<Flare> flares;
 
     /**
      * Constructs a Sun object with specified parameters.

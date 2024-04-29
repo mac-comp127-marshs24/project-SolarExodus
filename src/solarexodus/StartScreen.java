@@ -18,22 +18,22 @@ public class StartScreen {
      */
     public StartScreen(CanvasWindow canvas) {
         GraphicsText scriptText = new GraphicsText(
-            "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired big time.\n"
+            "Alright, listen up. Humanity's in a tight spot. We built this artificial sun to cool things down on Earth, but it's backfired \n"
                 +
-                "The original sun's gone haywire, heating things up even more. That's where you come in.\n"
+                "big time. The original sun's gone haywire, heating things up even more. That's where you come in. You're at the helm\n"
                 +
-                "You're at the helm of the spaceship Aurora. Your mission? Destroy that pesky original sun.\n"
-                + "\n"
+                "of the spaceship Aurora. Your mission? Destroy that pesky original sun. But hey, it's not gonna be a walk in the park.\n"
+                + 
+                "\n" + "\n"
                 +
-                "But hey, it's not gonna be a walk in the park. You'll be dodging solar flares and dodging lasers bouncing off planets.\n"
-                + "Gotta keep your eyes peeled and your reflexes sharp.\n"
+                "You'll be dodging solar flares and dodging lasers bouncing off planets. Gotta keep your eyes peeled and your \n"
+                + "reflexes sharp. Remember, our goal is to save Earth,so be careful notto blast our home planet to smithereens.\n"
                 +
-                "Remember, our goal is to save Earth, so be careful not to blast our home planet to smithereens.\n"
-                + "\n"
+                "\n" + "\n" 
                 +
                 "So, strap in, commander. It's time to take the reins and lead humanity on this Solar Exodus. Good luck out there.");
-        scriptText.setCenter(840, 300);
-        scriptText.setFont(FontStyle.ITALIC, 16);
+        scriptText.setCenter(855, 310);
+        scriptText.setFont(FontStyle.ITALIC, 14);
         scriptText.setFillColor(new Color(135, 206, 250));
         scriptText.setAlignment(TextAlignment.CENTER);
         canvas.add(scriptText);
