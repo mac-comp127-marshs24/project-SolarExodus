@@ -27,7 +27,7 @@ public class GameMain {
     private SolarSystem solarSystem;
     private int lives, sunLife;
     private double cooldown;
-    private Button startButton, againButton, backButton, pauseButton;
+    private Button startButton, againButton, pauseButton;
     private Boolean running = true, gameOver = false;
     private GraphicsGroup cooldownBar, sunBar, healthBar;
     private Random rand = new Random();
@@ -55,16 +55,6 @@ public class GameMain {
         againButton = new Button("Play Again");
         againButton.setPosition(400, 450);
         againButton.onClick(() -> {
-            try {
-                resetGame();
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                e.printStackTrace();
-            }
-        });
-
-        backButton = new Button("Back");
-        backButton.setPosition(10, 10);
-        backButton.onClick(() -> {
             try {
                 resetGame();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -107,8 +97,6 @@ public class GameMain {
         canvas.remove(startButton);
         gameBG();
 
-        canvas.add(backButton);
-
         spaceship.addToCanvas(canvas);
         spaceship.moveShip(canvas);
 
@@ -120,7 +108,7 @@ public class GameMain {
         cooldownBar = cooldownBar(770, 700);
         canvas.add(cooldownBar);
 
-        healthBar = healthBar(20, 360);
+        healthBar = healthBar(20, 10);
         canvas.add(healthBar);
 
         sunBar = sunBar(770, 20);
@@ -238,7 +226,7 @@ public class GameMain {
      */
     private void updateHealthBar() {
         canvas.remove(healthBar);
-        healthBar = healthBar(20, 360);
+        healthBar = healthBar(20, 10);
         canvas.add(healthBar);
     }
 
