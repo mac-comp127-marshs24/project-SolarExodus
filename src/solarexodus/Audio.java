@@ -61,4 +61,9 @@ public class Audio {
         LineUnavailableException {
         new Audio("res/sound/flare.wav");
     }
+
+    public static void loseLife() throws UnsupportedAudioFileException, IOException,
+        LineUnavailableException {
+        new Audio("res/sound/lose life.wav");
+    }
 }
