@@ -14,8 +14,8 @@ Defend the solar system from the original Sun that has gone haywire by shooting 
 
 ### How to Run the Program
   1. Open the code on an IDE
-  2. Go to the GameMain.java file
-  3. Click 'run' to start the mission!
+  2. Go to the `GameMain.java` file
+  3. Click `Run` to start the mission!
 
 ### How to Play the Game
 <img src="res/other/gameplay.png" width = "63%">
@@ -28,7 +28,7 @@ Defend the solar system from the original Sun that has gone haywire by shooting 
   
 ### Acknowledgements
   We would like to thank the following resources for help and inspiration.
-  Help From Preceptors: Courtney, Soulai, Hadley, Linda
+  Help From Preceptors: Courtney, Soulai, Hadley, Linda.
   Inspiration from the classic arcade-style Space Invaders Game. An example of our inspiration, ("https://freeinvaders.org").
   Sound effects gathered from the following website, ("https://play.ht", "https://voicechanger.io").
   Planet images compiled from ("https://designer.microsoft.com/image-creator").
