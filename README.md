@@ -4,7 +4,7 @@ Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
 
 ## Description:
 Defend the solar system from the original Sun that has gone haywire by shooting it down using spaceship Aurora, in this arcade-style game.  
-<img src="other/startScreen.png" width = "49%">
+<img src="res/other/startScreen.png" width = "49%">
 
 
 ## Technical Guide:
