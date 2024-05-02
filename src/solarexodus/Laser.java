@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
  * The laser class represents a laser that extends line. 
- * Help From Preceptors: Soulai, Hadley, Courtney
+ * Help From Preceptors: Soulai, Hadley, Courtney, Linda
  */
 public class Laser extends Line {
     private double velocityX;

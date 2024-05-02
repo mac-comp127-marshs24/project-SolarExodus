@@ -30,7 +30,7 @@ Defend the solar system from the original Sun that has gone haywire by shooting 
   
 ### Acknowledgements
   We would like to thank the following resources for help and inspiration.
-  Help From Preceptors: Courtney, Soulai, 
+  Help From Preceptors: Courtney, Soulai, Hadley, Linda
   Inspiration from the classic arcade-style Space Invaders Game. An example of our inspiration, ("https://freeinvaders.org").
   Sound effects gathered from the following website, (" ").
   Planet images compiled from (" ").

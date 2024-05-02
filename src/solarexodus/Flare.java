@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Authors: Batsambuu Batbold, Yeshe Jangchup, & Nadezhda Dominguez Salinas 
  * The flare class represents a flare object that extends Image and is created. 
- * Help From Preceptors: Soulai, Hadley, Courtney
+ * Help From Preceptors: Soulai, Hadley, Courtney, Linda
  */
 public class Flare extends Image {
     private double dx;
