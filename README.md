@@ -1,42 +1,42 @@
 # Solar Exodus
 
-##Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
+__Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas__
 
-##Description:
+__Description:__
 Defend the solar system from the original Sun that has gone haywire by shooting it down using spaceship Aurora, in this arcade-style game.  
 
 
-##Technical Guide:
+__Technical Guide:__
 Requirements
   - Java 17 (required for Kilt Graphics)
   - Macalester Kilt Graphics (edu.macalester.graphics)
   - Visual Studio Code
 
-##How to Run the Program
+__How to Run the Program__
   1. Open the code on an IDE
   2. Go to the GameMain.java file
   3. Click 'run' to start the mission!
 
-##How to Play the Game
+__How to Play the Game__
   1. Keep your ears open for the amazing storyline and start the mission!
   2. Control the spaceship along the bottom of the screen with your mousepad or left/right arrow keys
   3. To shoot the lasers press the spacebar or click your mousepad/mouse
   4. Avoid the sun flares and hitting the earth! Also watch out for lasers reflecting off the planets. These can cost you a life!
   5. Shoot the sun down until it disappears! And you complete the mission!
   
-##Acknowledgements
+__Acknowledgements__
   We would like to thank the following resources for help and inspiration.
   Help From Preceptors: Courtney, Soulai, 
   Inspiration from the classic arcade-style Space Invaders Game. An example of our inspiration, ("https://freeinvaders.org").
   Sound effects gathered from the following website, (" ").
   Planet images compiled from (" ").
   
-##Limitations 
+__Limitations__
 The fundamental design limitations may include, no-pause feature after a life is lost, too many lasers on the canvas at the one time can
 lead to lagging in the game-play processing. This is a result from a dense and complicated canvas.animate method which consists of multiple if statements and loops.
 Possible lagging may occur during game-play every few seconds or so.
 
-##Societal Impact
+__Societal Impact__
 Our project aims to be inclusive, diversity, accesible to the majority of populations. 
 The game includes the following limitations in accesibility:
   - A blind person would not be able to control the spaceship or complete the missoin due to the lack of visual aspects to play the game. 
