@@ -32,8 +32,8 @@ Defend the solar system from the original Sun that has gone haywire by shooting 
   We would like to thank the following resources for help and inspiration.
   Help From Preceptors: Courtney, Soulai, 
   Inspiration from the classic arcade-style Space Invaders Game. An example of our inspiration, ("https://freeinvaders.org").
-  Sound effects gathered from the following website, (" ").
-  Planet images compiled from (" ").
+  Sound effects gathered from the following website, ("https://play.ht", "https://voicechanger.io").
+  Planet images compiled from ("https://designer.microsoft.com/image-creator").
   
 ### Limitations
 The fundamental design limitations may include, no-pause feature after a life is lost, too many lasers on the canvas at the one time can
