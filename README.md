@@ -4,7 +4,8 @@ Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
 
 ## Description:
 Defend the solar system from the original Sun that has gone haywire by shooting it down using spaceship Aurora, in this arcade-style game.  
-<img src="other/startScreen.png" width = "49%">
+<img src="res/other/startScreen.png" width = "20%">
+
 
 
 ## Technical Guide:
@@ -19,6 +20,8 @@ Defend the solar system from the original Sun that has gone haywire by shooting 
   3. Click 'run' to start the mission!
 
 ### How to Play the Game
+<img src="res/other/gameplay.png" width = "20%">
+
   1. Keep your ears open for the amazing storyline and start the mission!
   2. Control the spaceship along the bottom of the screen with your mousepad or left/right arrow keys
   3. To shoot the lasers press the spacebar or click your mousepad/mouse
