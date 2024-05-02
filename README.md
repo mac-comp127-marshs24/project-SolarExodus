@@ -1,7 +1,5 @@
 # Solar Exodus
 
-Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
-
 ## Description
 Defend the solar system from the original Sun that has gone haywire by shooting it down using spaceship Aurora, in this arcade-style game.  
 
@@ -50,3 +48,5 @@ The game includes the following limitations in accesibility:
  An unintended consequence of our software is that it may promote aggressive gameplay and behaviors. 
  We do not foresee our program being used in an oppressive situation but they may exist:
  One possible situation of the program being used in a malicious way, is it could be recreated and used to scam people out of money if the game were monitized.
+
+#### Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
