@@ -41,9 +41,8 @@ Possible lagging may occur during game-play every few seconds or so.
 ### Societal Impact
 Our project aims to be inclusive, diversity, accesible to the majority of populations. 
 The game includes the following limitations in accesibility:
-  - A blind person would not be able to control the spaceship or complete the missoin due to the lack of visual aspects to play the game. 
   - Players of younger age or those who lack hand-eye coordination may find it more difficult to play and complete the mission.
-  - A person who uses an assistive device or has physical disabilities may also find it quite difficult to play the game.
+  - A person who uses an assistive device or has physical disabilities may also find it quite difficult to play the game. Those with visual impairment will be unable to interact with the visual elments of the game.
 
  An unintended consequence of our software is that it may promote aggressive gameplay and behaviors. 
  We do not foresee our program being used in an oppressive situation but they may exist:
