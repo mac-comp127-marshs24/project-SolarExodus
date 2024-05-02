@@ -2,13 +2,13 @@
 
 Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
 
-## Description:
+## Description
 Defend the solar system from the original Sun that has gone haywire by shooting it down using spaceship Aurora, in this arcade-style game.  
-<img src="res/other/startScreen.png" width = "50%">
+
+<img src="res/other/startScreen.png" width = "40%">
 
 
-
-## Technical Guide:
+## Technical Guide
 ### Requirements
   - Java 17 (required for Kilt Graphics)
   - Macalester Kilt Graphics (edu.macalester.graphics)
@@ -20,7 +20,7 @@ Defend the solar system from the original Sun that has gone haywire by shooting 
   3. Click 'run' to start the mission!
 
 ### How to Play the Game
-<img src="res/other/gameplay.png" width = "50%">
+<img src="res/other/gameplay.png" width = "63%">
 
   1. Keep your ears open for the amazing storyline and start the mission!
   2. Control the spaceship along the bottom of the screen with your mousepad or left/right arrow keys
@@ -44,7 +44,7 @@ Possible lagging may occur during game-play every few seconds or so.
 Our project aims to be inclusive, diversity, accesible to the majority of populations. 
 The game includes the following limitations in accesibility:
   - A blind person would not be able to control the spaceship or complete the missoin due to the lack of visual aspects to play the game. 
-  - Players of younger age or those who lack hand-eye coordination may find it more difficult to play and complete the mission
+  - Players of younger age or those who lack hand-eye coordination may find it more difficult to play and complete the mission.
   - A person who uses an assistive device or has physical disabilities may also find it quite difficult to play the game.
 
  An unintended consequence of our software is that it may promote aggressive gameplay and behaviors. 
