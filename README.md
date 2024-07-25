@@ -48,4 +48,4 @@ The game includes the following limitations in accesibility:
  We do not foresee our program being used in an oppressive situation but they may exist:
  One possible situation of the program being used in a malicious way, is it could be recreated and used to scam people out of money if the game were monitized.
 
-#### Developers: Batsambuu Batbold, Yeshe Jangchup, and Nadezhda Dominguez Salinas
+#### Developers: [@BaSaBu1](https://github.com/BaSaBu1), [@Nadizdom34](https://github.com/Nadizdom34), and [@yeshedj](https://github.com/yeshdj)
